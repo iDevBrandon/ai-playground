@@ -208,9 +208,7 @@ export default function DesignLabSidebar({
               {chatHistory.map((chat) => (
                 <div
                   key={chat.id}
-                  className="relative"
-                  onMouseEnter={() => setHoveredChat(chat.id)}
-                  onMouseLeave={() => setHoveredChat(null)}
+                  className="relative group"
                 >
                   {renamingChat === chat.id ? (
                     <div className="flex items-center gap-2 px-2 py-2">
@@ -242,19 +240,18 @@ export default function DesignLabSidebar({
                         {chat.title}
                       </span>
                       <div className="flex h-6 w-6 items-center justify-center">
-                        {hoveredChat === chat.id && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              setShowChatMenu(
-                                showChatMenu === chat.id ? null : chat.id
-                              )
-                            }}
-                            className="rounded p-1 transition-colors hover:bg-gray-200"
-                          >
-                            <Ellipsis className="h-4 w-4" />
-                          </button>
-                        )}
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            setShowChatMenu(
+                              showChatMenu === chat.id ? null : chat.id
+                            )
+                          }}
+                          className="rounded p-1 transition-colors hover:bg-gray-200 opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+                        >
+                          <Ellipsis className="h-4 w-4" />
+                        </button>
                       </div>
                     </Link>
                   )}
