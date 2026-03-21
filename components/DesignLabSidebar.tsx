@@ -119,9 +119,9 @@ export default function DesignLabSidebar({
           <Image
             src="/image/logo.png"
             alt="PakFactory Logo"
-            width={120}
-            height={28}
-            className="h-5 w-auto"
+            width={140}
+            height={32}
+            className="h-7 w-auto"
           />
         </Link>
       </div>
