@@ -34,33 +34,33 @@ export default function LandingPage() {
             height={40}
             className="h-8 w-auto"
           />
-          <span className="text-lg font-semibold" style={{ color: "#36B37E" }}>
-            AI Platform
+          <span className="text-lg font-semibold text-primary">
+            AI Packaging Agent
           </span>
         </div>
 
         <nav className="hidden items-center gap-4 lg:flex lg:gap-8">
           <a
             href="#"
-            className="font-medium text-gray-600 transition-colors hover:text-[#36B37E]"
+            className="font-medium text-gray-600 transition-colors hover:text-primary"
           >
             Products
           </a>
           <a
             href="#"
-            className="font-medium text-gray-600 transition-colors hover:text-[#36B37E]"
+            className="font-medium text-gray-600 transition-colors hover:text-primary"
           >
             Industries
           </a>
           <a
             href="#"
-            className="font-medium text-gray-600 transition-colors hover:text-[#36B37E]"
+            className="font-medium text-gray-600 transition-colors hover:text-primary"
           >
             Services
           </a>
           <a
             href="#"
-            className="font-medium text-gray-600 transition-colors hover:text-[#36B37E]"
+            className="font-medium text-gray-600 transition-colors hover:text-primary"
           >
             Why PakFactory
           </a>
@@ -70,12 +70,11 @@ export default function LandingPage() {
           <span className="hidden text-sm text-gray-600 lg:inline">
             Call us toll free:
           </span>
-          <span className="hidden text-lg font-semibold text-[#36B37E] sm:inline">
+          <span className="hidden text-lg font-semibold text-primary sm:inline">
             1-888-622-2819
           </span>
           <Button
-            style={{ backgroundColor: "#36B37E" }}
-            className="px-3 text-sm text-white hover:opacity-90 lg:px-4 lg:text-base"
+            className="bg-primary px-3 text-sm text-white hover:opacity-90 lg:px-4 lg:text-base"
           >
             <span className="hidden sm:inline">Request a Quote</span>
             <span className="sm:hidden">Quote</span>
@@ -86,15 +85,15 @@ export default function LandingPage() {
       {/* Hero Section */}
       <main className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 py-10 lg:flex-row lg:gap-0 lg:px-6 lg:py-20">
         <div className="max-w-2xl flex-1 text-left">
-          <div className="mb-6 flex items-center gap-2 text-sm font-semibold text-[#36B37E]">
-            <span className="h-2 w-2 rounded-full bg-[#36B37E]"></span>
+          <div className="mb-6 flex items-center gap-2 text-sm font-semibold text-primary">
+            <span className="h-2 w-2 rounded-full bg-primary"></span>
             AI-POWERED PACKAGING INNOVATION
           </div>
 
           <h1 className="mb-6 text-4xl leading-tight font-bold sm:text-5xl lg:text-6xl">
             The Future of
             <br />
-            <span className="text-[#36B37E]">Packaging Design</span>
+            <span className="text-primary">Packaging Design</span>
             <br />
             <span className="">is AI</span>
           </h1>
@@ -106,25 +105,23 @@ export default function LandingPage() {
 
           <div className="mb-8 flex flex-col justify-start gap-4 sm:flex-row lg:mb-12 lg:gap-6">
             <Button
-              style={{ backgroundColor: "#36B37E" }}
-              className="h-15 w-full cursor-pointer rounded-lg px-6 py-5 text-xl font-semibold text-white hover:opacity-90 sm:w-64"
+              className="bg-primary h-15 w-full cursor-pointer rounded-lg px-6 py-5 text-xl font-semibold text-white hover:opacity-90 sm:w-64"
             >
               Request a Quote
             </Button>
-            <Link href="/workspace" className="w-full sm:w-64">
+            <Link href="/design-lab" className="w-full sm:w-64">
               <Button
                 variant="outline"
-                style={{ borderColor: "#36B37E", color: "#36B37E" }}
-                className="h-15 w-full cursor-pointer rounded-lg bg-white px-6 py-5 text-xl font-semibold hover:bg-gray-50"
+                className="h-15 w-full cursor-pointer rounded-lg bg-white px-6 py-5 text-xl font-semibold hover:bg-gray-50 border-primary text-primary"
               >
-                Try AI Assistant
+                Try Design Lab
               </Button>
             </Link>
           </div>
 
           <div className="flex flex-col items-start gap-4 sm:flex-row lg:justify-start">
             <div className="flex items-center gap-2">
-              <div className="flex text-[#36B37E]">⭐⭐⭐⭐⭐</div>
+              <div className="flex text-primary">⭐⭐⭐⭐⭐</div>
               <span className="text-sm text-gray-600 underline">
                 4.6 Google Reviews
               </span>
@@ -143,7 +140,7 @@ export default function LandingPage() {
               <div
                 className="pointer-events-none absolute inset-0 opacity-20"
                 style={{
-                  backgroundImage: `radial-gradient(circle at 2px 2px, #36B37E 1px, transparent 0)`,
+                  backgroundImage: `radial-gradient(circle at 2px 2px, oklch(var(--primary)) 1px, transparent 0)`,
                   backgroundSize: "24px 24px",
                 }}
               ></div>
@@ -153,15 +150,13 @@ export default function LandingPage() {
 
               {/* Processing indicator */}
               <div
-                className="border-opacity-30 absolute right-6 bottom-6 max-w-50 rounded-lg border p-4 backdrop-blur-md"
+                className="border-opacity-30 absolute right-6 bottom-6 max-w-50 rounded-lg border p-4 backdrop-blur-md border-primary"
                 style={{
                   backgroundColor: "rgba(0, 0, 0, 0.8)",
-                  borderColor: "#36B37E",
                 }}
               >
                 <p
-                  className="mb-1 text-[10px] font-bold uppercase"
-                  style={{ color: "#36B37E" }}
+                  className="mb-1 text-[10px] font-bold uppercase text-primary"
                 >
                   LIVE PROCESSING
                 </p>
@@ -203,8 +198,7 @@ export default function LandingPage() {
           {/* AI-Driven Design */}
           <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl">
             <div
-              style={{ backgroundColor: "#36B37E" }}
-              className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
+              className="bg-primary mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
             >
               <span className="text-xl text-white">📦</span>
             </div>
@@ -230,8 +224,7 @@ export default function LandingPage() {
           {/* Global Standards (RAG) */}
           <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl">
             <div
-              style={{ backgroundColor: "#36B37E" }}
-              className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
+              className="bg-primary mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
             >
               <span className="text-xl text-white">🎨</span>
             </div>
@@ -257,8 +250,7 @@ export default function LandingPage() {
           {/* Material Intelligence */}
           <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl">
             <div
-              style={{ backgroundColor: "#36B37E" }}
-              className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
+              className="bg-primary mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
             >
               <span className="text-xl text-white">🤖</span>
             </div>
@@ -301,18 +293,16 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row lg:gap-6">
             <Button
-              style={{ backgroundColor: "#36B37E" }}
-              className="h-12 w-full cursor-pointer rounded-lg px-6 py-3 text-lg font-semibold text-white hover:opacity-90 sm:w-64 lg:h-15 lg:px-8 lg:py-5 lg:text-xl"
+              className="bg-primary h-12 w-full cursor-pointer rounded-lg px-6 py-3 text-lg font-semibold text-white hover:opacity-90 sm:w-64 lg:h-15 lg:px-8 lg:py-5 lg:text-xl"
             >
               Request a Quote
             </Button>
-            <Link href="/workspace" className="w-full sm:w-64">
+            <Link href="/design-lab" className="w-full sm:w-64">
               <Button
                 variant="outline"
-                style={{ borderColor: "#36B37E", color: "#36B37E" }}
-                className="h-12 w-full cursor-pointer rounded-lg bg-white px-6 py-3 text-lg font-semibold hover:bg-gray-50 lg:h-15 lg:px-8 lg:py-5 lg:text-xl"
+                className="h-12 w-full cursor-pointer rounded-lg bg-white px-6 py-3 text-lg font-semibold hover:bg-gray-50 lg:h-15 lg:px-8 lg:py-5 lg:text-xl border-primary text-primary"
               >
-                Try AI Assistant
+                Try Design Lab
               </Button>
             </Link>
           </div>

@@ -290,13 +290,13 @@ export default function AnimatedWireframe() {
               onChange={(e) => setUserQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleQuerySubmit()}
               placeholder="Describe packaging (e.g., 'tulip box', 'burger box', 'cake box', 'sandwich wedge')..."
-              className="flex-1 rounded border border-gray-200 px-3 py-2 text-sm focus:border-[#36B37E] focus:ring-2 focus:ring-[#36B37E] focus:outline-none"
+              className="flex-1 rounded border border-gray-200 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
               disabled={isGenerating}
             />
             <button
               onClick={handleQuerySubmit}
               disabled={isGenerating || !userQuery.trim()}
-              className="rounded bg-[#36B37E] px-4 py-2 text-sm text-white transition-colors hover:bg-[#2E8B57] disabled:cursor-not-allowed disabled:bg-gray-300"
+              className="rounded bg-primary px-4 py-2 text-sm text-white transition-colors hover:bg-primary/80 disabled:cursor-not-allowed disabled:bg-gray-300"
             >
               {isGenerating ? "..." : "Generate"}
             </button>
@@ -312,7 +312,7 @@ export default function AnimatedWireframe() {
 
           {isGenerating && (
             <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
-              <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#36B37E] border-t-transparent"></div>
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
               <span>AI is analyzing your input and generating 3D shape...</span>
             </div>
           )}
@@ -392,7 +392,7 @@ export default function AnimatedWireframe() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="rounded-lg bg-white/90 p-6 shadow-xl">
                 <div className="flex flex-col items-center gap-3">
-                  <div className="h-8 w-8 animate-spin rounded-full border-3 border-[#36B37E] border-t-transparent"></div>
+                  <div className="h-8 w-8 animate-spin rounded-full border-3 border-primary border-t-transparent"></div>
                   <span className="text-sm font-medium text-gray-700">
                     AI Processing...
                   </span>

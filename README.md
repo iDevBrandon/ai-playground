@@ -144,3 +144,9 @@ Send chunks to LLM
 ↓
 Generate answer
 ```
+
+## Design with Stitch UI Generator MCP
+
+```mcp__stitch__get_project
+  project_id: "15874390315716692698"
+```

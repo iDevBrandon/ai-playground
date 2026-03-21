@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Industrial Intelligence | Packaging Specification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#d8e3fb",
+              "surface-tint": "#36B37E",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#002112",
+              "secondary": "#515f74",
+              "on-primary-fixed-variant": "#005234",
+              "surface-dim": "#cfdaf2",
+              "outline": "#737785",
+              "on-surface": "#111c2d",
+              "error": "#ba1a1a",
+              "tertiary-container": "#a93802",
+              "on-secondary-container": "#57657a",
+              "primary-container": "#36B37E",
+              "surface-bright": "#f9f9ff",
+              "background": "#f9f9ff",
+              "inverse-surface": "#263143",
+              "outline-variant": "#c3c6d6",
+              "inverse-primary": "#82f7b8",
+              "surface-container-highest": "#d8e3fb",
+              "surface": "#f9f9ff",
+              "on-background": "#111c2d",
+              "inverse-on-surface": "#ecf1ff",
+              "secondary-container": "#e0f2f1",
+              "on-surface-variant": "#424654",
+              "on-error": "#ffffff",
+              "on-secondary-fixed": "#0d1c2e",
+              "tertiary-fixed-dim": "#ffb59b",
+              "on-tertiary-fixed-variant": "#812800",
+              "surface-container-low": "#f0f3ff",
+              "surface-container": "#e7eeff",
+              "tertiary-fixed": "#ffdbcf",
+              "on-tertiary-fixed": "#380d00",
+              "tertiary": "#822800",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "primary-fixed": "#bcffe0",
+              "secondary-fixed-dim": "#b9c7df",
+              "on-secondary-fixed-variant": "#3a485b",
+              "surface-container-high": "#dee8ff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#002112",
+              "secondary-fixed": "#d5e3fc",
+              "primary": "#36B37E",
+              "primary-fixed-dim": "#82f7b8",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#ffcebd"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        vertical-align: middle;
+      }
+      .custom-glass {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+      .ai-pulse-ring {
+        position: relative;
+      }
+      .ai-pulse-ring::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 9999px;
+        border: 2px solid #36B37E;
+        opacity: 0.4;
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-md shadow-sm flex justify-between items-center px-6 py-3">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-slate-900 tracking-tighter font-headline">Industrial Intelligence</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-manrope tracking-tight font-bold text-slate-500 hover:text-slate-900 transition-colors" href="#">Dashboard</a>
+<a class="font-manrope tracking-tight font-bold text-green-600 border-b-2 border-green-600 pb-1" href="#">Design Lab</a>
+<a class="font-manrope tracking-tight font-bold text-slate-500 hover:text-slate-900 transition-colors" href="#">Inventory</a>
+<a class="font-manrope tracking-tight font-bold text-slate-500 hover:text-slate-900 transition-colors" href="#">Orders</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100/50 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-500">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-100/50 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-500">help_outline</span>
+</button>
+<div class="ai-pulse-ring h-8 w-8 rounded-full overflow-hidden ml-2">
+<img alt="User profile avatar with AI pulse indicator" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAMkDQuvnED4yHgzztA9bUWH8BHvI0MlMxHirgLNSj4WK4wNdZ9Z20zQ0J9P_6gewvMryNM0hgz7RICBOs6QHNkHRaji3XMjwdtSbqKUHyorBVlGoHnLltxPmnHomPZuUkGKzFKhVB9t7Fh8KVDxqPMBMBlELjqwLntePTOTGLPczy3r0gxpn1i2kL4Glw09KNK8M5aECU8IDnw8BiRy4owZMdZaYHsbuTy5oH8yDFmHMq_2v9zSG6hktZJ2VEVIjyy-ybZ_8ZHqhL"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-16 bg-slate-100 flex flex-col py-8 gap-2">
+<div class="px-6 mb-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<div>
+<h3 class="font-inter text-sm font-bold text-slate-900 leading-tight">Project Alpha-7</h3>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-label">Precision Corrugated</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 bg-green-50 text-green-800 font-bold rounded-r-lg border-l-4 border-primary hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-inter text-sm font-medium">Current Project</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-slate-200 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-inter text-sm font-medium">History</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-slate-200 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span class="font-inter text-sm font-medium">Schematics</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-slate-200 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-inter text-sm font-medium">Materials</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 hover:bg-slate-200 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-inter text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="px-6 py-4 mt-auto">
+<button class="w-full bg-primary text-white py-3 px-4 rounded-lg text-sm font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+            New Specification
+        </button>
+</div>
+<div class="px-6 pt-4 border-t border-slate-200/50 flex flex-col gap-1">
+<a class="flex items-center gap-3 py-2 text-slate-500 hover:text-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="description">description</span>
+<span class="text-xs font-medium">Documentation</span>
+</a>
+<a class="flex items-center gap-3 py-2 text-slate-500 hover:text-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="contact_support">contact_support</span>
+<span class="text-xs font-medium">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Stage -->
+<main class="ml-64 mt-16 p-8 min-h-screen">
+<header class="mb-12 flex justify-between items-end">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-[0.15em] font-label mb-2">Spec ID: PR-1210-RB</p>
+<h1 class="text-5xl font-extrabold font-headline text-on-surface tracking-tighter">12x10 Rigid Box</h1>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 bg-primary text-white rounded-lg font-bold flex items-center gap-2 hover:opacity-90 shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">view_in_ar</span>
+                Request 3D Render
+            </button>
+<button class="px-6 py-3 bg-surface-container-low text-primary rounded-lg font-bold flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">download</span>
+                Export PDF
+            </button>
+</div>
+</header>
+<!-- Bento Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- 3D Preview Stage -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<div class="relative aspect-video rounded-xl bg-inverse-surface overflow-hidden group">
+<!-- Technical Background Grid -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
+<!-- Main Image (Placeholder) -->
+<img alt="High-quality 3D render of a premium white rigid box" class="w-full h-full object-contain p-20 z-10 relative" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHfj9w-wBBBA9-DCLLU7B-Ab_EDDn2k9RfG7_7cYkEokWBoHyGit97dt9cMoNoEsItFXfqR_ZPUEI-cOexT9OUOxgZ5RiK3rxkL-zI21w5UlB2Lm25FdCfNOuik2PxLuJuGmq98jatSLlZbu2ejUUwtDAfGqWqx869JjcV_w0_d0S4U01Ij1pDjqKZApGuQCwhMFxp1FKV8_YmLfwSts9O0l1DeEDTxx9HWaf_9OsdFSLVSx3LYOiMGI0-uzKGlTXYdPQW5YlFdOxU"/>
+<!-- Floating Schematic Labels -->
+<div class="absolute top-8 left-8 p-4 bg-white/5 backdrop-blur-md rounded-lg border border-white/10 text-white z-20">
+<div class="text-[10px] text-green-400 uppercase font-label mb-1">Active Simulation</div>
+<div class="text-lg font-bold font-headline">Alpha-7 Prototype</div>
+<div class="text-xs text-white/60">Real-time light calculation: ON</div>
+</div>
+<div class="absolute bottom-8 right-8 flex gap-2 z-20">
+<button class="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-colors">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-full transition-colors">
+<span class="material-symbols-outlined">rotate_90_degrees_ccw</span>
+</button>
+</div>
+</div>
+<!-- Technical Drawing Section -->
+<div class="grid grid-cols-3 gap-6">
+<div class="col-span-2 bg-surface-container-low p-8 rounded-xl">
+<h4 class="font-headline font-bold text-slate-900 mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">straighten</span>
+                        Dimensional Analysis
+                    </h4>
+<div class="grid grid-cols-3 gap-8 border-t border-outline-variant/30 pt-6">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-label mb-1">Width</p>
+<p class="text-2xl font-black font-headline text-on-surface">12.00<span class="text-sm font-medium ml-1">in</span></p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-label mb-1">Depth</p>
+<p class="text-2xl font-black font-headline text-on-surface">10.00<span class="text-sm font-medium ml-1">in</span></p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-label mb-1">Height</p>
+<p class="text-2xl font-black font-headline text-on-surface">4.50<span class="text-sm font-medium ml-1">in</span></p>
+</div>
+</div>
+</div>
+<div class="bg-primary text-white p-8 rounded-xl flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-3xl mb-2">auto_awesome</span>
+<h4 class="font-headline font-bold text-lg leading-tight">AI Structural Integrity</h4>
+</div>
+<p class="text-xs text-white/80 leading-relaxed">
+                        Current folding style provides 40% more crush resistance than standard tuck-end models.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Sidebar Spec Panel -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- Spec Detail Card -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/10">
+<h3 class="text-xl font-bold font-headline text-on-surface mb-8">Packaging Specs</h3>
+<div class="space-y-8">
+<div>
+<label class="text-[10px] text-on-surface-variant uppercase font-label block mb-3">Construction Style</label>
+<div class="flex items-center gap-3 p-4 bg-green-50 rounded-lg border border-green-100">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+<div>
+<p class="text-sm font-bold text-on-surface">Two-Piece Rigid Box</p>
+<p class="text-[10px] text-on-surface-variant">Telescoping Lid &amp; Base</p>
+</div>
+</div>
+</div>
+<div>
+<label class="text-[10px] text-on-surface-variant uppercase font-label block mb-3">Material Grade</label>
+<p class="text-sm text-on-surface font-medium border-l-2 border-primary pl-4 py-1">1200 GSM Eska Board</p>
+<p class="text-xs text-on-surface-variant pl-4 mt-2">Sustainable FSC-Certified greyboard core</p>
+</div>
+<div>
+<label class="text-[10px] text-on-surface-variant uppercase font-label block mb-3">Exterior Finish</label>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-3 rounded text-center">
+<p class="text-xs font-bold text-on-surface">Soft Touch</p>
+<p class="text-[9px] text-on-surface-variant">Laminate</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded text-center">
+<p class="text-xs font-bold text-on-surface">Silver Foil</p>
+<p class="text-[9px] text-on-surface-variant">Stamping</p>
+</div>
+</div>
+</div>
+<div>
+<label class="text-[10px] text-on-surface-variant uppercase font-label block mb-3">Folding Geometry</label>
+<p class="text-sm text-on-surface font-medium border-l-2 border-outline-variant pl-4 py-1">Stay-Fold Reinforced Corner</p>
+</div>
+</div>
+</div>
+<!-- Price/Procurement Card -->
+<div class="bg-slate-100 p-8 rounded-xl border border-slate-200">
+<div class="flex justify-between items-start mb-6">
+<h4 class="font-headline font-bold text-on-surface">Production Estimate</h4>
+<span class="bg-primary text-white px-2 py-1 text-[10px] font-bold rounded">LIVE RATES</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Unit Price (1k units)</span>
+<span class="font-bold text-on-surface">$4.25</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Lead Time</span>
+<span class="font-bold text-on-surface">14-18 Days</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex justify-between items-end">
+<span class="text-xs text-on-surface-variant">Estimated Total</span>
+<span class="text-2xl font-black text-primary font-headline">$4,250.00</span>
+</div>
+</div>
+<button class="w-full mt-6 py-4 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:translate-y-[-2px] transition-all shadow-lg shadow-primary/20">
+                    Initiate Sample Order
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

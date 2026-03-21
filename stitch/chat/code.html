@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Summary - The Precision Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#fff6f4",
+              "outline": "#727687",
+              "tertiary-fixed-dim": "#ffb59d",
+              "outline-variant": "#c2c6d8",
+              "primary": "#36B37E",
+              "secondary": "#425ca0",
+              "surface": "#fcf9f8",
+              "on-secondary-fixed": "#001849",
+              "on-tertiary-fixed-variant": "#832600",
+              "secondary-container": "#9bb4fe",
+              "error": "#ba1a1a",
+              "primary-fixed": "#d9f5e9",
+              "inverse-on-surface": "#f3f0ef",
+              "on-background": "#1c1b1b",
+              "on-error-container": "#93000a",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#36B37E",
+              "secondary-fixed": "#dae1ff",
+              "surface-bright": "#fcf9f8",
+              "secondary-fixed-dim": "#b3c5ff",
+              "on-surface-variant": "#424656",
+              "surface-variant": "#e5e2e1",
+              "surface-dim": "#dcd9d9",
+              "on-primary-container": "#f8f7ff",
+              "on-surface": "#1c1b1b",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#284386",
+              "inverse-surface": "#313030",
+              "on-primary-fixed": "#002111",
+              "tertiary": "#a33200",
+              "surface-container-low": "#f6f3f2",
+              "inverse-primary": "#b3c5ff",
+              "tertiary-container": "#cc4204",
+              "background": "#fcf9f8",
+              "primary-fixed-dim": "#b3c5ff",
+              "on-secondary-container": "#294487",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-high": "#ebe7e7",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e5e2e1",
+              "tertiary-fixed": "#ffdbd0",
+              "on-tertiary-fixed": "#390c00",
+              "surface-container": "#f0edec",
+              "on-primary-fixed-variant": "#00522e",
+              "primary-container": "#36B37E"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(16px);
+        background: rgba(252, 249, 248, 0.7);
+      }
+      .gradient-button {
+        background: linear-gradient(135deg, #36B37E 0%, #42C78D 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="hidden md:flex flex-col h-screen p-4 gap-6 bg-[#f6f3f2] dark:bg-slate-900 w-64 fixed left-0 top-0">
+<div class="px-2 py-4">
+<h1 class="font-manrope font-black text-[#1c1b1b] dark:text-white text-xl">Consultancy Portal</h1>
+<p class="text-[10px] opacity-60 tracking-widest uppercase mt-1">Precision Architect v1.0</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-[#1c1b1b] dark:text-slate-400 opacity-80 hover:bg-[#ffffff] dark:hover:bg-slate-800 hover:opacity-100 transition-all font-inter text-sm font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                History
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#1c1b1b] dark:text-slate-400 opacity-80 hover:bg-[#ffffff] dark:hover:bg-slate-800 hover:opacity-100 transition-all font-inter text-sm font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+                Saved Specs
+            </a>
+<div class="mt-8 mb-2 px-4 text-[10px] font-bold text-outline uppercase tracking-wider">Management</div>
+<a class="flex items-center gap-3 px-4 py-3 text-[#1c1b1b] dark:text-slate-400 opacity-80 hover:bg-[#ffffff] dark:hover:bg-slate-800 hover:opacity-100 transition-all font-inter text-sm font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+                Archive
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#1c1b1b] dark:text-slate-400 opacity-80 hover:bg-[#ffffff] dark:hover:bg-slate-800 hover:opacity-100 transition-all font-inter text-sm font-medium rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                Support
+            </a>
+</nav>
+<div class="mt-auto">
+<button class="gradient-button w-full py-3 px-4 text-white font-bold rounded-lg flex items-center justify-center gap-2 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Project
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar Anchor -->
+<header class="flex justify-between items-center w-full px-8 h-16 bg-[#fcf9f8] dark:bg-slate-950 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="text-xl font-extrabold text-[#1c1b1b] dark:text-white tracking-tighter font-manrope">
+                    The Precision Architect
+                </div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-[#1c1b1b] opacity-70 dark:text-slate-400 font-manrope font-bold text-sm tracking-tight hover:text-primary transition-colors duration-200" href="#">Design Lab</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-manrope font-bold text-sm tracking-tight" href="#">Projects</a>
+<a class="text-[#1c1b1b] opacity-70 dark:text-slate-400 font-manrope font-bold text-sm tracking-tight hover:text-primary transition-colors duration-200" href="#">Help</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#1c1b1b] opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-[#1c1b1b] opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="Professional male user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmWtJ9zL9gI6IkaVzB9M2uFH5_n2vWAhPKtke-P158NYY5FTpH37m_FJx6H_vFUp52m_aYmhbHK0HQ-x9L0wPDr3MYSLDsmipq9Vu0QGPxjlV7qNDzGmBywNkn6q-Sf7_pGIwc91GUgdv-MjXPncB-MtEWHTPQGr_4Kvt-o_taLDcncHX4BQqQOsVC8WkonACvsfdTJypcPRNdAJVuutUeNlduf4fL7aXbwhDJqDtaR-Do2Mb1ZdFzK39XUUbXIOfqwz6ssNd7XvxC"/>
+</div>
+</div>
+</header>
+<!-- Chat / Interaction Canvas -->
+<section class="flex-grow p-8 max-w-4xl mx-auto w-full">
+<div class="space-y-8">
+<!-- System Message -->
+<div class="flex gap-4 items-start animate-fade-in">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<div class="flex flex-col gap-2 max-w-[80%]">
+<div class="bg-surface-container-high p-4 rounded-xl rounded-tl-none">
+<p class="text-on-surface leading-relaxed">Excellent choice. Here's your final order summary and pricing.</p>
+</div>
+</div>
+</div>
+<!-- Order Summary Component (High-End Card) -->
+<div class="ml-14 bg-surface-container-lowest rounded-xl shadow-[0_12px_32px_rgba(54,179,126,0.06)] overflow-hidden">
+<div class="p-1 bg-gradient-to-r from-primary to-primary/80"></div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h2 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Order Summary</h2>
+<p class="text-sm text-outline font-medium mt-1">Job ID: PRD-2024-X892</p>
+</div>
+<div class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest rounded-full">
+                                Pending Approval
+                            </div>
+</div>
+<!-- Data Grid: Asymmetric Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+<div class="md:col-span-7 space-y-6">
+<div class="flex gap-6 items-center">
+<div class="w-24 h-24 bg-surface-container-low rounded-lg flex items-center justify-center shrink-0">
+<img alt="Rigid Box Preview" class="w-16 h-16 object-contain mix-blend-multiply opacity-80" data-alt="High-quality matte black luxury rigid box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf3WFOqPvxG_MC-v77DX9xu6WbDzuiOGWGVGj-azt-l-hhuscdRjpSTEKSXveGEGIGufqbct-klRn3hdcXRwe4aPNFdUw6MHXM4k8FhkaaV14LxJVW00C0fM_s4PH0LW4qXWh0SU52PMMswnP9hm2SeCzZSNIFRxh78sCYg-TWKgalwnXh5xBUPrfSl8KYAQwX7eqKYVSMHA85kcHewYRTb5k8kxf94teD0iU0G3eYvK4q6FpPSPV08cqFe2ZH2HHJVXoL_IeZLM-L"/>
+</div>
+<div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider block mb-1">Product Type</span>
+<div class="font-headline text-lg font-bold text-on-surface">Custom Rigid Box</div>
+<div class="text-sm font-medium text-outline-variant mt-1">Matte Finish · Magnetic Closure</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 py-6 border-y border-outline-variant/20">
+<div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider block mb-1">Dimensions</span>
+<span class="font-headline text-sm font-bold">12x10x4</span>
+</div>
+<div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider block mb-1">Quantity</span>
+<span class="font-headline text-sm font-bold">500 units</span>
+</div>
+<div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider block mb-1">Unit Price</span>
+<span class="font-headline text-sm font-bold">$0.24</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 bg-surface-container-low rounded-lg p-6 flex flex-col items-center justify-center min-h-[160px]">
+<span class="text-[11px] font-bold text-outline uppercase tracking-[0.2em] mb-2">Total Investment</span>
+<div class="flex items-baseline gap-1">
+<span class="text-primary font-headline text-5xl font-black tracking-tighter">$120</span>
+<span class="text-primary font-headline text-2xl font-bold">.32</span>
+</div>
+<p class="text-[10px] text-outline mt-3 italic text-center">Shipping and production lead time: 14 business days</p>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="mt-10 flex flex-col sm:flex-row gap-4">
+<button class="gradient-button flex-grow py-4 px-8 text-white font-headline font-extrabold text-sm tracking-wider uppercase rounded-lg shadow-xl shadow-primary/20 hover:scale-[0.98] transition-all">
+                                Place Order
+                            </button>
+<button class="bg-surface-container-highest text-on-surface font-headline font-bold text-sm px-8 py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="file_download">file_download</span>
+                                Export Quote
+                            </button>
+</div>
+</div>
+</div>
+<!-- Focused Footer -->
+<div class="ml-14 flex items-center gap-2 text-[11px] text-outline font-medium py-4 opacity-60">
+<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
+                    Secure Encryption · Verified Manufacturer Identity · Price Lock Guaranteed for 48h
+                </div>
+</div>
+</section>
+<!-- Floating Chat Input / Interface (Glassmorphism) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 z-40">
+<div class="glass-effect rounded-full shadow-2xl shadow-primary/10 p-2 flex items-center border border-white/40">
+<button class="p-3 text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="attachment">attachment</span>
+</button>
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-sm font-body px-4 text-on-surface placeholder:text-outline-variant" placeholder="Ask a question or request a modification..." type="text"/>
+<button class="w-10 h-10 rounded-full gradient-button flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-lg" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>
