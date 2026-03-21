@@ -268,9 +268,9 @@ export default function SchematicsPage() {
                 <Menu className="h-5 w-5" />
               </button>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0 pr-2">
                 <span
-                  className="text-sm text-gray-500"
+                  className="text-sm text-gray-500 truncate"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Design Schematics
@@ -278,11 +278,11 @@ export default function SchematicsPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm">
-                <div className="h-2 w-2 rounded-full bg-green-500"></div>
+            <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 px-2 sm:px-3 py-1.5 text-sm">
+                <div className="h-2 w-2 rounded-full bg-green-500 shrink-0"></div>
                 <span
-                  className="text-gray-700"
+                  className="hidden sm:inline text-gray-700 whitespace-nowrap"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   System Status
