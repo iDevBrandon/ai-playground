@@ -1,21 +1,18 @@
 "use client"
 
-import DocumentList from "@/src/components/DocumentList"
-import FileUpload from "@/src/components/FileUpload"
-import DesignLabSidebar from "@/src/components/DesignLabSidebar"
+import DesignLabSidebar from "@/components/DesignLabSidebar"
+import DocumentList from "@/components/DocumentList"
+import FileUpload from "@/components/FileUpload"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import {
   BarChart,
   Calculator,
   CheckCircle2,
-  Eye,
-  Folder,
   Menu,
   Paperclip,
   Send,
   Settings,
-  ShoppingCart,
   TestTube,
   X,
 } from "lucide-react"
@@ -23,6 +20,7 @@ import Head from "next/head"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
+import { useChatStore } from "@/lib/chat-store"
 
 export default function ChatPage() {
   const params = useParams()
@@ -42,21 +40,44 @@ export default function ChatPage() {
   const [selectedDocumentId, setSelectedDocumentId] = useState<
     string | undefined
   >(undefined)
-  const [temperature, setTemperature] = useState(0.4)
-  const [tokenLimit, setTokenLimit] = useState(2048)
-  const [currentFlow, setCurrentFlow] = useState<string | null>(null)
-  const [flowData, setFlowData] = useState<any>(null)
-  const [showPackagingSpec, setShowPackagingSpec] = useState(false)
-  const [showOptionsSelection, setShowOptionsSelection] = useState(false)
-  const [showOrderGeneration, setShowOrderGeneration] = useState(false)
-  const [show3DRender, setShow3DRender] = useState(false)
-  const [chatHistory, setChatHistory] = useState([
-    "PakFactory AI interface",
-    "Packaging Design Consultation",
-  ])
+  // Generate predictable chat data based on the chatId
+  const generateChatTitle = (id: string): string => {
+    // Use a simple hash to generate consistent titles
+    const hash = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
+    const titles = [
+      "PakFactory AI Interface",
+      "Packaging Design Consultation", 
+      "Material Specification Review",
+      "Cost Analysis Discussion",
+      "3D Render Generation",
+      "Sustainability Assessment",
+      "Quality Assurance Planning",
+      "Production Timeline Review"
+    ]
+    return titles[hash % titles.length]
+  }
 
-  const currentChatIndex = parseInt(chatId)
-  const chatTitle = chatHistory[currentChatIndex] || `Chat ${chatId}`
+  const { chatHistory, setChatHistory, setCurrentChatId } = useChatStore()
+
+  useEffect(() => {
+    setCurrentChatId(chatId)
+    if (chatId) {
+      setChatHistory((prev) => {
+        if (prev.some((chat) => chat.id === chatId)) return prev
+        return [
+          {
+            id: chatId,
+            title: generateChatTitle(chatId),
+            createdAt: new Date(),
+          },
+          ...prev,
+        ]
+      })
+    }
+  }, [chatId, setCurrentChatId, setChatHistory])
+
+  const _currentChat = chatHistory.find((c) => c.id === chatId)
+  const chatTitle = _currentChat ? _currentChat.title : generateChatTitle(chatId)
 
   // Use AI SDK for RAG chat - following the pattern from design-lab page
   const { messages, sendMessage } = useChat({
@@ -87,94 +108,12 @@ export default function ChatPage() {
     scrollToBottom()
   }, [messages])
 
-  // Intelligent Flow Detection (same as design-lab page)
-  const detectUserIntent = (message: string): string | null => {
-    const lowerMessage = message.toLowerCase()
-
-    if (
-      lowerMessage.includes("design") &&
-      (lowerMessage.includes("box") || lowerMessage.includes("packaging"))
-    ) {
-      return "PACKAGING_DESIGN_REQUEST"
-    }
-    if (
-      lowerMessage.includes("quote") ||
-      lowerMessage.includes("order") ||
-      lowerMessage.includes("purchase")
-    ) {
-      return "ORDER_REQUEST"
-    }
-    if (
-      lowerMessage.includes("material") ||
-      lowerMessage.includes("specification")
-    ) {
-      return "MATERIAL_ANALYSIS"
-    }
-    return null
-  }
-
-  // Process Intelligent Flow (same as design-lab page)
-  const processIntelligentFlow = async (intent: string, message: string) => {
-    setCurrentFlow(intent)
-
-    // Simulate RAG search delay
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    switch (intent) {
-      case "PACKAGING_DESIGN_REQUEST":
-        const dimensions = message.match(/(\d+)x(\d+)/i)
-        const sizeInfo = dimensions
-          ? { width: dimensions[1], height: dimensions[2] }
-          : { width: "12", height: "10" }
-
-        setFlowData({
-          type: "rigid_box",
-          dimensions: sizeInfo,
-          material: "ESKA Board",
-          thickness: "1200gsm",
-        })
-        setShowPackagingSpec(true)
-
-        setTimeout(() => {
-          if (typeof sendMessage === "function") {
-            sendMessage({
-              text: `Perfect! I've analyzed your request for a ${sizeInfo.width}x${sizeInfo.height} rigid box and generated a complete packaging specification based on ASTM-D6400 standards.
-
-**Generated Specification:**
-- Material: 1200gsm ESKA core board with 120gsm art paper liner
-- Adhesive: EVA animal glue for premium bonding
-- Estimated cost: $2.45 per unit (1000 qty)
-- Setup fee: $850
-
-The specification meets all structural requirements for rigid packaging. Would you like me to request a 3D render to visualize the final product?`,
-            })
-          }
-        }, 500)
-
-        setTimeout(() => {
-          setShowOptionsSelection(true)
-        }, 3000)
-        break
-
-      case "ORDER_REQUEST":
-        setShowOrderGeneration(true)
-        break
-    }
-  }
-
   const handleNewSpecification = () => {
-    // Reset the current flow and UI state for a fresh start
-    setCurrentFlow(null)
-    setFlowData(null)
-    setShowPackagingSpec(false)
-    setShowOptionsSelection(false)
-    setShowOrderGeneration(false)
-    setShow3DRender(false)
     setUserMessage("")
   }
 
-  const handleChatSelect = (chatIndex: number) => {
-    router.push(`/chat/${chatIndex}`)
+  const handleChatSelect = (chatId: string) => {
+    router.push(`/chat/${chatId}`)
   }
 
   const handleFileUpload = () => {
@@ -219,11 +158,6 @@ The specification meets all structural requirements for rigid packaging. Would y
 
   const handleSendMessage = () => {
     if (!userMessage.trim()) return
-
-    const intent = detectUserIntent(userMessage)
-    if (intent) {
-      processIntelligentFlow(intent, userMessage)
-    }
 
     if (typeof sendMessage === "function") {
       sendMessage({ text: userMessage })
@@ -359,7 +293,7 @@ The specification meets all structural requirements for rigid packaging. Would y
           setChatHistory={setChatHistory}
           onNewSpecification={handleNewSpecification}
           onChatSelect={handleChatSelect}
-          currentChatIndex={currentChatIndex}
+          currentChatId={chatId}
         />
 
         {/* Main Content - Same layout as design-lab page */}
@@ -402,7 +336,7 @@ The specification meets all structural requirements for rigid packaging. Would y
           )}
 
           {/* Header Section */}
-          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-[#ffffff] px-4">
+          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-white px-4">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -428,7 +362,7 @@ The specification meets all structural requirements for rigid packaging. Would y
                   className="text-gray-700"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  AI Active
+                  System Status
                 </span>
               </div>
 
@@ -459,7 +393,8 @@ The specification meets all structural requirements for rigid packaging. Would y
                         className="text-base leading-relaxed font-medium text-[#112d21]"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
-                        Welcome back to {chatTitle}! How can I help you continue with your packaging project?
+                        Welcome back to {chatTitle}! How can I help you continue
+                        with your packaging project?
                       </p>
 
                       <div className="mt-4 flex items-center justify-between border-t border-[#c3d6cd]/20 pt-4">
@@ -658,6 +593,41 @@ The specification meets all structural requirements for rigid packaging. Would y
                             <Send className="h-4 w-4" />
                           </button>
                         </div>
+                      </div>
+
+                      {/* Quick Action Tags */}
+                      <div className="mt-3 flex gap-4 px-1">
+                        <button
+                          onClick={() =>
+                            setUserMessage(
+                              "Suggest eco-friendly materials for my packaging"
+                            )
+                          }
+                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#0d9c69]"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          #Suggest-Eco-Materials
+                        </button>
+                        <button
+                          onClick={() =>
+                            setUserMessage(
+                              "Calculate unit cost for my packaging"
+                            )
+                          }
+                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#0d9c69]"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          #Calculate-unit
+                        </button>
+                        <button
+                          onClick={() =>
+                            setUserMessage("Show me my order history")
+                          }
+                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#0d9c69]"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          #Order-History
+                        </button>
                       </div>
                     </div>
                   </div>

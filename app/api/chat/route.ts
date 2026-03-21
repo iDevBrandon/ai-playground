@@ -1,4 +1,4 @@
-import { queryVectors } from "@/src/lib/pinecone-utils"
+import { queryVectors } from "@/lib/pinecone-utils"
 import { createClient } from "@supabase/supabase-js"
 import { createGateway, embed, streamText } from "ai"
 import { NextRequest, NextResponse } from "next/server"

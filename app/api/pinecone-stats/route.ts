@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getIndexStats } from '@/src/lib/pinecone-utils';
+import { getIndexStats } from '@/lib/pinecone-utils';
 
 export async function GET() {
   try {

@@ -1,5 +1,5 @@
-import { processDocument } from "@/src/lib/document-processor"
-import { generateFileKey, uploadFile } from "@/src/lib/storage-utils"
+import { processDocument } from "@/lib/document-processor"
+import { generateFileKey, uploadFile } from "@/lib/storage-utils"
 import { createClient } from "@supabase/supabase-js"
 import { NextRequest, NextResponse } from "next/server"
 

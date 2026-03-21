@@ -23,7 +23,8 @@ import {
 } from "lucide-react"
 import Head from "next/head"
 import { useState, useMemo } from "react"
-import DesignLabSidebar from "@/src/components/DesignLabSidebar"
+import { useChatStore } from "@/lib/chat-store"
+import DesignLabSidebar from "@/components/DesignLabSidebar"
 
 interface SchematicTemplate {
   id: string
@@ -132,10 +133,7 @@ const schematicTemplates: SchematicTemplate[] = [
 
 export default function SchematicsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [chatHistory, setChatHistory] = useState([
-    "PakFactory AI interface",
-    "Packaging Design Consultation",
-  ])
+  const { chatHistory, setChatHistory } = useChatStore()
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
@@ -216,7 +214,7 @@ export default function SchematicsPage() {
         {/* Main Content */}
         <div className="relative flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-white">
           {/* Header Section */}
-          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-[#ffffff] px-4">
+          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-white px-4">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -466,7 +464,7 @@ export default function SchematicsPage() {
                       className="bg-white border border-[#bccabf] rounded-lg p-6 flex items-center justify-between hover:shadow-lg transition-shadow"
                     >
                       <div className="flex items-center gap-6 flex-1">
-                        <div className="w-16 h-16 bg-[#f6f3f2] rounded-lg flex items-center justify-center flex-shrink-0">
+                        <div className="w-16 h-16 bg-[#f6f3f2] rounded-lg flex items-center justify-center shrink-0">
                           <Layers className="h-8 w-8 text-[#42544e]" />
                         </div>
                         <div className="flex-1">

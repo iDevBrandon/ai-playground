@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import dynamic from 'next/dynamic'
 
@@ -18,7 +18,7 @@ const ThreeJSPackaging = dynamic(() => import('@/components/ThreeJSPackaging'), 
   )
 })
 
-export default function ThreeDRenderDemo() {
+function ThreeDRenderContent() {
   const [progress, setProgress] = useState(0)
   const [stage, setStage] = useState('Initializing 3D render engine...')
   const [isComplete, setIsComplete] = useState(false)
@@ -273,5 +273,20 @@ export default function ThreeDRenderDemo() {
         }
       `}</style>
     </div>
+  )
+}
+
+export default function ThreeDRenderDemo() {
+  return (
+    <Suspense fallback={
+      <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fcfa] to-[#f0fff5]">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-[#279366] border-t-transparent rounded-full animate-spin mb-4"></div>
+          <p className="text-sm text-[#42544e]">Loading 3D Render...</p>
+        </div>
+      </div>
+    }>
+      <ThreeDRenderContent />
+    </Suspense>
   )
 }

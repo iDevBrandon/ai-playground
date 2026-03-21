@@ -1,27 +1,20 @@
 "use client"
 
+import DesignLabSidebar from "@/components/DesignLabSidebar"
+import { useChatStore } from "@/lib/chat-store"
 import {
   ChevronLeft,
   ChevronRight,
   FileText,
   Menu,
   MoreVertical,
-  Settings,
-  ShoppingCart,
-  X,
 } from "lucide-react"
-import DesignLabSidebar from "@/src/components/DesignLabSidebar"
 import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link"
 import { useState } from "react"
 
 export default function OrdersPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [chatHistory, setChatHistory] = useState([
-    "PakFactory AI interface",
-    "Packaging Design Consultation",
-  ])
+  const { chatHistory, setChatHistory } = useChatStore()
 
   const orders = [
     {
@@ -30,32 +23,32 @@ export default function OrdersPage() {
       status: "In Production",
       statusColor: "#ff9500",
       date: "Nov 2, 2024",
-      total: "$6,750.00"
+      total: "$6,750.00",
     },
     {
-      id: "PRD-2024-S110", 
+      id: "PRD-2024-S110",
       project: "Flora Skin Serum Box",
       status: "Shipped",
       statusColor: "#006c47",
       date: "Oct 18, 2024",
-      total: "$4,820.50"
+      total: "$4,820.50",
     },
     {
       id: "PRD-2023-A442",
-      project: "Aero Component Sleeve", 
+      project: "Aero Component Sleeve",
       status: "Pending",
       statusColor: "#a03e43",
       date: "Oct 12, 2024",
-      total: "$9,100.00"
+      total: "$9,100.00",
     },
     {
       id: "PRD-2023-B990",
       project: "Titanium Bolt Grid 8x8",
-      status: "Shipped", 
+      status: "Shipped",
       statusColor: "#006c47",
       date: "Sep 30, 2024",
-      total: "$2,140.00"
-    }
+      total: "$2,140.00",
+    },
   ]
 
   return (
@@ -94,7 +87,7 @@ export default function OrdersPage() {
         {/* Main Content */}
         <div className="relative flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-white">
           {/* Header Section */}
-          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-[#ffffff] px-4">
+          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-white px-4">
             <div className="flex items-center gap-3">
               {/* Mobile menu button */}
               <button
@@ -130,108 +123,110 @@ export default function OrdersPage() {
 
           {/* Orders Content */}
           <div className="flex-1 overflow-y-auto">
-            <div className="max-w-5xl mx-auto px-12 py-16">
+            <div className="mx-auto max-w-5xl px-12 py-16">
               {/* Editorial Header */}
               <header className="mb-16">
-                <h1 
-                  className="text-5xl font-extrabold tracking-tighter text-[#171d19] mb-2"
+                <h1
+                  className="mb-2 text-5xl font-extrabold tracking-tighter text-[#171d19]"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   Manufacturing Timeline
                 </h1>
-                <p 
-                  className="text-[#3d4a42] text-lg max-w-2xl"
+                <p
+                  className="max-w-2xl text-lg text-[#3d4a42]"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  Comprehensive tracking of your packaging projects, from initial specification through production delivery and quality assurance verification.
+                  Comprehensive tracking of your packaging projects, from
+                  initial specification through production delivery and quality
+                  assurance verification.
                 </p>
               </header>
 
               {/* Order List */}
-              <div className="space-y-4 mb-16">
+              <div className="mb-16 space-y-4">
                 {orders.map((order, index) => (
-                  <div 
+                  <div
                     key={order.id}
-                    className="group bg-[#ffffff] hover:bg-[#eff5ee] transition-all p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm"
+                    className="group flex flex-col items-center justify-between gap-6 bg-white p-6 shadow-sm transition-all hover:bg-[#eff5ee] md:flex-row"
                   >
-                    <div className="flex-1 min-w-[300px]">
-                      <p 
-                        className="text-xs font-bold text-[#3d4a42]/60 tracking-widest mb-1 uppercase"
+                    <div className="min-w-75 flex-1">
+                      <p
+                        className="mb-1 text-xs font-bold tracking-widest text-[#3d4a42]/60 uppercase"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         Project
                       </p>
-                      <h3 
-                        className="text-xl font-bold text-[#171d19] mb-1"
+                      <h3
+                        className="mb-1 text-xl font-bold text-[#171d19]"
                         style={{ fontFamily: "Manrope, sans-serif" }}
                       >
                         {order.project}
                       </h3>
-                      <p 
-                        className="text-xs font-mono text-[#3d4a42]"
+                      <p
+                        className="font-mono text-xs text-[#3d4a42]"
                         style={{ fontFamily: "Inter, monospace" }}
                       >
                         {order.id}
                       </p>
                     </div>
-                    
+
                     <div className="w-32">
-                      <p 
-                        className="text-xs font-bold text-[#3d4a42]/60 tracking-widest mb-1 uppercase"
+                      <p
+                        className="mb-1 text-xs font-bold tracking-widest text-[#3d4a42]/60 uppercase"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         Status
                       </p>
-                      <span 
+                      <span
                         className="flex items-center gap-1.5 text-sm font-semibold"
-                        style={{ 
+                        style={{
                           fontFamily: "Inter, sans-serif",
-                          color: order.statusColor 
+                          color: order.statusColor,
                         }}
                       >
-                        <span 
-                          className="w-2 h-2 rounded-full"
+                        <span
+                          className="h-2 w-2 rounded-full"
                           style={{ backgroundColor: order.statusColor }}
                         ></span>
                         {order.status}
                       </span>
                     </div>
-                    
+
                     <div className="w-32">
-                      <p 
-                        className="text-xs font-bold text-[#3d4a42]/60 tracking-widest mb-1 uppercase"
+                      <p
+                        className="mb-1 text-xs font-bold tracking-widest text-[#3d4a42]/60 uppercase"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         Date
                       </p>
-                      <p 
-                        className="text-sm text-[#171d19] font-medium"
+                      <p
+                        className="text-sm font-medium text-[#171d19]"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         {order.date}
                       </p>
                     </div>
-                    
+
                     <div className="w-32">
-                      <p 
-                        className="text-xs font-bold text-[#3d4a42]/60 tracking-widest mb-1 uppercase"
+                      <p
+                        className="mb-1 text-xs font-bold tracking-widest text-[#3d4a42]/60 uppercase"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         Total
                       </p>
-                      <p 
+                      <p
                         className="text-lg font-bold text-[#171d19]"
                         style={{ fontFamily: "Manrope, sans-serif" }}
                       >
                         {order.total}
                       </p>
                     </div>
-                    
+
                     <div className="flex gap-2">
-                      <button className="p-2 text-[#3d4a42] hover:text-[#006c47] transition-colors">
+                      <button className="p-2 text-[#3d4a42] transition-colors hover:text-[#006c47]">
                         <FileText className="h-5 w-5" />
                       </button>
-                      <button className="p-2 text-[#3d4a42] hover:text-[#006c47] transition-colors">
+                      <button className="p-2 text-[#3d4a42] transition-colors hover:text-[#006c47]">
                         <MoreVertical className="h-5 w-5" />
                       </button>
                     </div>
@@ -240,16 +235,16 @@ export default function OrdersPage() {
               </div>
 
               {/* Pagination / Analytics Footer */}
-              <footer className="flex flex-col md:flex-row justify-between items-center border-t border-[#bccabf]/10 pt-8 gap-8">
+              <footer className="flex flex-col items-center justify-between gap-8 border-t border-[#bccabf]/10 pt-8 md:flex-row">
                 <div className="flex gap-12">
                   <div>
-                    <p 
-                      className="text-xs font-bold text-[#3d4a42] uppercase tracking-widest mb-1"
+                    <p
+                      className="mb-1 text-xs font-bold tracking-widest text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       Lifetime Projects
                     </p>
-                    <p 
+                    <p
                       className="text-2xl font-black text-[#171d19]"
                       style={{ fontFamily: "Manrope, sans-serif" }}
                     >
@@ -257,13 +252,13 @@ export default function OrdersPage() {
                     </p>
                   </div>
                   <div>
-                    <p 
-                      className="text-xs font-bold text-[#3d4a42] uppercase tracking-widest mb-1"
+                    <p
+                      className="mb-1 text-xs font-bold tracking-widest text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       Total Expenditure
                     </p>
-                    <p 
+                    <p
                       className="text-2xl font-black text-[#171d19]"
                       style={{ fontFamily: "Manrope, sans-serif" }}
                     >
@@ -271,51 +266,38 @@ export default function OrdersPage() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-4">
-                  <button className="p-3 bg-[#eff5ee] text-[#3d4a42] hover:text-[#006c47] transition-all rounded-lg">
+                  <button className="rounded-lg bg-[#eff5ee] p-3 text-[#3d4a42] transition-all hover:text-[#006c47]">
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   <div className="flex gap-2">
-                    <span 
-                      className="w-10 h-10 flex items-center justify-center font-bold text-[#006c47] bg-[#006c47]/10 rounded-lg"
+                    <span
+                      className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#006c47]/10 font-bold text-[#006c47]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       1
                     </span>
-                    <span 
-                      className="w-10 h-10 flex items-center justify-center font-bold text-[#3d4a42] hover:bg-[#eff5ee] cursor-pointer rounded-lg transition-colors"
+                    <span
+                      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg font-bold text-[#3d4a42] transition-colors hover:bg-[#eff5ee]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       2
                     </span>
-                    <span 
-                      className="w-10 h-10 flex items-center justify-center font-bold text-[#3d4a42] hover:bg-[#eff5ee] cursor-pointer rounded-lg transition-colors"
+                    <span
+                      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg font-bold text-[#3d4a42] transition-colors hover:bg-[#eff5ee]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       3
                     </span>
                   </div>
-                  <button className="p-3 bg-[#eff5ee] text-[#3d4a42] hover:text-[#006c47] transition-all rounded-lg">
+                  <button className="rounded-lg bg-[#eff5ee] p-3 text-[#3d4a42] transition-all hover:text-[#006c47]">
                     <ChevronRight className="h-5 w-5" />
                   </button>
                 </div>
               </footer>
             </div>
           </div>
-        </div>
-
-        {/* Support FAB */}
-        <div className="fixed bottom-8 right-8 z-40">
-          <button className="group flex items-center gap-3 bg-[#006c47] text-white pl-4 pr-6 py-4 rounded-lg shadow-xl active:scale-95 transition-all hover:bg-[#005235]">
-            <span className="material-symbols-outlined">support_agent</span>
-            <span 
-              className="font-bold tracking-tight"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              Engineer Consult
-            </span>
-          </button>
         </div>
       </div>
     </>

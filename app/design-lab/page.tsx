@@ -1,8 +1,8 @@
 "use client"
 
-import DocumentList from "@/src/components/DocumentList"
-import FileUpload from "@/src/components/FileUpload"
-import DesignLabSidebar from "@/src/components/DesignLabSidebar"
+import DocumentList from "@/components/DocumentList"
+import FileUpload from "@/components/FileUpload"
+import DesignLabSidebar from "@/components/DesignLabSidebar"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import {
@@ -21,6 +21,7 @@ import {
 } from "lucide-react"
 import Head from "next/head"
 import { useEffect, useRef, useState } from "react"
+import { useChatStore } from "@/lib/chat-store"
 import { useDropzone } from "react-dropzone"
 
 export default function DesignLabPage() {
@@ -38,19 +39,13 @@ export default function DesignLabPage() {
   const [selectedDocumentId, setSelectedDocumentId] = useState<
     string | undefined
   >(undefined)
-  const [temperature, setTemperature] = useState(0.4)
-  const [tokenLimit, setTokenLimit] = useState(2048)
   const [currentFlow, setCurrentFlow] = useState<string | null>(null)
   const [flowData, setFlowData] = useState<any>(null)
   const [showPackagingSpec, setShowPackagingSpec] = useState(false)
   const [showOptionsSelection, setShowOptionsSelection] = useState(false)
   const [showOrderGeneration, setShowOrderGeneration] = useState(false)
   const [show3DRender, setShow3DRender] = useState(false)
-  const [chatHistory, setChatHistory] = useState([
-    "PakFactory AI interface",
-    "Packaging Design Consultation",
-  ])
-  const [currentChatIndex, setCurrentChatIndex] = useState(0)
+  const { chatHistory, setChatHistory, currentChatId, setCurrentChatId } = useChatStore()
 
   // Use AI SDK for RAG chat - following the pattern in ChatInterface.tsx
   const { messages, sendMessage } = useChat({
@@ -108,18 +103,6 @@ export default function DesignLabPage() {
     return null
   }
 
-  // Add LLM Response to Chat
-  const addLLMResponse = (content: string) => {
-    if (typeof sendMessage === "function") {
-      // Simulate AI response by adding directly to chat
-      const aiMessage = {
-        id: crypto.randomUUID(),
-        role: "assistant" as const,
-        content: content,
-      }
-      // Note: In a real implementation, this would be handled by the sendMessage callback
-    }
-  }
 
   // Simulate RAG Processing and Auto-Generate UI
   const processIntelligentFlow = async (intent: string, message: string) => {
@@ -391,8 +374,8 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
           chatHistory={chatHistory}
           setChatHistory={setChatHistory}
           onNewSpecification={handleNewSpecification}
-          onChatSelect={setCurrentChatIndex}
-          currentChatIndex={currentChatIndex}
+          onChatSelect={setCurrentChatId}
+          currentChatId={currentChatId}
         />
 
         {/* Main Content */}
@@ -435,7 +418,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
           )}
 
           {/* Header Section - ChatGPT Style */}
-          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-[#ffffff] px-4">
+          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-white px-4">
             <div className="flex items-center gap-3">
               {/* Mobile menu button */}
               <button
@@ -450,7 +433,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                   className="text-sm text-gray-500"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  {chatHistory[currentChatIndex] || "Design Lab"}
+                  {chatHistory.find(chat => chat.id === currentChatId)?.title || "Design Lab"}
                 </span>
               </div>
             </div>
@@ -1043,7 +1026,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
 
                       {/* Auto-Generated Order/Quote */}
                       {showOrderGeneration && (
-                        <div className="rounded-xl bg-gradient-to-r from-[#279366] to-[#36B37E] p-6 text-white shadow-lg">
+                        <div className="rounded-xl bg-linear-to-r from-[#279366] to-[#36B37E] p-6 text-white shadow-lg">
                           <div className="mb-4 flex items-center gap-3">
                             <CheckCircle2 className="h-6 w-6" />
                             <div>

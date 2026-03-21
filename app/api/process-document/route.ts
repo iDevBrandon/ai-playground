@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { processDocument } from "@/src/lib/document-processor"
+import { processDocument } from "@/lib/document-processor"
 import { createClient } from "@supabase/supabase-js"
 
 const supabase = createClient(

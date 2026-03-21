@@ -13,16 +13,19 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+
+import { ChatItem } from "@/lib/chat-store"
 
 interface DesignLabSidebarProps {
   sidebarOpen: boolean
   setSidebarOpen: (open: boolean) => void
   currentPage?: "home" | "orders" | "settings" | "materials" | "schematics"
-  chatHistory?: string[]
-  setChatHistory?: (history: string[] | ((prev: string[]) => string[])) => void
+  chatHistory?: ChatItem[]
+  setChatHistory?: (history: ChatItem[] | ((prev: ChatItem[]) => ChatItem[])) => void
   onNewSpecification?: () => void
-  onChatSelect?: (chatIndex: number) => void
-  currentChatIndex?: number
+  onChatSelect?: (chatId: string) => void
+  currentChatId?: string
 }
 
 export default function DesignLabSidebar({
@@ -33,12 +36,13 @@ export default function DesignLabSidebar({
   setChatHistory,
   onNewSpecification,
   onChatSelect,
-  currentChatIndex,
+  currentChatId,
 }: DesignLabSidebarProps) {
-  const [hoveredChat, setHoveredChat] = useState<number | null>(null)
-  const [showChatMenu, setShowChatMenu] = useState<number | null>(null)
-  const [renamingChat, setRenamingChat] = useState<number | null>(null)
+  const [hoveredChat, setHoveredChat] = useState<string | null>(null)
+  const [showChatMenu, setShowChatMenu] = useState<string | null>(null)
+  const [renamingChat, setRenamingChat] = useState<string | null>(null)
   const [renameValue, setRenameValue] = useState("")
+  const router = useRouter()
 
   // Close chat menu when clicking outside
   useEffect(() => {
@@ -53,42 +57,52 @@ export default function DesignLabSidebar({
   }, [showChatMenu])
 
   const handleNewSpecification = () => {
+    const newChatId = crypto.randomUUID()
     const newChatTitle = `New Specification ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+    const newChat: ChatItem = {
+      id: newChatId,
+      title: newChatTitle,
+      createdAt: new Date()
+    }
+    
     if (setChatHistory) {
-      setChatHistory((prev: string[]) => [newChatTitle, ...prev])
+      setChatHistory((prev: ChatItem[]) => [newChat, ...prev])
     }
     
     if (onNewSpecification) {
       // If we have the callback, use it (design-lab page)
       onNewSpecification()
       if (onChatSelect) {
-        onChatSelect(0) // Select the new chat in-page
+        onChatSelect(newChatId) // Select the new chat in-page
       }
     } else {
       // If no callback, navigate to the new chat (other pages)
-      window.location.href = `/chat/0`
+      router.push(`/chat/${newChatId}`)
     }
   }
 
-  const handleRenameChat = (index: number) => {
-    setRenamingChat(index)
-    setRenameValue(chatHistory[index])
-    setShowChatMenu(null)
+  const handleRenameChat = (chatId: string) => {
+    const chat = chatHistory.find(c => c.id === chatId)
+    if (chat) {
+      setRenamingChat(chatId)
+      setRenameValue(chat.title)
+      setShowChatMenu(null)
+    }
   }
 
-  const confirmRename = (index: number) => {
+  const confirmRename = (chatId: string) => {
     if (setChatHistory) {
-      setChatHistory((prev: string[]) =>
-        prev.map((chat, i) => (i === index ? renameValue : chat))
+      setChatHistory((prev: ChatItem[]) =>
+        prev.map((chat) => (chat.id === chatId ? { ...chat, title: renameValue } : chat))
       )
     }
     setRenamingChat(null)
     setRenameValue("")
   }
 
-  const handleDeleteChat = (index: number) => {
+  const handleDeleteChat = (chatId: string) => {
     if (setChatHistory) {
-      setChatHistory((prev: string[]) => prev.filter((_, i) => i !== index))
+      setChatHistory((prev: ChatItem[]) => prev.filter((chat) => chat.id !== chatId))
     }
     setShowChatMenu(null)
   }
@@ -100,7 +114,7 @@ export default function DesignLabSidebar({
       }`}
     >
       {/* Header */}
-      <div className="flex h-14 shrink-0 items-center border-b border-[#e6e3e2] bg-[#ffffff] px-4">
+      <div className="flex h-14 shrink-0 items-center border-b border-[#e6e3e2] bg-white px-4">
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/image/logo.png"
@@ -191,24 +205,24 @@ export default function DesignLabSidebar({
                 </h3>
               </div>
 
-              {chatHistory.map((chat, index) => (
+              {chatHistory.map((chat) => (
                 <div
-                  key={index}
+                  key={chat.id}
                   className="relative"
-                  onMouseEnter={() => setHoveredChat(index)}
+                  onMouseEnter={() => setHoveredChat(chat.id)}
                   onMouseLeave={() => setHoveredChat(null)}
                 >
-                  {renamingChat === index ? (
+                  {renamingChat === chat.id ? (
                     <div className="flex items-center gap-2 px-2 py-2">
                       <input
                         type="text"
                         value={renameValue}
                         onChange={(e) => setRenameValue(e.target.value)}
                         onKeyDown={(e) => {
-                          if (e.key === "Enter") confirmRename(index)
+                          if (e.key === "Enter") confirmRename(chat.id)
                           if (e.key === "Escape") setRenamingChat(null)
                         }}
-                        onBlur={() => confirmRename(index)}
+                        onBlur={() => confirmRename(chat.id)}
                         autoFocus
                         className="flex-1 rounded border border-gray-300 bg-white px-2 py-1 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         style={{ fontFamily: "Inter, sans-serif" }}
@@ -216,24 +230,24 @@ export default function DesignLabSidebar({
                     </div>
                   ) : (
                     <Link
-                      href={`/chat/${index}`}
+                      href={`/chat/${chat.id}`}
                       className={`flex w-full items-center justify-between rounded-lg p-2 transition-colors ${
-                        currentChatIndex === index 
+                        currentChatId === chat.id 
                           ? "bg-[#e7ffef] text-[#0d9c69] font-semibold" 
                           : "text-gray-700 hover:bg-gray-100"
                       }`}
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       <span className="flex-1 truncate pr-2 text-left text-sm leading-tight">
-                        {chat}
+                        {chat.title}
                       </span>
                       <div className="flex h-6 w-6 items-center justify-center">
-                        {hoveredChat === index && (
+                        {hoveredChat === chat.id && (
                           <button
                             onClick={(e) => {
                               e.stopPropagation()
                               setShowChatMenu(
-                                showChatMenu === index ? null : index
+                                showChatMenu === chat.id ? null : chat.id
                               )
                             }}
                             className="rounded p-1 transition-colors hover:bg-gray-200"
@@ -246,10 +260,10 @@ export default function DesignLabSidebar({
                   )}
 
                   {/* Dropdown Menu */}
-                  {showChatMenu === index && (
+                  {showChatMenu === chat.id && (
                     <div className="absolute top-8 right-0 z-50 w-40 rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
                       <button
-                        onClick={() => handleRenameChat(index)}
+                        onClick={() => handleRenameChat(chat.id)}
                         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
@@ -257,7 +271,7 @@ export default function DesignLabSidebar({
                         Rename
                       </button>
                       <button
-                        onClick={() => handleDeleteChat(index)}
+                        onClick={() => handleDeleteChat(chat.id)}
                         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >

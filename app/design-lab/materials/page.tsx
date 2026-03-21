@@ -18,7 +18,8 @@ import {
 } from "lucide-react"
 import Head from "next/head"
 import { useState, useMemo } from "react"
-import DesignLabSidebar from "@/src/components/DesignLabSidebar"
+import { useChatStore } from "@/lib/chat-store"
+import DesignLabSidebar from "@/components/DesignLabSidebar"
 
 interface Material {
   id: string
@@ -237,10 +238,7 @@ const materialsDatabase: Material[] = [
 
 export default function MaterialsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [chatHistory, setChatHistory] = useState([
-    "PakFactory AI interface",
-    "Packaging Design Consultation",
-  ])
+  const { chatHistory, setChatHistory } = useChatStore()
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
@@ -340,7 +338,7 @@ export default function MaterialsPage() {
         {/* Main Content */}
         <div className="relative flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-white">
           {/* Header Section */}
-          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-[#ffffff] px-4">
+          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-white px-4">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -415,7 +413,7 @@ export default function MaterialsPage() {
                     placeholder="Search materials, applications, or specifications..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-[#36b37e] focus:border-transparent"
+                    className="w-full pl-12 pr-4 py-3 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-pakfactory-green focus:border-transparent"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   />
                 </div>
@@ -435,7 +433,7 @@ export default function MaterialsPage() {
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="px-4 py-2 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-[#36b37e]"
+                      className="px-4 py-2 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-pakfactory-green"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       {categories.map(cat => (
@@ -446,7 +444,7 @@ export default function MaterialsPage() {
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="px-4 py-2 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-[#36b37e]"
+                      className="px-4 py-2 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-pakfactory-green"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       <option value="name">Sort by Name</option>
@@ -463,13 +461,13 @@ export default function MaterialsPage() {
                     <div className="flex border border-[#bccabf] rounded-lg p-1">
                       <button
                         onClick={() => setViewMode('grid')}
-                        className={`p-2 rounded ${viewMode === 'grid' ? 'bg-[#36b37e] text-white' : 'text-[#42544e]'}`}
+                        className={`p-2 rounded ${viewMode === 'grid' ? 'bg-pakfactory-green text-white' : 'text-[#42544e]'}`}
                       >
                         <Grid3X3 className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => setViewMode('list')}
-                        className={`p-2 rounded ${viewMode === 'list' ? 'bg-[#36b37e] text-white' : 'text-[#42544e]'}`}
+                        className={`p-2 rounded ${viewMode === 'list' ? 'bg-pakfactory-green text-white' : 'text-[#42544e]'}`}
                       >
                         <List className="h-4 w-4" />
                       </button>
@@ -486,17 +484,17 @@ export default function MaterialsPage() {
                           type="checkbox"
                           checked={sustainableOnly}
                           onChange={(e) => setSustainableOnly(e.target.checked)}
-                          className="rounded border-[#bccabf] text-[#36b37e] focus:ring-[#36b37e]"
+                          className="rounded border-[#bccabf] text-pakfactory-green focus:ring-pakfactory-green"
                         />
                         <span className="text-sm" style={{ fontFamily: "Inter, sans-serif" }}>Sustainable Only</span>
-                        <Leaf className="h-4 w-4 text-[#36b37e]" />
+                        <Leaf className="h-4 w-4 text-pakfactory-green" />
                       </label>
                       <label className="flex items-center gap-2">
                         <input
                           type="checkbox"
                           checked={inStockOnly}
                           onChange={(e) => setInStockOnly(e.target.checked)}
-                          className="rounded border-[#bccabf] text-[#36b37e] focus:ring-[#36b37e]"
+                          className="rounded border-[#bccabf] text-pakfactory-green focus:ring-pakfactory-green"
                         />
                         <span className="text-sm" style={{ fontFamily: "Inter, sans-serif" }}>In Stock Only</span>
                         <Zap className="h-4 w-4 text-[#ff9500]" />
@@ -525,7 +523,7 @@ export default function MaterialsPage() {
                               {material.name}
                             </h3>
                             {material.featured && <Star className="h-4 w-4 text-[#ff9500] fill-current" />}
-                            {material.sustainable && <Leaf className="h-4 w-4 text-[#36b37e]" />}
+                            {material.sustainable && <Leaf className="h-4 w-4 text-pakfactory-green" />}
                           </div>
                           <p className="text-sm text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
                             {material.category} • {material.subcategory}
@@ -610,7 +608,7 @@ export default function MaterialsPage() {
                     >
                       <div className="flex items-center gap-6 flex-1">
                         <div
-                          className="w-12 h-12 rounded-lg border border-[#bccabf] flex-shrink-0"
+                          className="w-12 h-12 rounded-lg border border-[#bccabf] shrink-0"
                           style={{ backgroundColor: material.color }}
                         />
                         <div className="flex-1">
@@ -622,7 +620,7 @@ export default function MaterialsPage() {
                               {material.name}
                             </h3>
                             {material.featured && <Star className="h-4 w-4 text-[#ff9500] fill-current" />}
-                            {material.sustainable && <Leaf className="h-4 w-4 text-[#36b37e]" />}
+                            {material.sustainable && <Leaf className="h-4 w-4 text-pakfactory-green" />}
                           </div>
                           <p className="text-sm text-[#42544e] mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
                             {material.category} • {material.subcategory}
