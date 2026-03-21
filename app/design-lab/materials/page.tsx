@@ -1,25 +1,24 @@
 "use client"
 
+import DesignLabSidebar from "@/components/DesignLabSidebar"
+import { useChatStore } from "@/lib/chat-store"
 import {
-  Search,
-  Filter,
-  Grid3X3,
-  List,
-  ChevronDown,
-  Star,
-  Info,
-  Zap,
-  Leaf,
-  Shield,
-  Menu,
   BookOpen,
+  ChevronDown,
   Download,
   ExternalLink,
+  Filter,
+  Grid3X3,
+  Info,
+  Leaf,
+  List,
+  Menu,
+  Search,
+  Star,
+  Zap,
 } from "lucide-react"
 import Head from "next/head"
-import { useState, useMemo } from "react"
-import { useChatStore } from "@/lib/chat-store"
-import DesignLabSidebar from "@/components/DesignLabSidebar"
+import { useMemo, useState } from "react"
 
 interface Material {
   id: string
@@ -72,23 +71,24 @@ const materialsDatabase: Material[] = [
       sustainability: 85,
       durability: 95,
       printability: 88,
-      costEfficiency: 78
+      costEfficiency: 78,
     },
     specifications: {
       density: "1.2 g/cm³",
       tensileStrength: "120 N⋅m/g",
       bendResistance: "8.5 mN⋅m²/g",
       moistureResistance: "High",
-      grammage: "1200 g/m²"
+      grammage: "1200 g/m²",
     },
     applications: ["Luxury Boxes", "Rigid Packaging", "Premium Products"],
     certifications: ["FSC Certified", "ASTM D6400", "ISO 9001"],
-    description: "Premium high-density core board designed for luxury packaging applications requiring exceptional structural integrity.",
+    description:
+      "Premium high-density core board designed for luxury packaging applications requiring exceptional structural integrity.",
     supplier: "International Paper",
     priceRange: "$2.45 - $3.20",
     availability: "In Stock",
     featured: true,
-    sustainable: true
+    sustainable: true,
   },
   {
     id: "art-paper-120",
@@ -102,23 +102,28 @@ const materialsDatabase: Material[] = [
       sustainability: 72,
       durability: 68,
       printability: 95,
-      costEfficiency: 85
+      costEfficiency: 85,
     },
     specifications: {
       density: "0.8 g/cm³",
       tensileStrength: "85 N⋅m/g",
       bendResistance: "4.2 mN⋅m²/g",
       moistureResistance: "Medium",
-      grammage: "120 g/m²"
+      grammage: "120 g/m²",
     },
-    applications: ["Premium Labeling", "High-Quality Printing", "Luxury Finishing"],
+    applications: [
+      "Premium Labeling",
+      "High-Quality Printing",
+      "Luxury Finishing",
+    ],
     certifications: ["FSC Certified", "PEFC Certified"],
-    description: "Superior coated liner paper engineered for exceptional print quality and premium finishing applications.",
+    description:
+      "Superior coated liner paper engineered for exceptional print quality and premium finishing applications.",
     supplier: "UPM Specialty Papers",
     priceRange: "$0.85 - $1.20",
     availability: "In Stock",
     featured: true,
-    sustainable: true
+    sustainable: true,
   },
   {
     id: "eva-adhesive",
@@ -132,21 +137,22 @@ const materialsDatabase: Material[] = [
       sustainability: 65,
       durability: 90,
       printability: 45,
-      costEfficiency: 82
+      costEfficiency: 82,
     },
     specifications: {
       density: "0.95 g/cm³",
       tensileStrength: "15 MPa",
-      moistureResistance: "Excellent"
+      moistureResistance: "Excellent",
     },
     applications: ["Rigid Box Assembly", "Lamination", "Structural Bonding"],
     certifications: ["FDA Approved", "REACH Compliant"],
-    description: "High-performance ethylene-vinyl acetate adhesive providing superior bonding strength for packaging applications.",
+    description:
+      "High-performance ethylene-vinyl acetate adhesive providing superior bonding strength for packaging applications.",
     supplier: "Henkel AG",
     priceRange: "$3.20 - $4.50",
     availability: "In Stock",
     featured: false,
-    sustainable: false
+    sustainable: false,
   },
   {
     id: "matte-premium",
@@ -160,21 +166,22 @@ const materialsDatabase: Material[] = [
       sustainability: 78,
       durability: 85,
       printability: 92,
-      costEfficiency: 75
+      costEfficiency: 75,
     },
     specifications: {
       gloss: "5-10 GU",
       scratchResistance: "Excellent",
-      chemicalResistance: "Good"
+      chemicalResistance: "Good",
     },
     applications: ["Premium Packaging", "Luxury Goods", "High-End Cosmetics"],
     certifications: ["FDA Safe", "EU Compliant"],
-    description: "Premium matte finish providing elegant appearance and superior protection for high-value packaging.",
+    description:
+      "Premium matte finish providing elegant appearance and superior protection for high-value packaging.",
     supplier: "Actega Terra",
     priceRange: "$1.85 - $2.65",
     availability: "Limited",
     featured: true,
-    sustainable: true
+    sustainable: true,
   },
   {
     id: "corrugated-kraft",
@@ -188,22 +195,27 @@ const materialsDatabase: Material[] = [
       sustainability: 95,
       durability: 75,
       printability: 65,
-      costEfficiency: 90
+      costEfficiency: 90,
     },
     specifications: {
       density: "0.3 g/cm³",
       edgeCrushStrength: "7.2 kN/m",
       burstStrength: "550 kPa",
-      grammage: "275 g/m²"
+      grammage: "275 g/m²",
     },
-    applications: ["Shipping Boxes", "E-commerce Packaging", "Industrial Packaging"],
+    applications: [
+      "Shipping Boxes",
+      "E-commerce Packaging",
+      "Industrial Packaging",
+    ],
     certifications: ["Recyclable", "Biodegradable", "FSC Certified"],
-    description: "Sustainable corrugated board optimized for shipping and e-commerce applications with excellent structural performance.",
+    description:
+      "Sustainable corrugated board optimized for shipping and e-commerce applications with excellent structural performance.",
     supplier: "WestRock",
     priceRange: "$0.45 - $0.85",
     availability: "In Stock",
     featured: false,
-    sustainable: true
+    sustainable: true,
   },
   {
     id: "metalized-polyester",
@@ -217,29 +229,34 @@ const materialsDatabase: Material[] = [
       sustainability: 35,
       durability: 95,
       printability: 88,
-      costEfficiency: 65
+      costEfficiency: 65,
     },
     specifications: {
       density: "1.4 g/cm³",
       tensileStrength: "200 MPa",
       moistureBarrier: "Excellent",
-      oxygenBarrier: "Excellent"
+      oxygenBarrier: "Excellent",
     },
-    applications: ["Food Packaging", "Barrier Applications", "Flexible Pouches"],
+    applications: [
+      "Food Packaging",
+      "Barrier Applications",
+      "Flexible Pouches",
+    ],
     certifications: ["FDA Approved", "BPA Free"],
-    description: "High-barrier metalized film providing exceptional protection for food and pharmaceutical packaging applications.",
+    description:
+      "High-barrier metalized film providing exceptional protection for food and pharmaceutical packaging applications.",
     supplier: "Toray Plastics",
     priceRange: "$2.20 - $3.80",
     availability: "In Stock",
     featured: false,
-    sustainable: false
-  }
+    sustainable: false,
+  },
 ]
 
 export default function MaterialsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { chatHistory, setChatHistory } = useChatStore()
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
   const [sortBy, setSortBy] = useState<string>("name")
@@ -247,30 +264,42 @@ export default function MaterialsPage() {
   const [sustainableOnly, setSustainableOnly] = useState(false)
   const [inStockOnly, setInStockOnly] = useState(false)
 
-  const categories = ["All", ...Array.from(new Set(materialsDatabase.map(m => m.category)))]
+  const categories = [
+    "All",
+    ...Array.from(new Set(materialsDatabase.map((m) => m.category))),
+  ]
 
   const filteredMaterials = useMemo(() => {
     let filtered = materialsDatabase
 
     if (searchTerm) {
-      filtered = filtered.filter(material =>
-        material.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        material.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        material.subcategory.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        material.applications.some(app => app.toLowerCase().includes(searchTerm.toLowerCase()))
+      filtered = filtered.filter(
+        (material) =>
+          material.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          material.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          material.subcategory
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          material.applications.some((app) =>
+            app.toLowerCase().includes(searchTerm.toLowerCase())
+          )
       )
     }
 
     if (selectedCategory !== "All") {
-      filtered = filtered.filter(material => material.category === selectedCategory)
+      filtered = filtered.filter(
+        (material) => material.category === selectedCategory
+      )
     }
 
     if (sustainableOnly) {
-      filtered = filtered.filter(material => material.sustainable)
+      filtered = filtered.filter((material) => material.sustainable)
     }
 
     if (inStockOnly) {
-      filtered = filtered.filter(material => material.availability === "In Stock")
+      filtered = filtered.filter(
+        (material) => material.availability === "In Stock"
+      )
     }
 
     // Sort materials
@@ -292,13 +321,31 @@ export default function MaterialsPage() {
     return filtered
   }, [searchTerm, selectedCategory, sortBy, sustainableOnly, inStockOnly])
 
-  const PropertyBar = ({ label, value, color }: { label: string; value: number; color: string }) => (
+  const PropertyBar = ({
+    label,
+    value,
+    color,
+  }: {
+    label: string
+    value: number
+    color: string
+  }) => (
     <div className="space-y-1">
       <div className="flex justify-between text-xs">
-        <span className="text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>{label}</span>
-        <span className="font-bold text-[#112d21]" style={{ fontFamily: "Inter, sans-serif" }}>{value}%</span>
+        <span
+          className="text-[#42544e]"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
+          {label}
+        </span>
+        <span
+          className="font-bold text-[#112d21]"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
+          {value}%
+        </span>
       </div>
-      <div className="h-2 bg-[#e6e3e2] rounded-full overflow-hidden">
+      <div className="h-2 overflow-hidden rounded-full bg-[#e6e3e2]">
         <div
           className="h-full rounded-full transition-all duration-300"
           style={{ width: `${value}%`, backgroundColor: color }}
@@ -364,7 +411,7 @@ export default function MaterialsPage() {
                   className="text-gray-700"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  Database Online
+                  System Status
                 </span>
               </div>
             </div>
@@ -372,32 +419,34 @@ export default function MaterialsPage() {
 
           {/* Materials Content */}
           <div className="flex-1 overflow-y-auto">
-            <div className="max-w-7xl mx-auto px-6 py-8">
+            <div className="mx-auto max-w-7xl px-6 py-8">
               {/* Header */}
               <header className="mb-8">
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col items-start justify-between gap-4 md:flex-row">
                   <div>
-                    <h1 
-                      className="text-4xl font-extrabold tracking-tighter text-[#171d19] mb-2"
+                    <h1
+                      className="mb-2 text-3xl font-extrabold tracking-tighter text-[#171d19] md:text-4xl"
                       style={{ fontFamily: "Manrope, sans-serif" }}
                     >
                       Substrate Database
                     </h1>
-                    <p 
-                      className="text-[#3d4a42] text-lg max-w-2xl"
+                    <p
+                      className="max-w-2xl text-base text-[#3d4a42] md:text-lg"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
-                      Comprehensive material specifications for industrial packaging design. Access technical data, sustainability metrics, and application guidelines.
+                      Comprehensive material specifications for industrial
+                      packaging design. Access technical data, sustainability
+                      metrics, and application guidelines.
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <button className="flex items-center gap-2 px-4 py-2 bg-[#006c47] text-white rounded-lg hover:bg-[#005235] transition-colors">
-                      <Download className="h-4 w-4" />
-                      Export Database
+                  <div className="flex w-full items-center gap-2 sm:gap-3 md:w-auto">
+                    <button className="flex w-full flex-1 items-center justify-center gap-1 rounded-lg bg-[#0d9c69] px-2 py-2 text-xs whitespace-nowrap text-white transition-colors hover:bg-[#0a8659] sm:w-[160px] sm:flex-none sm:gap-2 sm:px-4 sm:text-sm">
+                      <Download className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
+                      <span>Export Database</span>
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 border border-[#bccabf] rounded-lg hover:bg-[#eff5ee] transition-colors">
-                      <BookOpen className="h-4 w-4" />
-                      Technical Docs
+                    <button className="flex w-full flex-1 items-center justify-center gap-1 rounded-lg border border-[#bccabf] px-2 py-2 text-xs whitespace-nowrap transition-colors hover:bg-[#eff5ee] sm:w-[160px] sm:flex-none sm:gap-2 sm:px-4 sm:text-sm">
+                      <BookOpen className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
+                      <span>Technical Docs</span>
                     </button>
                   </div>
                 </div>
@@ -407,67 +456,76 @@ export default function MaterialsPage() {
               <div className="mb-8 space-y-4">
                 {/* Search Bar */}
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#42544e]" />
+                  <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform text-[#42544e]" />
                   <input
                     type="text"
                     placeholder="Search materials, applications, or specifications..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-pakfactory-green focus:border-transparent"
+                    className="w-full rounded-lg border border-[#bccabf] bg-white py-3 pr-4 pl-12 focus:border-transparent focus:ring-2 focus:ring-pakfactory-green"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   />
                 </div>
 
                 {/* Filter Bar */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
+                <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
+                  <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-center lg:w-auto">
                     <button
                       onClick={() => setShowFilters(!showFilters)}
-                      className="flex items-center gap-2 px-4 py-2 border border-[#bccabf] rounded-lg hover:bg-[#eff5ee] transition-colors"
+                      className="flex w-full items-center justify-center gap-2 rounded-lg border border-[#bccabf] px-4 py-2 whitespace-nowrap transition-colors hover:bg-[#eff5ee] sm:w-auto"
                     >
                       <Filter className="h-4 w-4" />
                       Filters
-                      <ChevronDown className={`h-4 w-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${showFilters ? "rotate-180" : ""}`}
+                      />
                     </button>
 
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="px-4 py-2 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-pakfactory-green"
+                      className="w-full rounded-lg border border-[#bccabf] bg-white px-4 py-2 focus:ring-2 focus:ring-pakfactory-green sm:w-auto"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
-                      {categories.map(cat => (
-                        <option key={cat} value={cat}>{cat}</option>
+                      {categories.map((cat) => (
+                        <option key={cat} value={cat}>
+                          {cat}
+                        </option>
                       ))}
                     </select>
 
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="px-4 py-2 border border-[#bccabf] rounded-lg bg-white focus:ring-2 focus:ring-pakfactory-green"
+                      className="w-full rounded-lg border border-[#bccabf] bg-white px-4 py-2 focus:ring-2 focus:ring-pakfactory-green sm:w-auto"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       <option value="name">Sort by Name</option>
                       <option value="category">Sort by Category</option>
-                      <option value="sustainability">Sort by Sustainability</option>
+                      <option value="sustainability">
+                        Sort by Sustainability
+                      </option>
                       <option value="cost">Sort by Cost Efficiency</option>
                     </select>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
+                  <div className="mt-4 flex w-full items-center justify-between gap-3 border-t border-[#bccabf]/30 pt-4 lg:mt-0 lg:w-auto lg:justify-end lg:border-t-0 lg:pt-0">
+                    <span
+                      className="text-sm text-[#42544e]"
+                      style={{ fontFamily: "Inter, sans-serif" }}
+                    >
                       {filteredMaterials.length} materials
                     </span>
-                    <div className="flex border border-[#bccabf] rounded-lg p-1">
+                    <div className="flex rounded-lg border border-[#bccabf] p-1">
                       <button
-                        onClick={() => setViewMode('grid')}
-                        className={`p-2 rounded ${viewMode === 'grid' ? 'bg-pakfactory-green text-white' : 'text-[#42544e]'}`}
+                        onClick={() => setViewMode("grid")}
+                        className={`rounded p-2 ${viewMode === "grid" ? "bg-pakfactory-green text-white" : "text-[#42544e]"}`}
                       >
                         <Grid3X3 className="h-4 w-4" />
                       </button>
                       <button
-                        onClick={() => setViewMode('list')}
-                        className={`p-2 rounded ${viewMode === 'list' ? 'bg-pakfactory-green text-white' : 'text-[#42544e]'}`}
+                        onClick={() => setViewMode("list")}
+                        className={`rounded p-2 ${viewMode === "list" ? "bg-pakfactory-green text-white" : "text-[#42544e]"}`}
                       >
                         <List className="h-4 w-4" />
                       </button>
@@ -477,8 +535,8 @@ export default function MaterialsPage() {
 
                 {/* Extended Filters */}
                 {showFilters && (
-                  <div className="bg-[#eff5ee] p-4 rounded-lg space-y-3">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="space-y-3 rounded-lg bg-[#eff5ee] p-4">
+                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                       <label className="flex items-center gap-2">
                         <input
                           type="checkbox"
@@ -486,7 +544,12 @@ export default function MaterialsPage() {
                           onChange={(e) => setSustainableOnly(e.target.checked)}
                           className="rounded border-[#bccabf] text-pakfactory-green focus:ring-pakfactory-green"
                         />
-                        <span className="text-sm" style={{ fontFamily: "Inter, sans-serif" }}>Sustainable Only</span>
+                        <span
+                          className="text-sm"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          Sustainable Only
+                        </span>
                         <Leaf className="h-4 w-4 text-pakfactory-green" />
                       </label>
                       <label className="flex items-center gap-2">
@@ -496,7 +559,12 @@ export default function MaterialsPage() {
                           onChange={(e) => setInStockOnly(e.target.checked)}
                           className="rounded border-[#bccabf] text-pakfactory-green focus:ring-pakfactory-green"
                         />
-                        <span className="text-sm" style={{ fontFamily: "Inter, sans-serif" }}>In Stock Only</span>
+                        <span
+                          className="text-sm"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          In Stock Only
+                        </span>
                         <Zap className="h-4 w-4 text-[#ff9500]" />
                       </label>
                     </div>
@@ -505,64 +573,94 @@ export default function MaterialsPage() {
               </div>
 
               {/* Materials Grid/List */}
-              {viewMode === 'grid' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {viewMode === "grid" ? (
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {filteredMaterials.map((material) => (
                     <div
                       key={material.id}
-                      className="bg-white border border-[#bccabf] rounded-xl p-6 hover:shadow-lg transition-shadow"
+                      className="rounded-xl border border-[#bccabf] bg-white p-6 transition-shadow hover:shadow-lg"
                     >
                       {/* Header */}
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="mb-4 flex items-start justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
+                          <div className="mb-1 flex items-center gap-2">
                             <h3
                               className="text-lg font-bold text-[#171d19]"
                               style={{ fontFamily: "Manrope, sans-serif" }}
                             >
                               {material.name}
                             </h3>
-                            {material.featured && <Star className="h-4 w-4 text-[#ff9500] fill-current" />}
-                            {material.sustainable && <Leaf className="h-4 w-4 text-pakfactory-green" />}
+                            {material.featured && (
+                              <Star className="h-4 w-4 fill-current text-[#ff9500]" />
+                            )}
+                            {material.sustainable && (
+                              <Leaf className="h-4 w-4 text-pakfactory-green" />
+                            )}
                           </div>
-                          <p className="text-sm text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          <p
+                            className="text-sm text-[#42544e]"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
                             {material.category} • {material.subcategory}
                           </p>
                           {material.weight && (
-                            <p className="text-xs text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
+                            <p
+                              className="text-xs text-[#42544e]"
+                              style={{ fontFamily: "Inter, sans-serif" }}
+                            >
                               {material.weight} • {material.thickness}
                             </p>
                           )}
                         </div>
                         <div
-                          className="w-6 h-6 rounded border border-[#bccabf]"
+                          className="h-6 w-6 rounded border border-[#bccabf]"
                           style={{ backgroundColor: material.color }}
                         />
                       </div>
 
                       {/* Properties */}
-                      <div className="space-y-3 mb-4">
-                        <PropertyBar label="Sustainability" value={material.properties.sustainability} color="#36b37e" />
-                        <PropertyBar label="Durability" value={material.properties.durability} color="#006c47" />
-                        <PropertyBar label="Printability" value={material.properties.printability} color="#279366" />
-                        <PropertyBar label="Cost Efficiency" value={material.properties.costEfficiency} color="#ff9500" />
+                      <div className="mb-4 space-y-3">
+                        <PropertyBar
+                          label="Sustainability"
+                          value={material.properties.sustainability}
+                          color="#36b37e"
+                        />
+                        <PropertyBar
+                          label="Durability"
+                          value={material.properties.durability}
+                          color="#006c47"
+                        />
+                        <PropertyBar
+                          label="Printability"
+                          value={material.properties.printability}
+                          color="#279366"
+                        />
+                        <PropertyBar
+                          label="Cost Efficiency"
+                          value={material.properties.costEfficiency}
+                          color="#ff9500"
+                        />
                       </div>
 
                       {/* Applications */}
                       <div className="mb-4">
-                        <p className="text-xs font-bold text-[#42544e] mb-2 uppercase tracking-wider">Applications</p>
+                        <p className="mb-2 text-xs font-bold tracking-wider text-[#42544e] uppercase">
+                          Applications
+                        </p>
                         <div className="flex flex-wrap gap-1">
-                          {material.applications.slice(0, 2).map((app, index) => (
-                            <span
-                              key={index}
-                              className="text-xs px-2 py-1 bg-[#e7ffef] text-[#006c47] rounded-full"
-                              style={{ fontFamily: "Inter, sans-serif" }}
-                            >
-                              {app}
-                            </span>
-                          ))}
+                          {material.applications
+                            .slice(0, 2)
+                            .map((app, index) => (
+                              <span
+                                key={index}
+                                className="rounded-full bg-[#e7ffef] px-2 py-1 text-xs text-[#006c47]"
+                                style={{ fontFamily: "Inter, sans-serif" }}
+                              >
+                                {app}
+                              </span>
+                            ))}
                           {material.applications.length > 2 && (
-                            <span className="text-xs px-2 py-1 bg-[#eff5ee] text-[#42544e] rounded-full">
+                            <span className="rounded-full bg-[#eff5ee] px-2 py-1 text-xs text-[#42544e]">
                               +{material.applications.length - 2}
                             </span>
                           )}
@@ -570,28 +668,34 @@ export default function MaterialsPage() {
                       </div>
 
                       {/* Footer */}
-                      <div className="flex items-center justify-between pt-3 border-t border-[#e6e3e2]">
+                      <div className="flex items-center justify-between border-t border-[#e6e3e2] pt-3">
                         <div>
-                          <p className="text-sm font-bold text-[#171d19]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          <p
+                            className="text-sm font-bold text-[#171d19]"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
                             {material.priceRange}
                           </p>
-                          <p className="text-xs text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          <p
+                            className="text-xs text-[#42544e]"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
                             {material.supplier}
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
                           <span
-                            className={`text-xs px-2 py-1 rounded-full ${
+                            className={`rounded-full px-2 py-1 text-xs ${
                               material.availability === "In Stock"
                                 ? "bg-[#e7ffef] text-[#006c47]"
                                 : material.availability === "Limited"
-                                ? "bg-[#fff3cd] text-[#ff9500]"
-                                : "bg-[#ffdad6] text-[#ba1a1a]"
+                                  ? "bg-[#fff3cd] text-[#ff9500]"
+                                  : "bg-[#ffdad6] text-[#ba1a1a]"
                             }`}
                           >
                             {material.availability}
                           </span>
-                          <button className="p-1 text-[#42544e] hover:text-[#006c47] transition-colors">
+                          <button className="p-1 text-[#42544e] transition-colors hover:text-[#006c47]">
                             <Info className="h-4 w-4" />
                           </button>
                         </div>
@@ -604,54 +708,70 @@ export default function MaterialsPage() {
                   {filteredMaterials.map((material) => (
                     <div
                       key={material.id}
-                      className="bg-white border border-[#bccabf] rounded-lg p-6 flex items-center justify-between hover:shadow-lg transition-shadow"
+                      className="flex flex-col items-center justify-between gap-6 rounded-lg border border-[#bccabf] bg-white p-6 transition-shadow hover:shadow-lg lg:flex-row"
                     >
-                      <div className="flex items-center gap-6 flex-1">
+                      <div className="flex w-full flex-1 flex-col items-center gap-6 sm:flex-row sm:items-start lg:w-auto lg:items-center">
                         <div
-                          className="w-12 h-12 rounded-lg border border-[#bccabf] shrink-0"
+                          className="h-12 w-12 shrink-0 rounded-lg border border-[#bccabf]"
                           style={{ backgroundColor: material.color }}
                         />
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
+                        <div className="flex-1 text-center sm:text-left">
+                          <div className="mb-1 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
                             <h3
                               className="text-lg font-bold text-[#171d19]"
                               style={{ fontFamily: "Manrope, sans-serif" }}
                             >
                               {material.name}
                             </h3>
-                            {material.featured && <Star className="h-4 w-4 text-[#ff9500] fill-current" />}
-                            {material.sustainable && <Leaf className="h-4 w-4 text-pakfactory-green" />}
+                            {material.featured && (
+                              <Star className="h-4 w-4 fill-current text-[#ff9500]" />
+                            )}
+                            {material.sustainable && (
+                              <Leaf className="h-4 w-4 text-pakfactory-green" />
+                            )}
                           </div>
-                          <p className="text-sm text-[#42544e] mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
+                          <p
+                            className="mb-2 text-sm text-[#42544e]"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
                             {material.category} • {material.subcategory}
                             {material.weight && ` • ${material.weight}`}
                           </p>
-                          <p className="text-sm text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          <p
+                            className="text-sm text-[#42544e]"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
                             {material.description}
                           </p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-8">
+                      <div className="flex w-full flex-wrap items-center justify-between gap-6 border-t border-[#bccabf]/30 pt-4 sm:justify-end lg:w-auto lg:border-t-0 lg:pt-0">
                         <div className="text-center">
-                          <p className="text-sm font-bold text-[#171d19]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          <p
+                            className="text-sm font-bold text-[#171d19]"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
                             {material.priceRange}
                           </p>
-                          <p className="text-xs text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
+                          <p
+                            className="text-xs text-[#42544e]"
+                            style={{ fontFamily: "Inter, sans-serif" }}
+                          >
                             {material.supplier}
                           </p>
                         </div>
                         <span
-                          className={`text-xs px-3 py-1 rounded-full ${
+                          className={`rounded-full px-3 py-1 text-xs ${
                             material.availability === "In Stock"
                               ? "bg-[#e7ffef] text-[#006c47]"
                               : material.availability === "Limited"
-                              ? "bg-[#fff3cd] text-[#ff9500]"
-                              : "bg-[#ffdad6] text-[#ba1a1a]"
+                                ? "bg-[#fff3cd] text-[#ff9500]"
+                                : "bg-[#ffdad6] text-[#ba1a1a]"
                           }`}
                         >
                           {material.availability}
                         </span>
-                        <button className="p-2 text-[#42544e] hover:text-[#006c47] transition-colors">
+                        <button className="p-2 text-[#42544e] transition-colors hover:text-[#006c47]">
                           <ExternalLink className="h-4 w-4" />
                         </button>
                       </div>
@@ -661,17 +781,20 @@ export default function MaterialsPage() {
               )}
 
               {filteredMaterials.length === 0 && (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#eff5ee] flex items-center justify-center">
+                <div className="py-12 text-center">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#eff5ee]">
                     <Search className="h-8 w-8 text-[#42544e]" />
                   </div>
                   <h3
-                    className="text-lg font-semibold text-[#171d19] mb-2"
+                    className="mb-2 text-lg font-semibold text-[#171d19]"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     No materials found
                   </h3>
-                  <p className="text-[#42544e]" style={{ fontFamily: "Inter, sans-serif" }}>
+                  <p
+                    className="text-[#42544e]"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
                     Try adjusting your search terms or filters
                   </p>
                 </div>

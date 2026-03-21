@@ -98,17 +98,17 @@ export default function SettingsPage() {
 
           {/* Settings Content */}
           <div className="flex-1 overflow-y-auto">
-            <div className="mx-auto max-w-5xl px-12 py-16">
+            <div className="mx-auto max-w-5xl px-4 md:px-12 py-8 md:py-16">
               {/* Editorial Header */}
-              <header className="mb-16">
+              <header className="mb-8 md:mb-16">
                 <h1
-                  className="mb-2 text-5xl font-extrabold tracking-tighter text-[#171d19]"
+                  className="mb-2 text-3xl md:text-5xl font-extrabold tracking-tighter text-[#171d19]"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   System Architecture
                 </h1>
                 <p
-                  className="max-w-2xl text-lg text-[#3d4a42]"
+                  className="max-w-2xl text-base md:text-lg text-[#3d4a42]"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Configure your professional workspace, manage platform
@@ -117,23 +117,23 @@ export default function SettingsPage() {
                 </p>
               </header>
 
-              <div className="grid grid-cols-12 gap-10">
+              <div className="grid grid-cols-12 gap-8 md:gap-10">
                 {/* Left Column: User Profile & Preferences */}
-                <div className="col-span-12 space-y-12 lg:col-span-7">
+                <div className="col-span-12 space-y-8 md:space-y-12 lg:col-span-7">
                   {/* User Profile Section */}
                   <section>
                     <h2
-                      className="mb-6 flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
+                      className="mb-4 md:mb-6 flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       <span className="h-2 w-2 rounded-full bg-pakfactory-green"></span>
                       Identity & Credentials
                     </h2>
-                    <div className="flex items-start gap-8 bg-white p-8 shadow-sm">
+                    <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 bg-white p-6 md:p-8 shadow-sm">
                       <div className="group relative cursor-pointer">
-                        <div className="h-24 w-24 overflow-hidden rounded-lg bg-[#e9f0e9]">
+                        <div className="h-20 w-20 md:h-24 md:w-24 overflow-hidden rounded-lg bg-[#e9f0e9]">
                           <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-pakfactory-green to-[#006c47]">
-                            <span className="text-2xl font-bold text-white">
+                            <span className="text-xl md:text-2xl font-bold text-white">
                               BH
                             </span>
                           </div>
@@ -142,8 +142,8 @@ export default function SettingsPage() {
                           <Camera className="h-6 w-6 text-white" />
                         </div>
                       </div>
-                      <div className="grow space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
+                      <div className="grow space-y-4 w-full">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="space-y-1">
                             <label
                               className="text-[10px] font-bold text-[#6d7a71] uppercase"
@@ -194,17 +194,17 @@ export default function SettingsPage() {
                   {/* Account Preferences Section */}
                   <section>
                     <h2
-                      className="mb-6 flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
+                      className="mb-4 md:mb-6 flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       <span className="h-2 w-2 rounded-full bg-pakfactory-green"></span>
                       Environmental Preferences
                     </h2>
-                    <div className="space-y-8 bg-white p-8 shadow-sm">
+                    <div className="space-y-6 md:space-y-8 bg-white p-6 md:p-8 shadow-sm">
                       {/* Language Setting */}
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div className="flex items-center gap-4">
-                          <Globe className="h-5 w-5 text-[#6d7a71]" />
+                          <Globe className="h-5 w-5 shrink-0 text-[#6d7a71]" />
                           <div>
                             <p
                               className="font-bold text-[#171d19]"
@@ -221,7 +221,7 @@ export default function SettingsPage() {
                           </div>
                         </div>
                         <select
-                          className="rounded-lg border border-[#bccabf] bg-[#eff5ee] px-4 py-2 text-sm font-medium text-[#171d19] focus:border-pakfactory-green focus:ring-0"
+                          className="w-full sm:w-auto rounded-lg border border-[#bccabf] bg-[#eff5ee] px-4 py-2 text-sm font-medium text-[#171d19] focus:border-pakfactory-green focus:ring-0"
                           style={{ fontFamily: "Inter, sans-serif" }}
                           value={language}
                           onChange={(e) => setLanguage(e.target.value)}
@@ -368,7 +368,7 @@ export default function SettingsPage() {
                 <div className="col-span-12 space-y-8 lg:col-span-5">
                   <section>
                     <h2
-                      className="mb-6 flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
+                      className="mb-4 md:mb-6 flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       <span className="h-2 w-2 rounded-full bg-pakfactory-green"></span>
@@ -377,10 +377,10 @@ export default function SettingsPage() {
 
                     <div className="space-y-4">
                       {/* Shopify Integration */}
-                      <div className="bg-white p-6 shadow-sm">
-                        <div className="mb-4 flex items-center justify-between">
+                      <div className="bg-white p-4 sm:p-6 shadow-sm">
+                        <div className="mb-4 flex items-start sm:items-center justify-between gap-2">
                           <div className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#96bf47]">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#96bf47]">
                               <span className="font-bold text-white">S</span>
                             </div>
                             <div>
@@ -399,7 +399,7 @@ export default function SettingsPage() {
                             </div>
                           </div>
                           <div
-                            className={`h-3 w-3 rounded-full ${
+                            className={`h-3 w-3 shrink-0 rounded-full mt-1.5 sm:mt-0 ${
                               shopifyConnected ? "bg-pakfactory-green" : "bg-[#ba1a1a]"
                             }`}
                           />
@@ -418,10 +418,10 @@ export default function SettingsPage() {
                       </div>
 
                       {/* Zoho Integration */}
-                      <div className="bg-white p-6 shadow-sm">
-                        <div className="mb-4 flex items-center justify-between">
+                      <div className="bg-white p-4 sm:p-6 shadow-sm">
+                        <div className="mb-4 flex items-start sm:items-center justify-between gap-2">
                           <div className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#ff6b35]">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#ff6b35]">
                               <span className="font-bold text-white">Z</span>
                             </div>
                             <div>
@@ -440,7 +440,7 @@ export default function SettingsPage() {
                             </div>
                           </div>
                           <div
-                            className={`h-3 w-3 rounded-full ${
+                            className={`h-3 w-3 shrink-0 rounded-full mt-1.5 sm:mt-0 ${
                               zohoConnected ? "bg-pakfactory-green" : "bg-[#ba1a1a]"
                             }`}
                           />
@@ -454,7 +454,7 @@ export default function SettingsPage() {
                           style={{ fontFamily: "Inter, sans-serif" }}
                           onClick={() => setZohoConnected(!zohoConnected)}
                         >
-                          {zohoConnected ? "Disconnect" : "Connect CRM"}
+                          {zohoConnected ? "Disconnect" : "ConnectCRM"}
                         </button>
                       </div>
                     </div>
