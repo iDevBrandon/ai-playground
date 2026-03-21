@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings | The Precision Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#ffb3b3",
+              "surface-container-high": "#e4eae3",
+              "on-background": "#171d19",
+              "on-secondary-fixed": "#002113",
+              "background": "#f5fbf4",
+              "primary-container": "#36b37e",
+              "on-error-container": "#93000a",
+              "surface-container": "#e9f0e9",
+              "tertiary": "#a03e43",
+              "on-tertiary-fixed": "#400009",
+              "on-secondary-container": "#416b55",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#81262e",
+              "surface-dim": "#d5dcd5",
+              "primary-fixed": "#82f9be",
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#f5fbf4",
+              "secondary": "#3d6751",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#005235",
+              "on-surface": "#171d19",
+              "inverse-on-surface": "#ecf2eb",
+              "primary": "#006c47",
+              "surface-tint": "#006c47",
+              "on-tertiary-container": "#6a151f",
+              "on-primary-fixed": "#002113",
+              "surface-container-low": "#eff5ee",
+              "on-surface-variant": "#3d4a42",
+              "secondary-fixed-dim": "#a4d1b6",
+              "surface-variant": "#dee4dd",
+              "outline-variant": "#bccabf",
+              "secondary-fixed": "#bfedd1",
+              "on-primary-container": "#003f27",
+              "inverse-surface": "#2c322d",
+              "inverse-primary": "#65dca4",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#ffdad9",
+              "outline": "#6d7a71",
+              "tertiary-container": "#f17c80",
+              "primary-fixed-dim": "#65dca4",
+              "error-container": "#ffdad6",
+              "secondary-container": "#bceace",
+              "on-tertiary": "#ffffff",
+              "surface": "#f5fbf4",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#254f3a",
+              "surface-container-highest": "#dee4dd"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .tonal-shift { background-color: #f6f3f2; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f8] dark:bg-stone-950/80 backdrop-blur-md border-b border-stone-200/15 dark:border-stone-800/15 flex justify-between items-center px-8 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-stone-900 dark:text-stone-50 font-manrope tracking-tight">The Precision Architect</span>
+<div class="hidden md:flex gap-6">
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-manrope font-bold tracking-tight" href="#">Design Lab</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-manrope font-bold tracking-tight" href="#">Projects</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-manrope font-bold tracking-tight" href="#">Help</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container px-4 py-2 text-sm font-bold active:scale-95 duration-200 transition-colors">New Project</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="User Profile" data-alt="Close up portrait of a professional architect" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgj9swj5ZGPOL8Je87kgK0c6wYVV8fhzy70FR6kBUkRH2vI9Nb4dp9u5MH5PVvEl0OIwakMlD7XgiT_RuMpU8G51Ev8_nWHvJJXTWbMMwT7-yjDvedp5jtDAHlZi2mquUMldQKBKLqY21VjuCtEYuMo38FlD7SDLUMqZTH-j8LQdX9R4THh8HHueLhVy8pM5xsGbO-GbU46Ppj2RTvsLurg9xcpxrtE891YYD_B6G4e7LQs6Yt81f3ClYcr7602BBB1UFexM9LlSNR"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 tonal-shift flex flex-col p-4 gap-2 font-inter text-sm antialiased">
+<div class="mb-6 px-2 flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-lowest rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">architecture</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Design Lab</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Active Session</p>
+</div>
+</div>
+</div>
+<div class="flex-grow flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span>Saved Specs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span>Archive</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span>Support</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-1">
+<!-- Active State for Settings -->
+<a class="flex items-center gap-3 px-3 py-2.5 bg-white dark:bg-stone-800 text-[#0d9c69] font-semibold rounded-lg active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>Settings</span>
+</a>
+<button class="mt-2 w-full bg-primary text-white py-2 font-bold tracking-tight active:scale-95 duration-200 uppercase text-xs">Export Specs</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="max-w-5xl mx-auto px-12 py-16">
+<!-- Editorial Moment Header -->
+<header class="mb-16">
+<h1 class="text-5xl font-extrabold tracking-tighter text-on-surface mb-2 font-headline">System Architecture</h1>
+<p class="text-on-surface-variant font-body text-lg max-w-2xl">Configure your professional workspace, manage platform integrations, and maintain technical precision across your enterprise profile.</p>
+</header>
+<div class="grid grid-cols-12 gap-10">
+<!-- Left Column: User Profile & Preferences -->
+<div class="col-span-12 lg:col-span-7 space-y-12">
+<!-- User Profile Section -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-primary-container rounded-full"></span>
+                            Identity &amp; Credentials
+                        </h2>
+<div class="bg-surface-container-lowest p-8 flex items-start gap-8 shadow-sm">
+<div class="relative group cursor-pointer">
+<div class="w-24 h-24 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User avatar for architect settings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2bhMFZr7L7PSFCxd5I5pTvIKRIzsnsRuggr4451xsALuK9wZ2Z1yJ-Y33Qyd_CGRMydQsTG2LsBI8miA_ndU4r86G58r8XjSN8GLWPJATpdC5K8B63-y38J-WM49PXkXPbe4YLYm5wMf-Y2Z1UgrnisEEMUx8lTPhp7jaeEFvpj5GDpxSu3x5qRAsNM1Yqb8mfJaRr2-owYuA3Czv8W1QXYH3XGDugkpw1WU7gzUbegeyuTIzkoKJSq3gjiCVAOwilkOMm1CCf5hA"/>
+</div>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<div class="flex-grow space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-[10px] uppercase font-bold text-outline">Full Name</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 border-b-2 border-transparent focus:border-primary-container py-2 font-medium text-on-surface" type="text" value="Alexander Vance"/>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] uppercase font-bold text-outline">Professional Title</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 border-b-2 border-transparent focus:border-primary-container py-2 font-medium text-on-surface" type="text" value="Senior Technical Architect"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] uppercase font-bold text-outline">Email Correspondence</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 border-b-2 border-transparent focus:border-primary-container py-2 font-medium text-on-surface" type="email" value="a.vance@precisionarch.io"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Account Preferences Section -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-primary-container rounded-full"></span>
+                            Environmental Preferences
+                        </h2>
+<div class="bg-surface-container-lowest p-8 space-y-8 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline">language</span>
+<div>
+<p class="font-bold text-on-surface">Interface Language</p>
+<p class="text-xs text-on-surface-variant">Default technical terminology and units</p>
+</div>
+</div>
+<select class="bg-surface-container-low border-none text-sm font-bold text-primary focus:ring-0 px-4 py-2">
+<option>English (Technical / US)</option>
+<option>German (DIN Standard)</option>
+<option>Japanese (JIS Standard)</option>
+</select>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-8">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline">notifications_active</span>
+<div>
+<p class="font-bold text-on-surface">Production Alerts</p>
+<p class="text-xs text-on-surface-variant">Receive critical updates on manufacturing lines</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-8">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline">auto_graph</span>
+<div>
+<p class="font-bold text-on-surface">Data Precision Mode</p>
+<p class="text-xs text-on-surface-variant">Render 4+ decimal places for high-fidelity specs</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Integrations & Meta -->
+<div class="col-span-12 lg:col-span-5 space-y-12">
+<!-- Integration Settings -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-primary-container rounded-full"></span>
+                            Ecosystem Nodes
+                        </h2>
+<div class="space-y-4">
+<!-- Shopify Integration -->
+<div class="bg-surface-container-lowest p-6 shadow-sm group hover:bg-white transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-[#95bf47]/10 flex items-center justify-center">
+<img class="w-8 h-8 object-contain grayscale group-hover:grayscale-0 transition-all" data-alt="Shopify platform logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN4-Ye3o4mB9Q7mNm-QEuJaxR29KRU3k0ZCaQNfLmZH5R2vQGjCMtiJQbN3jfc9Ooe_oj895hW1hJqPXg81sE0BRqSz_3n0nelVhJycSRzfegmrEoKsKezeW21Q7v474DS0gH1vPKSCb0bztUAEh2Q_lp52lLDPboG88lG9zFkBH3CSjmj8t-R_xvBpctxEsVf4JWqlX5j4UPEgJupTi1Z-mYjXxhVgVyU1YAvv0jvhych-dd-iFKHX_5jKM-nEr-iik1gF4BylEL9"/>
+</div>
+<span class="text-[10px] font-black uppercase text-primary tracking-widest bg-primary-container/10 px-2 py-1">Active Connection</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Shopify Enterprise</h3>
+<p class="text-xs text-on-surface-variant mb-6">Automated packaging generation for all store SKUs.</p>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest text-on-surface px-4 py-2 text-xs font-bold uppercase tracking-wider active:opacity-80 transition-opacity">Configure</button>
+<button class="text-error px-4 py-2 text-xs font-bold uppercase tracking-wider active:opacity-80 transition-opacity">Disconnect</button>
+</div>
+</div>
+<!-- Zoho Integration -->
+<div class="bg-surface-container-lowest p-6 shadow-sm group hover:bg-white transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" style="font-size: 32px;">hub</span>
+</div>
+<span class="text-[10px] font-black uppercase text-outline tracking-widest bg-surface-container-high px-2 py-1">Ready to Link</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Zoho Inventory</h3>
+<p class="text-xs text-on-surface-variant mb-6">Sync real-time manufacturing stock with architectural specs.</p>
+<button class="w-full border-2 border-primary-container text-primary px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-primary-container hover:text-white transition-all">Link Workspace</button>
+</div>
+</div>
+</section>
+<!-- Security Banner -->
+<div class="bg-[#002113] p-8 relative overflow-hidden">
+<!-- Abstract Gradient Pattern -->
+<div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(135deg, #0d9c69 0%, transparent 100%);"></div>
+<div class="relative z-10">
+<h4 class="text-primary-fixed font-headline font-black text-xl mb-2">Vaulted Security</h4>
+<p class="text-primary-fixed-dim text-xs leading-relaxed mb-6">Your manufacturing blueprints are encrypted using AES-256 standards. Precision requires protection.</p>
+<button class="bg-primary-container text-white px-6 py-2.5 text-xs font-bold uppercase tracking-[0.15em] active:scale-95 transition-transform">Two-Factor Audit</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions (Tonal Layering) -->
+<footer class="mt-20 border-t border-outline-variant/15 pt-10 flex justify-between items-center">
+<div class="text-xs text-on-surface-variant font-medium">
+                    Last workspace audit: 12 October 2023, 14:32 GMT
+                </div>
+<div class="flex gap-4">
+<button class="px-8 py-3 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors">Reset Architecture</button>
+<button class="px-10 py-3 text-xs font-bold uppercase tracking-widest bg-primary text-white shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-shadow">Synchronize All Nodes</button>
+</div>
+</footer>
+</div>
+</main>
+<!-- Contextual Floating Premium Support (Glassmorphism) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-primary text-white flex items-center justify-center rounded-lg shadow-2xl hover:translate-y-[-4px] transition-transform duration-300" style="background: linear-gradient(135deg, #0d9c69, #006c47);">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</button>
+</div>
+</body></html>

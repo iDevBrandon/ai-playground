@@ -2,31 +2,24 @@
 
 import DocumentList from "@/src/components/DocumentList"
 import FileUpload from "@/src/components/FileUpload"
+import DesignLabSidebar from "@/src/components/DesignLabSidebar"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import {
   BarChart,
   Calculator,
   CheckCircle2,
-  Edit3,
-  Ellipsis,
   Eye,
   Folder,
-  Layers,
   Menu,
-  Package,
   Paperclip,
-  Plus,
   Send,
   Settings,
   ShoppingCart,
   TestTube,
-  Trash2,
   X,
 } from "lucide-react"
 import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { useDropzone } from "react-dropzone"
 
@@ -57,10 +50,7 @@ export default function DesignLabPage() {
     "PakFactory AI interface",
     "Packaging Design Consultation",
   ])
-  const [hoveredChat, setHoveredChat] = useState<number | null>(null)
-  const [showChatMenu, setShowChatMenu] = useState<number | null>(null)
-  const [renamingChat, setRenamingChat] = useState<number | null>(null)
-  const [renameValue, setRenameValue] = useState("")
+  const [currentChatIndex, setCurrentChatIndex] = useState(0)
 
   // Use AI SDK for RAG chat - following the pattern in ChatInterface.tsx
   const { messages, sendMessage } = useChat({
@@ -91,17 +81,6 @@ export default function DesignLabPage() {
     scrollToBottom()
   }, [messages])
 
-  // Close chat menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = () => {
-      setShowChatMenu(null)
-    }
-
-    if (showChatMenu !== null) {
-      document.addEventListener("click", handleClickOutside)
-      return () => document.removeEventListener("click", handleClickOutside)
-    }
-  }, [showChatMenu])
 
   // Intelligent Flow Detection
   const detectUserIntent = (message: string): string | null => {
@@ -211,9 +190,6 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
   }
 
   const handleNewSpecification = () => {
-    const newChatTitle = `New Specification ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
-    setChatHistory((prev) => [newChatTitle, ...prev])
-
     // Reset the current flow and UI state for a fresh start
     setCurrentFlow(null)
     setFlowData(null)
@@ -224,24 +200,6 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
     setUserMessage("")
   }
 
-  const handleRenameChat = (index: number) => {
-    setRenamingChat(index)
-    setRenameValue(chatHistory[index])
-    setShowChatMenu(null)
-  }
-
-  const confirmRename = (index: number) => {
-    setChatHistory((prev) =>
-      prev.map((chat, i) => (i === index ? renameValue : chat))
-    )
-    setRenamingChat(null)
-    setRenameValue("")
-  }
-
-  const handleDeleteChat = (index: number) => {
-    setChatHistory((prev) => prev.filter((_, i) => i !== index))
-    setShowChatMenu(null)
-  }
 
   const handleFileUpload = () => {
     fileInputRef.current?.click()
@@ -410,7 +368,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
         `}</style>
       </Head>
       <div
-        className="font-body flex h-dvh w-full items-stretch overflow-hidden bg-[#f9fffb] text-[#112d21]"
+        className="font-body flex h-dvh w-full items-stretch overflow-hidden bg-[#fcf9f8] text-[#1c1b1b]"
         style={{
           fontFamily: "Inter, sans-serif",
         }}
@@ -426,189 +384,16 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
           />
         )}
 
-        {/* Left Sidebar */}
-        <div
-          className={`fixed inset-y-0 left-0 z-50 flex w-80 transform flex-col bg-white transition-transform duration-300 ease-in-out lg:relative lg:z-auto lg:w-80 ${
-            sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-          }`}
-        >
-          {/* Header */}
-          <div className="flex h-14 shrink-0 items-center border-b border-gray-200 bg-white px-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/image/logo.png"
-                alt="PakFactory Logo"
-                width={120}
-                height={28}
-                className="h-5 w-auto"
-              />
-            </Link>
-          </div>
-
-          {/* Navigation - ChatGPT Style */}
-          <nav className="flex-1 p-4">
-            <div>
-              {/* Main Menu */}
-              <div className="pt-2">
-                <h3
-                  className="px-2 text-xs font-semibold tracking-wide text-gray-500 uppercase"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
-                  Main menu
-                </h3>
-              </div>
-
-              <button
-                className="flex w-full items-center gap-3 rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                <Layers className="h-5 w-5" />
-                <span className="text-sm">Schematics</span>
-              </button>
-
-              <button
-                className="flex w-full items-center gap-3 rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                <Package className="h-5 w-5" />
-                <span className="text-sm">Materials</span>
-              </button>
-
-              <button
-                className="flex w-full items-center gap-3 rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                <ShoppingCart className="h-5 w-5" />
-                <span className="text-sm">Orders</span>
-              </button>
-
-              <button
-                className="flex w-full items-center gap-3 rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                <Settings className="h-5 w-5" />
-                <span className="text-sm">Settings</span>
-              </button>
-
-              {/* Chat History */}
-              <div className="pt-4 pb-2">
-                <h3
-                  className="px-2 text-xs font-semibold tracking-wide text-gray-500 uppercase"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
-                  Your chats
-                </h3>
-              </div>
-
-              {chatHistory.map((chat, index) => (
-                <div
-                  key={index}
-                  className="relative"
-                  onMouseEnter={() => setHoveredChat(index)}
-                  onMouseLeave={() => setHoveredChat(null)}
-                >
-                  {renamingChat === index ? (
-                    <div className="flex items-center gap-2 px-2 py-2">
-                      <input
-                        type="text"
-                        value={renameValue}
-                        onChange={(e) => setRenameValue(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") confirmRename(index)
-                          if (e.key === "Escape") setRenamingChat(null)
-                        }}
-                        onBlur={() => confirmRename(index)}
-                        autoFocus
-                        className="flex-1 rounded border border-gray-300 bg-white px-2 py-1 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        style={{ fontFamily: "Inter, sans-serif" }}
-                      />
-                    </div>
-                  ) : (
-                    <button
-                      className="flex w-full items-center justify-between rounded-lg p-2 text-gray-700 transition-colors hover:bg-gray-100"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                    >
-                      <span className="flex-1 truncate pr-2 text-left text-sm leading-tight">
-                        {chat}
-                      </span>
-                      <div className="flex h-6 w-6 items-center justify-center">
-                        {hoveredChat === index && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              setShowChatMenu(
-                                showChatMenu === index ? null : index
-                              )
-                            }}
-                            className="rounded p-1 transition-colors hover:bg-gray-200"
-                          >
-                            <Ellipsis className="h-4 w-4" />
-                          </button>
-                        )}
-                      </div>
-                    </button>
-                  )}
-
-                  {/* Dropdown Menu */}
-                  {showChatMenu === index && (
-                    <div className="absolute top-8 right-0 z-50 w-40 rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
-                      <button
-                        onClick={() => handleRenameChat(index)}
-                        className="flex w-full items-center gap-2 px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100"
-                        style={{ fontFamily: "Inter, sans-serif" }}
-                      >
-                        <Edit3 className="h-4 w-4" />
-                        Rename
-                      </button>
-                      <button
-                        onClick={() => handleDeleteChat(index)}
-                        className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
-                        style={{ fontFamily: "Inter, sans-serif" }}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                        Delete
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </nav>
-
-          {/* Bottom Actions */}
-          <div className="border-t border-gray-200 p-4">
-            {/* New Specification Button */}
-            <button
-              onClick={handleNewSpecification}
-              className="mb-3 flex w-full items-center gap-3 rounded-lg bg-[#279366] p-2.5 text-white transition-colors hover:bg-[#228a55]"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              <Plus className="h-5 w-5" />
-              <span className="text-sm font-medium">New Specification</span>
-            </button>
-
-            {/* User Profile - ChatGPT Style */}
-            <div className="flex items-center gap-3 p-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#279366] text-sm font-medium text-white">
-                BH
-              </div>
-              <div className="flex-1">
-                <div
-                  className="text-sm font-medium text-gray-900"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
-                  Brandon Ha
-                </div>
-                <div
-                  className="text-xs text-gray-500"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
-                  Free
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <DesignLabSidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          currentPage="home"
+          chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
+          onNewSpecification={handleNewSpecification}
+          onChatSelect={setCurrentChatIndex}
+          currentChatIndex={currentChatIndex}
+        />
 
         {/* Main Content */}
         <div
@@ -650,7 +435,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
           )}
 
           {/* Header Section - ChatGPT Style */}
-          <div className="flex h-14 shrink-0 items-center justify-between border-b border-gray-200/50 bg-white px-4">
+          <div className="flex h-14 shrink-0 items-center justify-between border-b border-[#e6e3e2]/50 bg-[#ffffff] px-4">
             <div className="flex items-center gap-3">
               {/* Mobile menu button */}
               <button
@@ -665,7 +450,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                   className="text-sm text-gray-500"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  Design Lab
+                  {chatHistory[currentChatIndex] || "Design Lab"}
                 </span>
               </div>
             </div>
@@ -695,18 +480,18 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
           {/* Chat Content */}
           <div className="flex min-h-0 flex-1 overflow-hidden">
             {/* Chat Area */}
-            <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden bg-[#f9fffb]">
+            <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden bg-[#fcf9f8]">
               {/* Messages */}
               <div className="flex-1 space-y-6 overflow-y-auto p-6 lg:space-y-8 lg:p-8">
                 {/* Initial Greeting (Always Visible) */}
                 <div className="flex gap-4 lg:gap-6">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#279366] lg:h-10 lg:w-10">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0d9c69] lg:h-10 lg:w-10">
                     <span className="text-sm text-white lg:text-base">🤖</span>
                   </div>
 
                   <div className="flex max-w-xs flex-col gap-4 sm:max-w-md lg:max-w-2xl">
                     {/* AI Message with Border Accent */}
-                    <div className="rounded-xl rounded-tl-none border-l-4 border-[#279366] bg-white p-6 shadow-sm">
+                    <div className="rounded-xl rounded-tl-none border-l-4 border-[#0d9c69] bg-white p-6 shadow-sm">
                       <p
                         className="text-base leading-relaxed font-medium text-[#112d21]"
                         style={{ fontFamily: "Inter, sans-serif" }}
@@ -732,7 +517,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                             ></div>
                           </div>
                           <span
-                            className="text-[10px] font-bold tracking-tight text-[#279366] uppercase"
+                            className="text-[10px] font-bold tracking-tight text-[#0d9c69] uppercase"
                             style={{ fontFamily: "Inter, sans-serif" }}
                           >
                             Ready for Analysis
@@ -765,7 +550,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                             >
                               Material Analysis
                             </span>
-                            <TestTube className="h-4 w-4 text-[#279366]" />
+                            <TestTube className="h-4 w-4 text-[#0d9c69]" />
                           </li>
                           <li className="flex items-center justify-between text-xs">
                             <span
@@ -774,7 +559,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                             >
                               Cost Estimation
                             </span>
-                            <Calculator className="h-4 w-4 text-[#279366]" />
+                            <Calculator className="h-4 w-4 text-[#0d9c69]" />
                           </li>
                           <li className="flex items-center justify-between text-xs">
                             <span
@@ -783,7 +568,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                             >
                               Design Validation
                             </span>
-                            <CheckCircle2 className="h-4 w-4 text-[#279366]" />
+                            <CheckCircle2 className="h-4 w-4 text-[#0d9c69]" />
                           </li>
                         </ul>
                       </div>
@@ -820,7 +605,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                       className={`flex gap-4 lg:gap-6 ${message.role === "user" ? "justify-end" : ""}`}
                     >
                       {message.role !== "user" && (
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#279366] lg:h-10 lg:w-10">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0d9c69] lg:h-10 lg:w-10">
                           <span className="text-sm text-white lg:text-base">
                             🤖
                           </span>
@@ -828,7 +613,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                       )}
 
                       <div
-                        className={`max-w-xs sm:max-w-md lg:max-w-2xl ${message.role === "user" ? "text-white" : "text-[#112d21]"} rounded-2xl ${message.role === "user" ? "p-4 lg:p-6" : "border-l-4 border-[#279366] p-6 shadow-sm"}`}
+                        className={`max-w-xs sm:max-w-md lg:max-w-2xl ${message.role === "user" ? "text-white" : "text-[#112d21]"} rounded-2xl ${message.role === "user" ? "p-4 lg:p-6" : "border-l-4 border-[#0d9c69] p-6 shadow-sm"}`}
                         style={
                           message.role === "user"
                             ? { backgroundColor: "#279366" }
@@ -860,7 +645,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                     <div className="mx-auto max-w-5xl">
                       {/* RAG Processing Indicator */}
                       {currentFlow && !showPackagingSpec && (
-                        <div className="mb-4 rounded-xl border-l-4 border-[#279366] bg-white p-6 shadow-sm">
+                        <div className="mb-4 rounded-xl border-l-4 border-[#0d9c69] bg-white p-6 shadow-sm">
                           <div className="mb-4 flex items-center gap-3">
                             <div className="rag-loader">
                               <div className="rag-dot animate-bounce"></div>
@@ -874,7 +659,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                               ></div>
                             </div>
                             <span
-                              className="text-sm font-medium text-[#279366]"
+                              className="text-sm font-medium text-[#0d9c69]"
                               style={{ fontFamily: "Inter, sans-serif" }}
                             >
                               Analyzing rigid board standards and generating
@@ -892,7 +677,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
 
                       {/* Auto-Generated Packaging Specification */}
                       {showPackagingSpec && flowData && (
-                        <div className="mb-4 rounded-xl border-l-4 border-[#279366] bg-white p-6 shadow-sm">
+                        <div className="mb-4 rounded-xl border-l-4 border-[#0d9c69] bg-white p-6 shadow-sm">
                           <div className="mb-4 flex items-center justify-between">
                             <h3
                               className="text-lg font-semibold text-[#112d21]"
@@ -946,7 +731,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                                   "_blank"
                                 )
                               }}
-                              className="flex items-center gap-2 rounded-lg bg-[#279366] px-4 py-2 text-sm text-white hover:opacity-90"
+                              className="flex items-center gap-2 rounded-lg bg-[#0d9c69] px-4 py-2 text-sm text-white hover:opacity-90"
                             >
                               <span>📦</span>
                               Request 3D Render
@@ -1064,9 +849,9 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
 
                       {/* 3D Render Card */}
                       {show3DRender && (
-                        <div className="mb-4 rounded-xl border-l-4 border-[#279366] bg-white p-6 shadow-sm">
+                        <div className="mb-4 rounded-xl border-l-4 border-[#0d9c69] bg-white p-6 shadow-sm">
                           <div className="flex items-center gap-4">
-                            <div className="rounded-lg bg-[#279366] p-3">
+                            <div className="rounded-lg bg-[#0d9c69] p-3">
                               <span className="text-xl text-white">📦</span>
                             </div>
                             <div className="flex-1">
@@ -1089,7 +874,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                                   href="/3d-render"
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex items-center gap-2 rounded-lg bg-[#279366] px-4 py-2 text-sm text-white transition-colors hover:opacity-90"
+                                  className="flex items-center gap-2 rounded-lg bg-[#0d9c69] px-4 py-2 text-sm text-white transition-colors hover:opacity-90"
                                 >
                                   <Eye className="h-4 w-4" />
                                   View 3D Render
@@ -1108,7 +893,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
 
                       {/* Auto-Generated Options Selection */}
                       {showOptionsSelection && (
-                        <div className="mb-4 rounded-xl border-l-4 border-[#279366] bg-white p-6 shadow-sm">
+                        <div className="mb-4 rounded-xl border-l-4 border-[#0d9c69] bg-white p-6 shadow-sm">
                           <h3
                             className="mb-4 text-lg font-semibold text-[#112d21]"
                             style={{ fontFamily: "Manrope, sans-serif" }}
@@ -1146,8 +931,8 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                                   key={i}
                                   className={`cursor-pointer rounded-lg border-2 p-3 transition-all ${
                                     option.selected
-                                      ? "border-[#279366] bg-[#daffea]"
-                                      : "border-[#c3d6cd] hover:border-[#279366]"
+                                      ? "border-[#0d9c69] bg-[#daffea]"
+                                      : "border-[#c3d6cd] hover:border-[#0d9c69]"
                                   }`}
                                 >
                                   <div className="flex items-center justify-between">
@@ -1160,7 +945,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                                       {option.name}
                                     </span>
                                     <span
-                                      className="text-sm text-[#279366]"
+                                      className="text-sm text-[#0d9c69]"
                                       style={{
                                         fontFamily: "Inter, sans-serif",
                                       }}
@@ -1186,8 +971,8 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                                     key={i}
                                     className={`cursor-pointer rounded-lg border-2 p-3 transition-all ${
                                       i === 1
-                                        ? "border-[#279366] bg-[#daffea]"
-                                        : "border-[#c3d6cd] hover:border-[#279366]"
+                                        ? "border-[#0d9c69] bg-[#daffea]"
+                                        : "border-[#c3d6cd] hover:border-[#0d9c69]"
                                     }`}
                                   >
                                     <span
@@ -1220,8 +1005,8 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                                   key={i}
                                   className={`cursor-pointer rounded-lg border-2 p-3 transition-all ${
                                     i === 0
-                                      ? "border-[#279366] bg-[#daffea]"
-                                      : "border-[#c3d6cd] hover:border-[#279366]"
+                                      ? "border-[#0d9c69] bg-[#daffea]"
+                                      : "border-[#c3d6cd] hover:border-[#0d9c69]"
                                   }`}
                                 >
                                   <span
@@ -1241,13 +1026,13 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                               style={{ fontFamily: "Inter, sans-serif" }}
                             >
                               Updated Total:{" "}
-                              <span className="font-bold text-[#279366]">
+                              <span className="font-bold text-[#0d9c69]">
                                 $3,300
                               </span>
                             </div>
                             <button
                               onClick={() => setShowOrderGeneration(true)}
-                              className="flex items-center gap-2 rounded-lg bg-[#279366] px-6 py-3 font-medium text-white transition-all hover:opacity-90"
+                              className="flex items-center gap-2 rounded-lg bg-[#0d9c69] px-6 py-3 font-medium text-white transition-all hover:opacity-90"
                             >
                               <ShoppingCart className="h-4 w-4" />
                               Approve & Generate Quote
@@ -1306,7 +1091,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                                 Quick Actions
                               </h4>
                               <div className="space-y-2">
-                                <button className="w-full rounded-lg bg-white py-2 text-sm font-medium text-[#279366]">
+                                <button className="w-full rounded-lg bg-white py-2 text-sm font-medium text-[#0d9c69]">
                                   Add to Shopify Store
                                 </button>
                                 <button className="w-full rounded-lg bg-white/20 py-2 text-sm backdrop-blur">
@@ -1347,7 +1132,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                   </div>
                 ) : (
                   /* Chat Mode */
-                  <div className="border-t border-[#c3d6cd]/10 bg-[#f9fffb] p-6 lg:p-8">
+                  <div className="border-t border-[#e6e3e2]/20 bg-[#fcf9f8] p-6 lg:p-8">
                     <div className="relative mx-auto max-w-4xl">
                       <div className="flex items-end overflow-hidden rounded-xl border border-[#c3d6cd]/30 bg-white shadow-lg">
                         <div className="flex-1 p-4">
@@ -1366,7 +1151,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                         <div className="flex items-center gap-2 p-3">
                           <button
                             onClick={handleFileUpload}
-                            className="p-2 text-[#42544e] transition-colors hover:text-[#279366]"
+                            className="p-2 text-[#42544e] transition-colors hover:text-[#0d9c69]"
                             title="Upload document"
                           >
                             <Paperclip className="h-4 w-4" />
@@ -1381,7 +1166,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                           />
                           <button
                             onClick={handleSendMessage}
-                            className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#279366] text-white transition-all hover:opacity-90"
+                            className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0d9c69] text-white transition-all hover:opacity-90"
                           >
                             <Send className="h-4 w-4" />
                           </button>
@@ -1396,7 +1181,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                               "Suggest eco-friendly materials for my packaging"
                             )
                           }
-                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#279366]"
+                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#0d9c69]"
                           style={{ fontFamily: "Inter, sans-serif" }}
                         >
                           #Suggest-Eco-Materials
@@ -1407,7 +1192,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                               "Calculate unit cost for my packaging"
                             )
                           }
-                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#279366]"
+                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#0d9c69]"
                           style={{ fontFamily: "Inter, sans-serif" }}
                         >
                           #Calculate-unit
@@ -1416,7 +1201,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                           onClick={() =>
                             setUserMessage("Show me my order history")
                           }
-                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#279366]"
+                          className="text-[10px] font-bold tracking-tighter text-[#42544e] uppercase transition-colors hover:text-[#0d9c69]"
                           style={{ fontFamily: "Inter, sans-serif" }}
                         >
                           #Order-History
@@ -1450,7 +1235,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                 </div>
 
                 <div className="mb-6 flex items-center gap-3">
-                  <Settings className="h-5 w-5 text-[#279366]" />
+                  <Settings className="h-5 w-5 text-[#0d9c69]" />
                   <h3
                     className="text-sm font-semibold text-[#42544e] lg:text-base"
                     style={{ fontFamily: "Inter, sans-serif" }}
@@ -1471,7 +1256,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                         >
                           V2.4 • TODAY
                         </span>
-                        <span className="text-xs text-[#279366]">✓</span>
+                        <span className="text-xs text-[#0d9c69]">✓</span>
                       </div>
                       <p
                         className="text-xs leading-snug font-bold text-[#112d21]"
@@ -1522,7 +1307,7 @@ The render should be ready in 5-10 minutes. In the meantime, let me show you the
                 {/* Uploaded Documents */}
                 <div className="mb-8 lg:mb-10">
                   <div className="mb-4 flex items-center gap-3">
-                    <Folder className="h-5 w-5 text-[#279366]" />
+                    <Folder className="h-5 w-5 text-[#0d9c69]" />
                     <span className="text-on-surface text-sm font-medium lg:text-base">
                       Your Documents
                     </span>

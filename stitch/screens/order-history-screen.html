@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order History | The Precision Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#ffb3b3",
+              "surface-container-high": "#e4eae3",
+              "on-background": "#171d19",
+              "on-secondary-fixed": "#002113",
+              "background": "#f5fbf4",
+              "primary-container": "#36b37e",
+              "on-error-container": "#93000a",
+              "surface-container": "#e9f0e9",
+              "tertiary": "#a03e43",
+              "on-tertiary-fixed": "#400009",
+              "on-secondary-container": "#416b55",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#81262e",
+              "surface-dim": "#d5dcd5",
+              "primary-fixed": "#82f9be",
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#f5fbf4",
+              "secondary": "#3d6751",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#005235",
+              "on-surface": "#171d19",
+              "inverse-on-surface": "#ecf2eb",
+              "primary": "#006c47",
+              "surface-tint": "#006c47",
+              "on-tertiary-container": "#6a151f",
+              "on-primary-fixed": "#002113",
+              "surface-container-low": "#eff5ee",
+              "on-surface-variant": "#3d4a42",
+              "secondary-fixed-dim": "#a4d1b6",
+              "surface-variant": "#dee4dd",
+              "outline-variant": "#bccabf",
+              "secondary-fixed": "#bfedd1",
+              "on-primary-container": "#003f27",
+              "inverse-surface": "#2c322d",
+              "inverse-primary": "#65dca4",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#ffdad9",
+              "outline": "#6d7a71",
+              "tertiary-container": "#f17c80",
+              "primary-fixed-dim": "#65dca4",
+              "error-container": "#ffdad6",
+              "secondary-container": "#bceace",
+              "on-tertiary": "#ffffff",
+              "surface": "#f5fbf4",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#254f3a",
+              "surface-container-highest": "#dee4dd"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(252, 249, 248, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#fcf9f8] dark:bg-stone-950/80 backdrop-blur-md border-b border-stone-200/15 flex justify-between items-center px-8 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-stone-900 dark:text-stone-50 font-headline tracking-tight">The Precision Architect</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-headline font-bold tracking-tight transition-colors" href="#">Design Lab</a>
+<a class="text-[#0d9c69] border-b-2 border-[#0d9c69] pb-1 font-headline font-bold tracking-tight" href="#">Projects</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-headline font-bold tracking-tight transition-colors" href="#">Help</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-[#0d9c69] text-white px-4 py-2 font-bold font-headline tracking-tight active:scale-95 duration-200">New Project</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User Profile" data-alt="Professional user profile headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl7C2zzDnyH1PMJwtuoOj6OJy8235-O1ThKze-ulDU-7Jz_5LYSZbOsPDKF_lS2duA7MeP1kZQUU7altBpuEnI9tuRc6Qz7wTxiSIAeGzuU2tBDm5Rp-QDX8_3rFi_9aShNrdgqtsmaniTaC7tsj9gOcioUSsFTJGHsTRKBTGbr6lJsFGgChw2QeO8eSPZ_O2piBGcpPo-1NoGlaQKIdmq5hp8HUc2SrxHFzP2x6U9bIgVWMS_cTH_W6Jeg_95YrlSrU1MMDO8b_4i"/>
+</div>
+</div>
+</header>
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-[#f6f3f2] dark:bg-stone-900 flex flex-col p-4 gap-2 font-inter text-sm antialiased">
+<div class="mb-6 px-2">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">architecture</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Design Lab</p>
+<p class="text-xs text-on-surface-variant">Active Session</p>
+</div>
+</div>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-stone-800 text-[#0d9c69] font-semibold rounded-lg hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span>Saved Specs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span>Archive</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span>Support</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant/20 space-y-1">
+<button class="w-full text-center py-2 mb-4 bg-primary text-white font-bold tracking-tight hover:opacity-90 active:scale-95 transition-all">Export Specs</button>
+<a class="flex items-center gap-3 px-3 py-2 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-12 pb-12 min-h-screen">
+<!-- Editorial Moment Header -->
+<header class="mb-12">
+<h1 class="text-[3.5rem] font-black font-headline text-on-background leading-tight mb-2 tracking-tighter">Project History</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl font-body">An immutable record of your architectural packaging engineering. Track precision manufacturing cycles and logistics fulfillment.</p>
+</header>
+<!-- Search & Filter Bar (Integrated Style) -->
+<div class="flex flex-col md:flex-row gap-4 mb-8">
+<div class="relative flex-grow">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary/20 text-on-surface font-body shadow-sm" placeholder="Filter by ID, project name, or spec tag..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="px-6 py-4 bg-surface-container-low text-on-surface font-semibold flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">tune</span>
+                    Status
+                </button>
+<button class="px-6 py-4 bg-surface-container-low text-on-surface font-semibold flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                    Date Range
+                </button>
+</div>
+</div>
+<!-- Order List Grid (Bento Style Layout) -->
+<div class="space-y-6">
+<!-- Active/Recent Item (Highlight Card) -->
+<div class="bg-surface-container-lowest border-l-4 border-primary p-8 shadow-sm flex flex-col lg:flex-row justify-between items-center gap-8">
+<div class="flex gap-6 items-center">
+<div class="w-24 h-24 bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">watch</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 class="text-2xl font-extrabold font-headline text-on-surface">Luxury Watch Case v4</h2>
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed text-[10px] font-bold tracking-widest">ACTIVE</span>
+</div>
+<p class="text-sm font-mono text-on-surface-variant mb-3">ID: PRD-2024-X892</p>
+<div class="flex gap-4">
+<span class="flex items-center gap-1 text-xs font-semibold text-secondary"><span class="material-symbols-outlined text-sm">precision_manufacturing</span> In Production</span>
+<span class="flex items-center gap-1 text-xs font-semibold text-on-surface-variant"><span class="material-symbols-outlined text-sm">event</span> Oct 24, 2024</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2 text-right">
+<p class="text-sm text-on-surface-variant font-medium">Total Project Value</p>
+<p class="text-3xl font-black font-headline text-on-surface">$14,240.00</p>
+<button class="mt-2 text-primary font-bold text-sm flex items-center gap-1 hover:underline">
+                        View Full Specs <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Standard Rows (Minimalist Shift) -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Item 1 -->
+<div class="group bg-surface-container-lowest hover:bg-surface-container-low transition-all p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+<div class="flex-1 min-w-[300px]">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">PROJECT</p>
+<h3 class="text-xl font-bold text-on-surface font-headline">Flora Skin Serum Box</h3>
+<p class="text-xs font-mono text-on-surface-variant mt-1">PRD-2024-S110</p>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">STATUS</p>
+<span class="flex items-center gap-1.5 text-sm font-semibold text-[#0d9c69]">
+<span class="w-2 h-2 rounded-full bg-[#0d9c69]"></span>
+                            Shipped
+                        </span>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">DATE</p>
+<p class="text-sm text-on-surface font-medium">Oct 18, 2024</p>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">TOTAL</p>
+<p class="text-lg font-bold text-on-surface font-headline">$4,820.50</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">description</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group bg-surface-container-lowest hover:bg-surface-container-low transition-all p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+<div class="flex-1 min-w-[300px]">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">PROJECT</p>
+<h3 class="text-xl font-bold text-on-surface font-headline">Aero Component Sleeve</h3>
+<p class="text-xs font-mono text-on-surface-variant mt-1">PRD-2023-A442</p>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">STATUS</p>
+<span class="flex items-center gap-1.5 text-sm font-semibold text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                            Pending
+                        </span>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">DATE</p>
+<p class="text-sm text-on-surface font-medium">Oct 12, 2024</p>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">TOTAL</p>
+<p class="text-lg font-bold text-on-surface font-headline">$9,100.00</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">description</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group bg-surface-container-lowest hover:bg-surface-container-low transition-all p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+<div class="flex-1 min-w-[300px]">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">PROJECT</p>
+<h3 class="text-xl font-bold text-on-surface font-headline">Titanium Bolt Grid 8x8</h3>
+<p class="text-xs font-mono text-on-surface-variant mt-1">PRD-2023-B990</p>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">STATUS</p>
+<span class="flex items-center gap-1.5 text-sm font-semibold text-[#0d9c69]">
+<span class="w-2 h-2 rounded-full bg-[#0d9c69]"></span>
+                            Shipped
+                        </span>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">DATE</p>
+<p class="text-sm text-on-surface font-medium">Sep 30, 2024</p>
+</div>
+<div class="w-32">
+<p class="text-xs font-bold text-on-surface-variant/60 tracking-widest mb-1">TOTAL</p>
+<p class="text-lg font-bold text-on-surface font-headline">$2,140.00</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">description</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination / Footer Analytics -->
+<footer class="mt-16 flex flex-col md:flex-row justify-between items-center border-t border-outline-variant/10 pt-8 gap-8">
+<div class="flex gap-12">
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Lifetime Projects</p>
+<p class="text-2xl font-black font-headline text-on-surface">128</p>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Total Expenditure</p>
+<p class="text-2xl font-black font-headline text-on-surface">$241,084.50</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-3 bg-surface-container-low text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-2">
+<span class="w-10 h-10 flex items-center justify-center font-bold text-primary bg-primary/10">1</span>
+<span class="w-10 h-10 flex items-center justify-center font-bold text-on-surface-variant hover:bg-surface-container-low cursor-pointer">2</span>
+<span class="w-10 h-10 flex items-center justify-center font-bold text-on-surface-variant hover:bg-surface-container-low cursor-pointer">3</span>
+</div>
+<button class="p-3 bg-surface-container-low text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</footer>
+</main>
+<!-- Support Modal / FAB Replacement -->
+<div class="fixed bottom-8 right-8 z-40">
+<button class="group flex items-center gap-3 bg-primary text-white pl-4 pr-6 py-4 shadow-xl active:scale-95 transition-all">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-bold tracking-tight">Engineer Consult</span>
+</button>
+</div>
+</body></html>
