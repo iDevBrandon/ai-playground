@@ -11,6 +11,8 @@ import {
   Plus,
   Settings,
   ShoppingCart,
+  Calculator,
+  ChevronRight,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -50,7 +52,8 @@ export default function DesignLabSidebar({
 
   // Initialize activeTab derived from currentPage to prevent flash blank
   const getInitialTab = () => {
-    if (currentPage === "home" || currentPage === "schematics") return "agent"
+    if (currentPage === "home") return "chat"
+    if (currentPage === "schematics") return "agent"
     return currentPage as any
   }
 
@@ -131,7 +134,7 @@ export default function DesignLabSidebar({
       <div className="flex h-[72px] shrink-0 items-center justify-between px-6">
         <div className="flex w-full items-center justify-center gap-3">
           <button
-            onClick={() => setActiveTab("chat")}
+            onClick={() => handleTabClick("chat", "/design-lab")}
             className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-white/50 ${
               activeTab === "chat"
                 ? "bg-white/80 text-[#0d9c69] shadow-sm ring-1 ring-black/5"
@@ -385,15 +388,78 @@ export default function DesignLabSidebar({
             )}
           </div>
         </div>
+      ) : activeTab === "define" ? (
+        <div className="flex flex-1 flex-col overflow-hidden px-8">
+          <div className="pt-6 pb-4">
+            <h2 className="text-[18px] font-bold text-[#1c1b1b]">Design Actions</h2>
+            <p className="text-[12px] text-gray-500">Validation & Analysis</p>
+          </div>
+          <div className="flex-1 space-y-2 overflow-y-auto pb-10">
+            {[
+              { name: "Test Design Spec", icon: Plus },
+              { name: "Estimate Pricing", icon: Calculator },
+              { name: "Render 3D Layout", icon: Boxes },
+              { name: "Material Search", icon: PackageSearch },
+            ].map((action) => (
+              <div key={action.name} className="group flex items-center justify-between rounded-lg p-3 hover:bg-white/60 transition-all cursor-pointer">
+                <div className="flex items-center gap-3 truncate">
+                  <div className="flex h-8 w-8 items-center justify-center rounded bg-[#0d9c69]/10 text-[#0d9c69]">
+                    <action.icon className="h-4 w-4" />
+                  </div>
+                  <span className="truncate text-[14px] font-medium text-gray-700">{action.name}</span>
+                </div>
+                <ChevronRight className="h-4 w-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity translate-x-1 group-hover:translate-x-0 group-hover:text-[#0d9c69] duration-200" />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : activeTab === "materials" ? (
+        <div className="flex flex-1 flex-col overflow-hidden px-8">
+          <div className="pt-6 pb-4">
+            <h2 className="text-[18px] font-bold text-[#1c1b1b]">Categories</h2>
+            <p className="text-[12px] text-gray-500">Filter by substrate type</p>
+          </div>
+          <div className="flex-1 space-y-1 overflow-y-auto pb-10">
+            {[
+              "Paperboard",
+              "Corrugated",
+              "Rigid",
+              "Plastic",
+              "Foam",
+              "Molded Pulp",
+              "Reusable Bag Fabric",
+              "Metal"
+            ].map((material) => (
+              <div key={material} className="group flex items-center justify-between rounded-lg px-3 py-2 hover:bg-white/60 transition-all cursor-pointer">
+                <div className="flex items-center gap-3 truncate">
+                  <div className="h-1.5 w-1.5 rounded-full bg-black/10 transition-colors group-hover:bg-[#0d9c69]" />
+                  <span className="truncate text-[14px] font-medium text-gray-700 group-hover:text-[#1c1b1b]">{material}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       ) : (
-        <div className="flex flex-1 items-center justify-center p-8">
-          <div className="text-center">
-            <h3 className="mb-2 text-[18px] font-bold tracking-wide text-[#1c1b1b] uppercase">
-              {activeTab === "define" ? "Design Definition" : activeTab} Content
-            </h3>
-            <p className="text-[13px] text-gray-500">
-              Module loading in progress...
-            </p>
+        <div className="flex flex-1 flex-col overflow-hidden px-8">
+          <div className="pt-6 pb-4">
+            <h2 className="text-[18px] font-bold text-[#1c1b1b]">Recent Orders</h2>
+            <p className="text-[12px] text-gray-500">Production status overview</p>
+          </div>
+          <div className="flex-1 space-y-2 overflow-y-auto pb-10">
+            {[
+              { id: "PRD-2024-X892", status: "In Production" },
+              { id: "PRD-2024-S110", status: "Shipped" },
+              { id: "PRD-2023-A442", status: "Pending" },
+              { id: "PRD-2023-B990", status: "Shipped" }
+            ].map((order) => (
+              <div key={order.id} className="group flex flex-col rounded-lg p-3 hover:bg-white/60 transition-all cursor-pointer">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[14px] font-bold text-gray-900">{order.id}</span>
+                  <div className={`h-1.5 w-1.5 rounded-full ${order.status === "Shipped" ? "bg-[#0d9c69]" : order.status === "In Production" ? "bg-amber-500" : "bg-red-500"}`} />
+                </div>
+                <span className="text-[12px] text-gray-500 font-medium">{order.status}</span>
+              </div>
+            ))}
           </div>
         </div>
       )}
