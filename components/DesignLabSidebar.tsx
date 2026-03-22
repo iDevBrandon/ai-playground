@@ -2,7 +2,9 @@
 
 import {
   Boxes,
+  Calculator,
   CheckCircle2,
+  ChevronRight,
   LogOut,
   MessageSquareCode,
   MoreVertical,
@@ -11,8 +13,6 @@ import {
   Plus,
   Settings,
   ShoppingCart,
-  Calculator,
-  ChevronRight,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -123,7 +123,7 @@ export default function DesignLabSidebar({
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-50 flex w-[320px] transform flex-col bg-[#fcf9f8] transition-transform duration-300 ease-in-out lg:relative lg:z-auto lg:w-[320px] ${
+      className={`fixed inset-y-0 left-0 z-50 flex w-[280px] transform flex-col bg-[#fcf9f8] transition-transform duration-300 ease-in-out lg:relative lg:z-auto lg:w-[320px] ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       }`}
       style={{
@@ -132,6 +132,15 @@ export default function DesignLabSidebar({
     >
       {/* DESKTOP SIDEBAR - Kept as is for desktop */}
       <div className="hidden h-full flex-col bg-[#f3ece4] lg:flex">
+        {/* Brand Logo Header */}
+        <div className="flex h-14 shrink-0 items-center justify-start border-b border-black/5 px-8">
+          <img
+            src="/image/logo.png"
+            alt="PakFactory"
+            className="h-7 w-auto object-contain"
+          />
+        </div>
+
         {/* Top Navigation Bar - Icons */}
         <div className="flex h-[72px] shrink-0 items-center justify-between px-6">
           <div className="flex w-full items-center justify-center gap-3">
@@ -146,7 +155,9 @@ export default function DesignLabSidebar({
               <MessageSquareCode className="h-5 w-5" />
             </button>
             <button
-              onClick={() => handleTabClick("materials", "/design-lab/materials")}
+              onClick={() =>
+                handleTabClick("materials", "/design-lab/materials")
+              }
               className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-white/50 ${
                 activeTab === "materials"
                   ? "bg-white/80 text-[#0d9c69] shadow-sm ring-1 ring-black/5"
@@ -407,7 +418,7 @@ export default function DesignLabSidebar({
               ].map((action) => (
                 <div
                   key={action.name}
-                  className="group flex items-center justify-between rounded-lg p-3 transition-all hover:bg-white/60 cursor-pointer"
+                  className="group flex cursor-pointer items-center justify-between rounded-lg p-3 transition-all hover:bg-white/60"
                 >
                   <div className="flex items-center gap-3 truncate">
                     <div className="flex h-8 w-8 items-center justify-center rounded bg-[#0d9c69]/10 text-[#0d9c69]">
@@ -417,7 +428,7 @@ export default function DesignLabSidebar({
                       {action.name}
                     </span>
                   </div>
-                  <ChevronRight className="h-4 w-4 text-gray-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-hover:translate-x-0 translate-x-1 group-hover:text-[#0d9c69]" />
+                  <ChevronRight className="h-4 w-4 translate-x-1 text-gray-400 opacity-0 transition-opacity duration-200 group-hover:translate-x-0 group-hover:text-[#0d9c69] group-hover:opacity-100" />
                 </div>
               ))}
             </div>
@@ -425,8 +436,12 @@ export default function DesignLabSidebar({
         ) : activeTab === "materials" ? (
           <div className="flex flex-1 flex-col overflow-hidden px-8">
             <div className="pt-6 pb-4">
-              <h2 className="text-[18px] font-bold text-[#1c1b1b]">Categories</h2>
-              <p className="text-[12px] text-gray-500">Filter by substrate type</p>
+              <h2 className="text-[18px] font-bold text-[#1c1b1b]">
+                Categories
+              </h2>
+              <p className="text-[12px] text-gray-500">
+                Filter by substrate type
+              </p>
             </div>
             <div className="flex-1 space-y-1 overflow-y-auto pb-10">
               {[
@@ -441,7 +456,7 @@ export default function DesignLabSidebar({
               ].map((material) => (
                 <div
                   key={material}
-                  className="group flex items-center justify-between rounded-lg px-3 py-2 transition-all hover:bg-white/60 cursor-pointer"
+                  className="group flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 transition-all hover:bg-white/60"
                 >
                   <div className="flex items-center gap-3 truncate">
                     <div className="h-1.5 w-1.5 rounded-full bg-black/10 transition-colors group-hover:bg-[#0d9c69]" />
@@ -472,9 +487,9 @@ export default function DesignLabSidebar({
               ].map((order) => (
                 <div
                   key={order.id}
-                  className="group flex flex-col rounded-lg p-3 transition-all hover:bg-white/60 cursor-pointer"
+                  className="group flex cursor-pointer flex-col rounded-lg p-3 transition-all hover:bg-white/60"
                 >
-                  <div className="flex items-center justify-between mb-1">
+                  <div className="mb-1 flex items-center justify-between">
                     <span className="text-[14px] font-bold text-gray-900">
                       {order.id}
                     </span>
@@ -543,18 +558,47 @@ export default function DesignLabSidebar({
 
       {/* MOBILE SIDEBAR - Matches the user's uploaded image style */}
       <div className="flex h-full w-full flex-col bg-[#fcf9f8] lg:hidden">
+        {/* Mobile Header with Logo */}
+        <div className="flex h-14 shrink-0 items-center justify-start border-b border-black/5 px-8">
+          <img
+            src="/image/logo.png"
+            alt="PakFactory"
+            className="h-7 w-auto object-contain"
+          />
+        </div>
+
         <div className="flex-1 overflow-y-auto px-6 py-8">
           {/* Main Menu Section */}
           <div className="mb-10">
-            <h3 className="mb-4 text-[11px] font-black uppercase tracking-[0.1em] text-gray-400/80">
+            <h3 className="mb-4 text-[11px] font-black tracking-[0.1em] text-gray-400/80 uppercase">
               Main Menu
             </h3>
             <div className="space-y-1">
               {[
-                { name: "Materials", icon: Boxes, id: "materials", route: "/design-lab/materials" },
-                { name: "Agent", icon: PencilRuler, id: "define", route: "/design-lab/agent" },
-                { name: "Schematics", icon: PackageSearch, id: "agent", route: "/design-lab/schematics" },
-                { name: "Orders", icon: ShoppingCart, id: "orders", route: "/design-lab/orders" },
+                {
+                  name: "Materials",
+                  icon: Boxes,
+                  id: "materials",
+                  route: "/design-lab/materials",
+                },
+                {
+                  name: "Agent",
+                  icon: PencilRuler,
+                  id: "define",
+                  route: "/design-lab/agent",
+                },
+                {
+                  name: "Schematics",
+                  icon: PackageSearch,
+                  id: "agent",
+                  route: "/design-lab/schematics",
+                },
+                {
+                  name: "Orders",
+                  icon: ShoppingCart,
+                  id: "orders",
+                  route: "/design-lab/orders",
+                },
               ].map((item) => {
                 const isActive = activeTab === item.id
                 return (
@@ -571,10 +615,14 @@ export default function DesignLabSidebar({
                     }`}
                   >
                     {isActive && (
-                      <div className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-full bg-[#0d9c69]" />
+                      <div className="absolute top-1.5 bottom-1.5 left-0 w-1 rounded-full bg-[#0d9c69]" />
                     )}
-                    <item.icon className={`h-5 w-5 ${isActive ? "text-[#0d9c69]" : "text-gray-500"}`} />
-                    <span className={`text-[15px] ${isActive ? "font-bold" : "font-medium"}`}>
+                    <item.icon
+                      className={`h-5 w-5 ${isActive ? "text-[#0d9c69]" : "text-gray-500"}`}
+                    />
+                    <span
+                      className={`text-[15px] ${isActive ? "font-bold" : "font-medium"}`}
+                    >
                       {item.name}
                     </span>
                   </button>
@@ -585,7 +633,7 @@ export default function DesignLabSidebar({
 
           {/* Your Chats Section */}
           <div className="mb-10">
-            <h3 className="mb-4 text-[11px] font-black uppercase tracking-[0.1em] text-gray-400/80">
+            <h3 className="mb-4 text-[11px] font-black tracking-[0.1em] text-gray-400/80 uppercase">
               Your Chats
             </h3>
             <div className="space-y-1">
@@ -609,14 +657,16 @@ export default function DesignLabSidebar({
                   </button>
                 ))
               ) : (
-                <div className="px-3 py-2 text-[14px] italic text-gray-400">No recent chats</div>
+                <div className="px-3 py-2 text-[14px] text-gray-400 italic">
+                  No recent chats
+                </div>
               )}
             </div>
           </div>
         </div>
 
         {/* Bottom Section: New Chat & Profile */}
-        <div className="mt-auto border-t border-black/5 p-6 space-y-4 bg-white/40 backdrop-blur-sm">
+        <div className="mt-auto space-y-4 border-t border-black/5 bg-white/40 p-6 backdrop-blur-sm">
           <button
             onClick={() => {
               onNewSpecification?.()
@@ -634,8 +684,12 @@ export default function DesignLabSidebar({
               BH
             </div>
             <div className="flex flex-1 flex-col">
-              <span className="text-[15px] font-bold text-gray-900">Brandon Ha</span>
-              <span className="text-[13px] font-medium text-gray-400">Premium Account</span>
+              <span className="text-[15px] font-bold text-gray-900">
+                Brandon Ha
+              </span>
+              <span className="text-[13px] font-medium text-gray-400">
+                Premium Account
+              </span>
             </div>
           </div>
         </div>
