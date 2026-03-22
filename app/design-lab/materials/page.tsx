@@ -18,16 +18,18 @@ import {
   Zap,
 } from "lucide-react"
 import Head from "next/head"
+import Image from "next/image"
 import { useMemo, useState } from "react"
 
 interface Material {
   id: string
   name: string
-  category: "Core Boards" | "Liners" | "Adhesives" | "Finishes" | "Substrates"
+  category: "Paperboard" | "Corrugated" | "Rigid" | "Plastic" | "Foam" | "Specialty"
   subcategory: string
   weight?: string
   thickness?: string
   color: string
+  image?: string
   properties: {
     sustainability: number
     durability: number
@@ -59,158 +61,95 @@ interface Material {
 }
 
 const materialsDatabase: Material[] = [
+  // ── PAPERBOARD ──
   {
-    id: "eska-1200",
-    name: "ESKA Core Board",
-    category: "Core Boards",
-    subcategory: "High-Density Fiberboard",
-    weight: "1200gsm",
-    thickness: "1.2mm",
-    color: "#8B4513",
+    id: "kraft-paperboard",
+    name: "Natural Brown Kraft",
+    category: "Paperboard",
+    subcategory: "Kraft Paperboard",
+    weight: "300gsm",
+    thickness: "0.4mm",
+    color: "#C4914A",
+    image: "/materials/kraft-paperboard.jpg",
     properties: {
-      sustainability: 85,
-      durability: 95,
-      printability: 88,
-      costEfficiency: 78,
+      sustainability: 92,
+      durability: 80,
+      printability: 72,
+      costEfficiency: 88,
     },
     specifications: {
-      density: "1.2 g/cm³",
-      tensileStrength: "120 N⋅m/g",
-      bendResistance: "8.5 mN⋅m²/g",
-      moistureResistance: "High",
-      grammage: "1200 g/m²",
-    },
-    applications: ["Luxury Boxes", "Rigid Packaging", "Premium Products"],
-    certifications: ["FSC Certified", "ASTM D6400", "ISO 9001"],
-    description:
-      "Premium high-density core board designed for luxury packaging applications requiring exceptional structural integrity.",
-    supplier: "International Paper",
-    priceRange: "$2.45 - $3.20",
-    availability: "In Stock",
-    featured: true,
-    sustainable: true,
-  },
-  {
-    id: "art-paper-120",
-    name: "Art Paper Liner",
-    category: "Liners",
-    subcategory: "Coated Paper",
-    weight: "120gsm",
-    thickness: "0.12mm",
-    color: "#F5F5DC",
-    properties: {
-      sustainability: 72,
-      durability: 68,
-      printability: 95,
-      costEfficiency: 85,
-    },
-    specifications: {
-      density: "0.8 g/cm³",
-      tensileStrength: "85 N⋅m/g",
-      bendResistance: "4.2 mN⋅m²/g",
+      grammage: "300 g/m²",
+      tensileStrength: "90 N⋅m/g",
+      bendResistance: "5.5 mN⋅m²/g",
       moistureResistance: "Medium",
-      grammage: "120 g/m²",
     },
-    applications: [
-      "Premium Labeling",
-      "High-Quality Printing",
-      "Luxury Finishing",
-    ],
-    certifications: ["FSC Certified", "PEFC Certified"],
+    applications: ["Folding Cartons", "Food Packaging", "Retail Boxes"],
+    certifications: ["FSC Certified", "Recyclable", "Biodegradable"],
     description:
-      "Superior coated liner paper engineered for exceptional print quality and premium finishing applications.",
-    supplier: "UPM Specialty Papers",
-    priceRange: "$0.85 - $1.20",
+      "Natural brown kraft paperboard made from unbleached wood pulp. Eco-friendly with excellent printability for logos and text.",
+    supplier: "Clearwater Paper",
+    priceRange: "$0.55 - $0.90",
     availability: "In Stock",
     featured: true,
     sustainable: true,
   },
   {
-    id: "eva-adhesive",
-    name: "EVA Animal Glue",
-    category: "Adhesives",
-    subcategory: "Hot-Melt Adhesive",
-    weight: "N/A",
-    thickness: "Variable",
-    color: "#E0E0E0",
+    id: "chipboard-white",
+    name: "White Chipboard",
+    category: "Paperboard",
+    subcategory: "Solid Bleached Board",
+    weight: "400gsm",
+    thickness: "0.6mm",
+    color: "#F2F2F2",
+    image: "/materials/rigid-chipboard.jpg",
     properties: {
-      sustainability: 65,
-      durability: 90,
-      printability: 45,
-      costEfficiency: 82,
-    },
-    specifications: {
-      density: "0.95 g/cm³",
-      tensileStrength: "15 MPa",
-      moistureResistance: "Excellent",
-    },
-    applications: ["Rigid Box Assembly", "Lamination", "Structural Bonding"],
-    certifications: ["FDA Approved", "REACH Compliant"],
-    description:
-      "High-performance ethylene-vinyl acetate adhesive providing superior bonding strength for packaging applications.",
-    supplier: "Henkel AG",
-    priceRange: "$3.20 - $4.50",
-    availability: "In Stock",
-    featured: false,
-    sustainable: false,
-  },
-  {
-    id: "matte-premium",
-    name: "Matte Premium Finish",
-    category: "Finishes",
-    subcategory: "Surface Treatment",
-    weight: "N/A",
-    thickness: "0.005mm",
-    color: "#2FAB73",
-    properties: {
-      sustainability: 78,
+      sustainability: 75,
       durability: 85,
-      printability: 92,
-      costEfficiency: 75,
+      printability: 97,
+      costEfficiency: 80,
     },
     specifications: {
-      gloss: "5-10 GU",
-      scratchResistance: "Excellent",
-      chemicalResistance: "Good",
+      grammage: "400 g/m²",
+      tensileStrength: "110 N⋅m/g",
+      bendResistance: "7.0 mN⋅m²/g",
+      moistureResistance: "Medium",
     },
-    applications: ["Premium Packaging", "Luxury Goods", "High-End Cosmetics"],
-    certifications: ["FDA Safe", "EU Compliant"],
+    applications: ["Premium Folding Cartons", "Cosmetic Packaging", "Pharma"],
+    certifications: ["FSC Certified", "FDA Food-Safe", "ISO 9001"],
     description:
-      "Premium matte finish providing elegant appearance and superior protection for high-value packaging.",
-    supplier: "Actega Terra",
-    priceRange: "$1.85 - $2.65",
-    availability: "Limited",
+      "Bright white solid bleached board offering excellent surface smoothness for high-end offset and digital print quality.",
+    supplier: "Iggesund Paperboard",
+    priceRange: "$0.80 - $1.30",
+    availability: "In Stock",
     featured: true,
     sustainable: true,
   },
+  // ── CORRUGATED ──
   {
     id: "corrugated-kraft",
-    name: "Corrugated Kraft Board",
-    category: "Substrates",
-    subcategory: "Corrugated",
+    name: "Natural Kraft Liner",
+    category: "Corrugated",
+    subcategory: "B-Flute Corrugated",
     weight: "275gsm",
-    thickness: "3.5mm",
-    color: "#DEB887",
+    thickness: "3mm",
+    color: "#B8834A",
+    image: "/materials/corrugated-kraft.jpg",
     properties: {
       sustainability: 95,
-      durability: 75,
+      durability: 78,
       printability: 65,
-      costEfficiency: 90,
+      costEfficiency: 92,
     },
     specifications: {
-      density: "0.3 g/cm³",
+      grammage: "275 g/m²",
       edgeCrushStrength: "7.2 kN/m",
       burstStrength: "550 kPa",
-      grammage: "275 g/m²",
+      density: "0.30 g/cm³",
     },
-    applications: [
-      "Shipping Boxes",
-      "E-commerce Packaging",
-      "Industrial Packaging",
-    ],
+    applications: ["Shipping Boxes", "E-commerce", "Mailer Boxes"],
     certifications: ["Recyclable", "Biodegradable", "FSC Certified"],
     description:
-      "Sustainable corrugated board optimized for shipping and e-commerce applications with excellent structural performance.",
+      "High-strength natural kraft corrugated board ideal for shipping and e-commerce packaging with outstanding stacking strength.",
     supplier: "WestRock",
     priceRange: "$0.45 - $0.85",
     availability: "In Stock",
@@ -218,35 +157,312 @@ const materialsDatabase: Material[] = [
     sustainable: true,
   },
   {
-    id: "metalized-polyester",
-    name: "Metalized Polyester Film",
-    category: "Substrates",
-    subcategory: "Flexible Film",
-    weight: "50gsm",
-    thickness: "0.05mm",
-    color: "#C0C0C0",
+    id: "corrugated-oyster",
+    name: "Oyster White Liner",
+    category: "Corrugated",
+    subcategory: "E-Flute Corrugated",
+    weight: "200gsm",
+    thickness: "1.5mm",
+    color: "#E8E4D0",
+    image: "/materials/corrugated-oyster.jpg",
     properties: {
-      sustainability: 35,
-      durability: 95,
-      printability: 88,
-      costEfficiency: 65,
+      sustainability: 90,
+      durability: 72,
+      printability: 80,
+      costEfficiency: 85,
     },
     specifications: {
-      density: "1.4 g/cm³",
-      tensileStrength: "200 MPa",
-      moistureBarrier: "Excellent",
+      grammage: "200 g/m²",
+      edgeCrushStrength: "5.8 kN/m",
+      burstStrength: "430 kPa",
+      density: "0.28 g/cm³",
+    },
+    applications: ["Retail Display Boxes", "Gift Packaging", "Cosmetic Boxes"],
+    certifications: ["Recyclable", "FSC Certified"],
+    description:
+      "Smooth oyster-white corrugated surface ideal for printed retail packaging with a clean, premium appearance.",
+    supplier: "Smurfit Kappa",
+    priceRange: "$0.60 - $1.00",
+    availability: "In Stock",
+    featured: false,
+    sustainable: true,
+  },
+  {
+    id: "corrugated-white",
+    name: "Bleached White Liner",
+    category: "Corrugated",
+    subcategory: "White Top Liner",
+    weight: "200gsm",
+    thickness: "3mm",
+    color: "#FFFFFF",
+    image: "/materials/corrugated-white.jpg",
+    properties: {
+      sustainability: 88,
+      durability: 76,
+      printability: 88,
+      costEfficiency: 82,
+    },
+    specifications: {
+      grammage: "200 g/m²",
+      edgeCrushStrength: "6.4 kN/m",
+      burstStrength: "490 kPa",
+      density: "0.31 g/cm³",
+    },
+    applications: ["Food Packaging", "FMCG Boxes", "Subscription Boxes"],
+    certifications: ["Recyclable", "FSC Certified", "FDA Compliant"],
+    description:
+      "Bright white top corrugated liner combining sustainable corrugated structure with a clean printable surface.",
+    supplier: "International Paper",
+    priceRange: "$0.65 - $1.10",
+    availability: "In Stock",
+    featured: true,
+    sustainable: true,
+  },
+  // ── RIGID ──
+  {
+    id: "rigid-chipboard-heavy",
+    name: "Heavy Chipboard",
+    category: "Rigid",
+    subcategory: "Grey Board",
+    weight: "1800gsm",
+    thickness: "2.0mm",
+    color: "#8B8B7A",
+    image: "/materials/rigid-chipboard.jpg",
+    properties: {
+      sustainability: 80,
+      durability: 98,
+      printability: 60,
+      costEfficiency: 70,
+    },
+    specifications: {
+      grammage: "1800 g/m²",
+      density: "0.90 g/cm³",
+      tensileStrength: "130 N⋅m/g",
+      bendResistance: "12 mN⋅m²/g",
+    },
+    applications: ["Luxury Gift Boxes", "Rigid Set-Up Boxes", "Jewelry Packaging"],
+    certifications: ["FSC Certified", "ISO 9001"],
+    description:
+      "Dense grey board providing the structural backbone for luxury rigid boxes. Wrapped with premium paper or fabric for a high-end finish.",
+    supplier: "Corenso",
+    priceRange: "$1.80 - $2.90",
+    availability: "In Stock",
+    featured: true,
+    sustainable: true,
+  },
+  // ── PLASTIC ──
+  {
+    id: "plastic-pet",
+    name: "PET (Polyethylene Terephthalate)",
+    category: "Plastic",
+    subcategory: "Thermoform Plastic",
+    weight: "50gsm",
+    thickness: "0.25mm",
+    color: "#D4EBF8",
+    image: "/materials/plastic-pet.jpg",
+    properties: {
+      sustainability: 55,
+      durability: 90,
+      printability: 82,
+      costEfficiency: 75,
+    },
+    specifications: {
+      density: "1.38 g/cm³",
+      tensileStrength: "55 MPa",
+      moistureBarrier: "High",
       oxygenBarrier: "Excellent",
     },
-    applications: [
-      "Food Packaging",
-      "Barrier Applications",
-      "Flexible Pouches",
-    ],
-    certifications: ["FDA Approved", "BPA Free"],
+    applications: ["Clamshells", "Blister Packs", "Food Trays"],
+    certifications: ["FDA Approved", "BPA Free", "PETG Recyclable"],
     description:
-      "High-barrier metalized film providing exceptional protection for food and pharmaceutical packaging applications.",
+      "Clear, strong PET plastic widely used in food-safe packaging. Excellent transparency and barrier properties with recyclability.",
     supplier: "Toray Plastics",
-    priceRange: "$2.20 - $3.80",
+    priceRange: "$1.50 - $2.80",
+    availability: "In Stock",
+    featured: true,
+    sustainable: false,
+  },
+  {
+    id: "plastic-hdpe",
+    name: "HDPE (High-Density Polyethylene)",
+    category: "Plastic",
+    subcategory: "Rigid Plastic",
+    weight: "N/A",
+    thickness: "1.0mm",
+    color: "#EAF4EA",
+    image: "/materials/plastic-hdpe.jpg",
+    properties: {
+      sustainability: 60,
+      durability: 92,
+      printability: 70,
+      costEfficiency: 88,
+    },
+    specifications: {
+      density: "0.95 g/cm³",
+      tensileStrength: "30 MPa",
+      moistureBarrier: "Excellent",
+      moistureResistance: "Excellent",
+    },
+    applications: ["Bottles", "Rigid Containers", "Industrial Packaging"],
+    certifications: ["FDA Approved", "BPA Free", "Recyclable #2"],
+    description:
+      "Tough, chemical-resistant HDPE plastic ideal for bottles and rigid containers. The most recycled plastic type globally.",
+    supplier: "LyondellBasell",
+    priceRange: "$0.90 - $1.60",
+    availability: "In Stock",
+    featured: false,
+    sustainable: false,
+  },
+  {
+    id: "plastic-pp",
+    name: "PP (Polypropylene)",
+    category: "Plastic",
+    subcategory: "Flexible / Rigid Plastic",
+    weight: "N/A",
+    thickness: "0.5mm",
+    color: "#F5EFE6",
+    image: "/materials/plastic-pp.jpg",
+    properties: {
+      sustainability: 62,
+      durability: 88,
+      printability: 76,
+      costEfficiency: 90,
+    },
+    specifications: {
+      density: "0.91 g/cm³",
+      tensileStrength: "35 MPa",
+      moistureResistance: "Excellent",
+      chemicalResistance: "Good",
+    },
+    applications: ["Woven Bags", "Film Packaging", "Caps & Closures"],
+    certifications: ["FDA Approved", "BPA Free", "Recyclable #5"],
+    description:
+      "Lightweight, versatile polypropylene used for both flexible films and rigid packaging. Excellent fatigue resistance for hinged lids.",
+    supplier: "Braskem",
+    priceRange: "$0.80 - $1.50",
+    availability: "In Stock",
+    featured: false,
+    sustainable: false,
+  },
+  {
+    id: "plastic-pla",
+    name: "PLA (Polylactic Acid)",
+    category: "Plastic",
+    subcategory: "Bioplastic",
+    weight: "N/A",
+    thickness: "0.3mm",
+    color: "#C8E6C9",
+    image: "/materials/plastic-pla.jpg",
+    properties: {
+      sustainability: 88,
+      durability: 65,
+      printability: 80,
+      costEfficiency: 55,
+    },
+    specifications: {
+      density: "1.24 g/cm³",
+      tensileStrength: "50 MPa",
+      moistureResistance: "Low",
+    },
+    applications: ["Compostable Containers", "Sustainable Films", "Eco Packaging"],
+    certifications: ["EN13432 Compostable", "ASTM D6400", "BPI Certified"],
+    description:
+      "Plant-based compostable bioplastic derived from corn starch. Provides a responsible alternative to petroleum-based plastics.",
+    supplier: "NatureWorks",
+    priceRange: "$2.00 - $3.50",
+    availability: "Limited",
+    featured: true,
+    sustainable: true,
+  },
+  // ── FOAM ──
+  {
+    id: "foam-epe",
+    name: "EPE Foam",
+    category: "Foam",
+    subcategory: "Expanded Polyethylene",
+    weight: "N/A",
+    thickness: "10mm",
+    color: "#FAFAFA",
+    image: "/materials/foam-epe.jpg",
+    properties: {
+      sustainability: 40,
+      durability: 85,
+      printability: 20,
+      costEfficiency: 90,
+    },
+    specifications: {
+      density: "0.025 g/cm³",
+      moistureResistance: "Excellent",
+      chemicalResistance: "Good",
+    },
+    applications: ["Protective Inserts", "Electronics Packaging", "Fragile Items"],
+    certifications: ["REACH Compliant", "RoHS Compliant"],
+    description:
+      "Lightweight expanded polyethylene foam offering excellent shock absorption and moisture resistance for product protection.",
+    supplier: "Sealed Air",
+    priceRange: "$0.30 - $0.70",
+    availability: "In Stock",
+    featured: false,
+    sustainable: false,
+  },
+  {
+    id: "foam-eva",
+    name: "EVA Foam",
+    category: "Foam",
+    subcategory: "Ethylene-Vinyl Acetate Foam",
+    weight: "N/A",
+    thickness: "5mm",
+    color: "#FFF3E0",
+    image: "/materials/foam-eva.jpg",
+    properties: {
+      sustainability: 45,
+      durability: 88,
+      printability: 30,
+      costEfficiency: 82,
+    },
+    specifications: {
+      density: "0.04 g/cm³",
+      tensileStrength: "5 MPa",
+      chemicalResistance: "Good",
+      moistureResistance: "High",
+    },
+    applications: ["Jewelry Inserts", "Cosmetic Trays", "Luxury Box Lining"],
+    certifications: ["REACH Compliant", "FDA Safe"],
+    description:
+      "Soft, flexible EVA foam commonly used as premium box lining and inserts for jewelry and cosmetics packaging.",
+    supplier: "Dongguan Minaean",
+    priceRange: "$0.50 - $1.20",
+    availability: "In Stock",
+    featured: true,
+    sustainable: false,
+  },
+  {
+    id: "foam-pu",
+    name: "PU Foam",
+    category: "Foam",
+    subcategory: "Polyurethane Foam",
+    weight: "N/A",
+    thickness: "20mm",
+    color: "#F5E6C8",
+    image: "/materials/foam-pu.jpg",
+    properties: {
+      sustainability: 38,
+      durability: 92,
+      printability: 10,
+      costEfficiency: 68,
+    },
+    specifications: {
+      density: "0.035 g/cm³",
+      tensileStrength: "3 MPa",
+      chemicalResistance: "Medium",
+      moistureResistance: "Medium",
+    },
+    applications: ["Heavy Protective Packaging", "Tool Cases", "Medical Devices"],
+    certifications: ["REACH Compliant", "ISO 9001"],
+    description:
+      "High-resilience polyurethane foam engineered for heavy-duty protective inserts requiring superior cushioning performance.",
+    supplier: "INOAC Corporation",
+    priceRange: "$0.80 - $2.00",
     availability: "In Stock",
     featured: false,
     sustainable: false,
@@ -612,35 +828,21 @@ export default function MaterialsPage() {
                             </p>
                           )}
                         </div>
-                        <div
-                          className="h-6 w-6 rounded border border-[#bccabf]"
-                          style={{ backgroundColor: material.color }}
-                        />
                       </div>
 
-                      {/* Properties */}
-                      <div className="mb-4 space-y-3">
-                        <PropertyBar
-                          label="Sustainability"
-                          value={material.properties.sustainability}
-                          color="#36b37e"
-                        />
-                        <PropertyBar
-                          label="Durability"
-                          value={material.properties.durability}
-                          color="#006c47"
-                        />
-                        <PropertyBar
-                          label="Printability"
-                          value={material.properties.printability}
-                          color="#279366"
-                        />
-                        <PropertyBar
-                          label="Cost Efficiency"
-                          value={material.properties.costEfficiency}
-                          color="#ff9500"
-                        />
-                      </div>
+                      {/* Image banner */}
+                      {material.image && (
+                        <div className="mb-4 -mx-6 -mt-2 h-36 overflow-hidden">
+                          <Image
+                            src={material.image}
+                            alt={material.name}
+                            width={400}
+                            height={144}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      )}
+
 
                       {/* Applications */}
                       <div className="mb-4">
@@ -711,10 +913,22 @@ export default function MaterialsPage() {
                       className="flex flex-col items-center justify-between gap-6 rounded-lg border border-[#bccabf] bg-white p-6 transition-shadow hover:shadow-lg lg:flex-row"
                     >
                       <div className="flex w-full flex-1 flex-col items-center gap-6 sm:flex-row sm:items-start lg:w-auto lg:items-center">
-                        <div
-                          className="h-12 w-12 shrink-0 rounded-lg border border-[#bccabf]"
-                          style={{ backgroundColor: material.color }}
-                        />
+                        {material.image ? (
+                          <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-[#bccabf]">
+                            <Image
+                              src={material.image}
+                              alt={material.name}
+                              width={56}
+                              height={56}
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            className="h-12 w-12 shrink-0 rounded-lg border border-[#bccabf]"
+                            style={{ backgroundColor: material.color }}
+                          />
+                        )}
                         <div className="flex-1 text-center sm:text-left">
                           <div className="mb-1 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
                             <h3

@@ -37,6 +37,34 @@ Stream response
 - Pinecone (Vector Database)
 - Supabase
 
+## Documentation Structure
+
+The project documentation is organized as follows:
+
+```text
+/docs
+  /architecture          # Technical design and system data flows
+    overview.md
+    agent-flow.md
+    database-schema.md
+
+  /agents                # Intent-level documentation for AI agents
+    design-spec.md
+    estimate.md
+    render-3d.md
+    material-search.md
+    general-query.md
+
+  /features              # Detailed specifications for screens and features
+    design-spec.md
+    estimate.md
+    render-3d.md
+
+  /api                   # API documentation
+    endpoints.md
+    supabase-rpc.md
+```
+
 ## Supabase Types
 
 ```bash
