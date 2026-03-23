@@ -2,7 +2,7 @@
 
 ## Overview
 
-PakFactory AI uses Supabase as its backend database and storage layer. This document covers the schema, RPC functions, and how the app interacts with Supabase.
+Packify AI uses Supabase as its backend database and storage layer. This document covers the schema, RPC functions, and how the app interacts with Supabase.
 
 ---
 

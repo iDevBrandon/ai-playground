@@ -1,14 +1,14 @@
 # System Overview
 
-## What is PakFactory AI?
+## What is Packify AI?
 
-PakFactory AI is an intelligent packaging design assistant. It combines a conversational AI interface with RAG (Retrieval-Augmented Generation), a material database, 3D rendering, and order management integrations to guide users from initial idea to production-ready packaging specification.
+Packify AI is an intelligent packaging design assistant. It combines a conversational AI interface with RAG (Retrieval-Augmented Generation), a material database, 3D rendering, and order management integrations to guide users from initial idea to production-ready packaging specification.
 
 ---
 
 ## User Experience Flow
 
-```
+```bash
 1. User says "I want to design a 12x10 rigid box"
            ↓
 2. LLM classifies intent → DESIGN_SPEC
@@ -32,30 +32,30 @@ PakFactory AI is an intelligent packaging design assistant. It combines a conver
 
 ## Core Modules
 
-| Module | Route | Description |
-|---|---|---|
-| **Design Lab** | `/design-lab` | Main AI chat + spec builder |
-| **Chat** | `/chat/[id]` | Standalone persistent chat session |
-| **Materials** | `/design-lab/materials` | Searchable substrate database |
-| **Schematics** | `/design-lab/schematics` | Template & dieline library |
-| **Orders** | `/design-lab/orders` | Order history & tracking |
-| **Settings** | `/design-lab/settings` | User preferences & integrations |
-| **3D Render** | `/3d-render` | Interactive packaging visualiser |
+| Module         | Route                    | Description                        |
+| -------------- | ------------------------ | ---------------------------------- |
+| **Design Lab** | `/design-lab`            | Main AI chat + spec builder        |
+| **Chat**       | `/chat/[id]`             | Standalone persistent chat session |
+| **Materials**  | `/design-lab/materials`  | Searchable substrate database      |
+| **Schematics** | `/design-lab/schematics` | Template & dieline library         |
+| **Orders**     | `/design-lab/orders`     | Order history & tracking           |
+| **Settings**   | `/design-lab/settings`   | User preferences & integrations    |
+| **3D Render**  | `/3d-render`             | Interactive packaging visualiser   |
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| AI / LLM | Google Gemini via AI Gateway |
-| Embeddings | Google `text-embedding-004` (1024-dim) |
-| Vector DB | Pinecone |
-| Database | Supabase (PostgreSQL) |
-| State | Zustand (`lib/chat-store.ts`) |
-| 3D Rendering | Three.js / React Three Fiber |
-| Styling | Tailwind CSS |
+| Layer        | Technology                             |
+| ------------ | -------------------------------------- |
+| Framework    | Next.js 16 (App Router)                |
+| AI / LLM     | Google Gemini via AI Gateway           |
+| Embeddings   | Google `text-embedding-004` (1024-dim) |
+| Vector DB    | Pinecone                               |
+| Database     | Supabase (PostgreSQL)                  |
+| State        | Zustand (`lib/chat-store.ts`)          |
+| 3D Rendering | Three.js / React Three Fiber           |
+| Styling      | Tailwind CSS                           |
 
 ---
 

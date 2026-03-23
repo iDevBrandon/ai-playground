@@ -126,13 +126,13 @@ export default function SettingsPage() {
                       className="mb-4 md:mb-6 flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
-                      <span className="h-2 w-2 rounded-full bg-pakfactory-green"></span>
+                      <span className="h-2 w-2 rounded-full bg-packify-green"></span>
                       Identity & Credentials
                     </h2>
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 bg-white p-6 md:p-8 shadow-sm">
                       <div className="group relative cursor-pointer">
                         <div className="h-20 w-20 md:h-24 md:w-24 overflow-hidden rounded-lg bg-[#e9f0e9]">
-                          <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-pakfactory-green to-[#006c47]">
+                          <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-packify-green to-[#006c47]">
                             <span className="text-xl md:text-2xl font-bold text-white">
                               BH
                             </span>
@@ -152,7 +152,7 @@ export default function SettingsPage() {
                               Full Name
                             </label>
                             <input
-                              className="w-full border-b-2 border-none border-transparent bg-[#eff5ee] py-2 font-medium text-[#171d19] focus:border-pakfactory-green focus:ring-0"
+                              className="w-full border-b-2 border-none border-transparent bg-[#eff5ee] py-2 font-medium text-[#171d19] focus:border-packify-green focus:ring-0"
                               style={{ fontFamily: "Inter, sans-serif" }}
                               type="text"
                               defaultValue="Brandon Ha"
@@ -166,7 +166,7 @@ export default function SettingsPage() {
                               Professional Title
                             </label>
                             <input
-                              className="w-full border-b-2 border-none border-transparent bg-[#eff5ee] py-2 font-medium text-[#171d19] focus:border-pakfactory-green focus:ring-0"
+                              className="w-full border-b-2 border-none border-transparent bg-[#eff5ee] py-2 font-medium text-[#171d19] focus:border-packify-green focus:ring-0"
                               style={{ fontFamily: "Inter, sans-serif" }}
                               type="text"
                               defaultValue="Senior Technical Architect"
@@ -181,10 +181,10 @@ export default function SettingsPage() {
                             Email Correspondence
                           </label>
                           <input
-                            className="w-full border-b-2 border-none border-transparent bg-[#eff5ee] py-2 font-medium text-[#171d19] focus:border-pakfactory-green focus:ring-0"
+                            className="w-full border-b-2 border-none border-transparent bg-[#eff5ee] py-2 font-medium text-[#171d19] focus:border-packify-green focus:ring-0"
                             style={{ fontFamily: "Inter, sans-serif" }}
                             type="email"
-                            defaultValue="brandon@pakfactory.ai"
+                            defaultValue="brandon@packify.ai"
                           />
                         </div>
                       </div>
@@ -197,7 +197,7 @@ export default function SettingsPage() {
                       className="mb-4 md:mb-6 flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
-                      <span className="h-2 w-2 rounded-full bg-pakfactory-green"></span>
+                      <span className="h-2 w-2 rounded-full bg-packify-green"></span>
                       Environmental Preferences
                     </h2>
                     <div className="space-y-6 md:space-y-8 bg-white p-6 md:p-8 shadow-sm">
@@ -221,7 +221,7 @@ export default function SettingsPage() {
                           </div>
                         </div>
                         <select
-                          className="w-full sm:w-auto rounded-lg border border-[#bccabf] bg-[#eff5ee] px-4 py-2 text-sm font-medium text-[#171d19] focus:border-pakfactory-green focus:ring-0"
+                          className="w-full sm:w-auto rounded-lg border border-[#bccabf] bg-[#eff5ee] px-4 py-2 text-sm font-medium text-[#171d19] focus:border-packify-green focus:ring-0"
                           style={{ fontFamily: "Inter, sans-serif" }}
                           value={language}
                           onChange={(e) => setLanguage(e.target.value)}
@@ -273,7 +273,7 @@ export default function SettingsPage() {
                               <div
                                 className={`h-6 w-12 cursor-pointer rounded-full transition-colors ${
                                   notifications.email
-                                    ? "bg-pakfactory-green"
+                                    ? "bg-packify-green"
                                     : "bg-[#bccabf]"
                                 }`}
                                 onClick={() =>
@@ -310,7 +310,7 @@ export default function SettingsPage() {
                               <div
                                 className={`h-6 w-12 cursor-pointer rounded-full transition-colors ${
                                   notifications.push
-                                    ? "bg-pakfactory-green"
+                                    ? "bg-packify-green"
                                     : "bg-[#bccabf]"
                                 }`}
                                 onClick={() => handleNotificationChange("push")}
@@ -343,7 +343,7 @@ export default function SettingsPage() {
                               <div
                                 className={`h-6 w-12 cursor-pointer rounded-full transition-colors ${
                                   notifications.sms
-                                    ? "bg-pakfactory-green"
+                                    ? "bg-packify-green"
                                     : "bg-[#bccabf]"
                                 }`}
                                 onClick={() => handleNotificationChange("sms")}
@@ -371,7 +371,7 @@ export default function SettingsPage() {
                       className="mb-4 md:mb-6 flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#3d4a42] uppercase"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
-                      <span className="h-2 w-2 rounded-full bg-pakfactory-green"></span>
+                      <span className="h-2 w-2 rounded-full bg-packify-green"></span>
                       Platform Integrations
                     </h2>
 
@@ -400,7 +400,7 @@ export default function SettingsPage() {
                           </div>
                           <div
                             className={`h-3 w-3 shrink-0 rounded-full mt-1.5 sm:mt-0 ${
-                              shopifyConnected ? "bg-pakfactory-green" : "bg-[#ba1a1a]"
+                              shopifyConnected ? "bg-packify-green" : "bg-[#ba1a1a]"
                             }`}
                           />
                         </div>
@@ -408,7 +408,7 @@ export default function SettingsPage() {
                           className={`w-full rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                             shopifyConnected
                               ? "bg-[#ffdad6] text-[#ba1a1a] hover:bg-[#ffb4ab]"
-                              : "bg-pakfactory-green text-white hover:bg-[#006c47]"
+                              : "bg-packify-green text-white hover:bg-[#006c47]"
                           }`}
                           style={{ fontFamily: "Inter, sans-serif" }}
                           onClick={() => setShopifyConnected(!shopifyConnected)}
@@ -441,7 +441,7 @@ export default function SettingsPage() {
                           </div>
                           <div
                             className={`h-3 w-3 shrink-0 rounded-full mt-1.5 sm:mt-0 ${
-                              zohoConnected ? "bg-pakfactory-green" : "bg-[#ba1a1a]"
+                              zohoConnected ? "bg-packify-green" : "bg-[#ba1a1a]"
                             }`}
                           />
                         </div>
@@ -449,7 +449,7 @@ export default function SettingsPage() {
                           className={`w-full rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                             zohoConnected
                               ? "bg-[#ffdad6] text-[#ba1a1a] hover:bg-[#ffb4ab]"
-                              : "bg-pakfactory-green text-white hover:bg-[#006c47]"
+                              : "bg-packify-green text-white hover:bg-[#006c47]"
                           }`}
                           style={{ fontFamily: "Inter, sans-serif" }}
                           onClick={() => setZohoConnected(!zohoConnected)}

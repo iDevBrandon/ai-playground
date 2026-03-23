@@ -2,7 +2,7 @@
 
 import AnimatedWireframe from "@/components/AnimatedWireframe"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { PackageOpen } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
@@ -27,16 +27,8 @@ export default function LandingPage() {
       {/* Header Navigation */}
       <header className="flex items-center justify-between bg-white p-4 shadow-sm lg:p-6">
         <div className="flex items-center gap-3">
-          <Image
-            src="/image/logo.png"
-            alt="PakFactory Logo"
-            width={180}
-            height={40}
-            className="h-8 w-auto"
-          />
-          <span className="text-lg font-semibold text-primary">
-            AI Packaging Agent
-          </span>
+          <PackageOpen className="h-8 w-8 text-primary" />
+          <span className="text-lg font-semibold text-primary">Packify AI</span>
         </div>
 
         <nav className="hidden items-center gap-4 lg:flex lg:gap-8">
@@ -62,20 +54,18 @@ export default function LandingPage() {
             href="#"
             className="font-medium text-gray-600 transition-colors hover:text-primary"
           >
-            Why PakFactory
+            Why Packify
           </a>
         </nav>
 
         <div className="flex items-center gap-2 lg:gap-4">
           <span className="hidden text-sm text-gray-600 lg:inline">
-            Call us toll free:
+            Call me to discuss your project!
           </span>
           <span className="hidden text-lg font-semibold text-primary sm:inline">
-            1-888-622-2819
+            1-647-321-5258
           </span>
-          <Button
-            className="bg-primary px-3 text-sm text-white hover:opacity-90 lg:px-4 lg:text-base"
-          >
+          <Button className="bg-primary px-3 text-sm text-white hover:opacity-90 lg:px-4 lg:text-base">
             <span className="hidden sm:inline">Request a Quote</span>
             <span className="sm:hidden">Quote</span>
           </Button>
@@ -104,15 +94,13 @@ export default function LandingPage() {
           </p>
 
           <div className="mb-8 flex flex-col justify-start gap-4 sm:flex-row lg:mb-12 lg:gap-6">
-            <Button
-              className="bg-primary h-15 w-full cursor-pointer rounded-lg px-6 py-5 text-xl font-semibold text-white hover:opacity-90 sm:w-64"
-            >
+            <Button className="h-15 w-full cursor-pointer rounded-lg bg-primary px-6 py-5 text-xl font-semibold text-white hover:opacity-90 sm:w-64">
               Request a Quote
             </Button>
             <Link href="/design-lab" className="w-full sm:w-64">
               <Button
                 variant="outline"
-                className="h-15 w-full cursor-pointer rounded-lg bg-white px-6 py-5 text-xl font-semibold hover:bg-gray-50 border-primary text-primary"
+                className="h-15 w-full cursor-pointer rounded-lg border-primary bg-white px-6 py-5 text-xl font-semibold text-primary hover:bg-gray-50"
               >
                 Try Design Lab
               </Button>
@@ -150,21 +138,19 @@ export default function LandingPage() {
 
               {/* Processing indicator */}
               <div
-                className="border-opacity-30 absolute right-6 bottom-6 max-w-50 rounded-lg border p-4 backdrop-blur-md border-primary"
+                className="border-opacity-30 absolute right-6 bottom-6 max-w-50 rounded-lg border border-primary p-4 backdrop-blur-md"
                 style={{
                   backgroundColor: "rgba(0, 0, 0, 0.8)",
                 }}
               >
-                <p
-                  className="mb-1 text-[10px] font-bold uppercase text-primary"
-                >
+                <p className="mb-1 text-[10px] font-bold text-primary uppercase">
                   LIVE PROCESSING
                 </p>
                 <div className="mb-2 h-1 w-full overflow-hidden rounded-full bg-gray-700">
                   <div
                     className="h-full rounded-full transition-all duration-100"
                     style={{
-                      backgroundColor: "#36B37E",
+                      backgroundColor: "#8b4513",
                       width: `${progress}%`,
                     }}
                   ></div>
@@ -181,12 +167,12 @@ export default function LandingPage() {
       {/* Core Capabilities Section */}
       <section className="mx-auto max-w-7xl px-4 py-12 lg:px-6 lg:py-20">
         <div className="mb-12 text-center lg:mb-16">
-          <div className="mb-4 text-sm font-semibold text-[#36B37E]">
+          <div className="mb-4 text-sm font-semibold text-[#8b4513]">
             WHAT WE OFFER
           </div>
           <h2 className="mb-4 text-3xl font-bold text-gray-900 lg:text-4xl">
             We are your best solution for{" "}
-            <span className="text-[#36B37E]">Custom Packaging</span>
+            <span className="text-[#8b4513]">Custom Packaging</span>
           </h2>
           <p className="mx-auto max-w-3xl text-lg text-gray-700 lg:text-xl">
             Never worry about going to multiple sources to get your dream
@@ -197,9 +183,7 @@ export default function LandingPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {/* AI-Driven Design */}
           <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl">
-            <div
-              className="bg-primary mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
-            >
+            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
               <span className="text-xl text-white">📦</span>
             </div>
             <h3 className="mb-4 text-xl font-semibold text-gray-900">
@@ -211,11 +195,11 @@ export default function LandingPage() {
             </p>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <div className="h-1 w-1 rounded-full bg-[#36B37E]"></div>
+                <div className="h-1 w-1 rounded-full bg-[#8b4513]"></div>
                 Free design consultation
               </li>
               <li className="flex items-center gap-2">
-                <div className="h-1 w-1 rounded-full bg-[#36B37E]"></div>
+                <div className="h-1 w-1 rounded-full bg-[#8b4513]"></div>
                 Fast turnaround times
               </li>
             </ul>
@@ -223,9 +207,7 @@ export default function LandingPage() {
 
           {/* Global Standards (RAG) */}
           <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl">
-            <div
-              className="bg-primary mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
-            >
+            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
               <span className="text-xl text-white">🎨</span>
             </div>
             <h3 className="mb-4 text-xl font-semibold text-gray-900">
@@ -237,11 +219,11 @@ export default function LandingPage() {
             </p>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <div className="h-1 w-1 rounded-full bg-[#36B37E]"></div>
+                <div className="h-1 w-1 rounded-full bg-[#8b4513]"></div>
                 Premium printing options
               </li>
               <li className="flex items-center gap-2">
-                <div className="h-1 w-1 rounded-full bg-[#36B37E]"></div>
+                <div className="h-1 w-1 rounded-full bg-[#8b4513]"></div>
                 Eco-friendly materials
               </li>
             </ul>
@@ -249,9 +231,7 @@ export default function LandingPage() {
 
           {/* Material Intelligence */}
           <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl">
-            <div
-              className="bg-primary mb-6 flex h-12 w-12 items-center justify-center rounded-lg"
-            >
+            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
               <span className="text-xl text-white">🤖</span>
             </div>
             <h3 className="mb-4 text-xl font-semibold text-gray-900">
@@ -263,11 +243,11 @@ export default function LandingPage() {
             </p>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <div className="h-1 w-1 rounded-full bg-[#36B37E]"></div>
+                <div className="h-1 w-1 rounded-full bg-[#8b4513]"></div>
                 Instant design suggestions
               </li>
               <li className="flex items-center gap-2">
-                <div className="h-1 w-1 rounded-full bg-[#36B37E]"></div>
+                <div className="h-1 w-1 rounded-full bg-[#8b4513]"></div>
                 Material optimization
               </li>
             </ul>
@@ -279,8 +259,8 @@ export default function LandingPage() {
       <section className="px-4 py-12 lg:px-6 lg:py-20">
         <div
           style={{
-            borderColor: "#36B37E",
-            background: "linear-gradient(to right, #36B37E1A, #36B37E20)",
+            borderColor: "#8b4513",
+            background: "linear-gradient(to right, #8b45131A, #8b451320)",
           }}
           className="mx-auto max-w-4xl rounded-2xl border p-6 text-center lg:p-12"
         >
@@ -288,19 +268,17 @@ export default function LandingPage() {
             Ready to create your dream packaging?
           </h2>
           <p className="mb-8 text-lg text-gray-700 lg:text-xl">
-            Join thousands of brands who trust PakFactory for their custom
+            Join thousands of brands who trust Packify for their custom
             packaging needs. Get started today!
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row lg:gap-6">
-            <Button
-              className="bg-primary h-12 w-full cursor-pointer rounded-lg px-6 py-3 text-lg font-semibold text-white hover:opacity-90 sm:w-64 lg:h-15 lg:px-8 lg:py-5 lg:text-xl"
-            >
+            <Button className="h-12 w-full cursor-pointer rounded-lg bg-primary px-6 py-3 text-lg font-semibold text-white hover:opacity-90 sm:w-64 lg:h-15 lg:px-8 lg:py-5 lg:text-xl">
               Request a Quote
             </Button>
             <Link href="/design-lab" className="w-full sm:w-64">
               <Button
                 variant="outline"
-                className="h-12 w-full cursor-pointer rounded-lg bg-white px-6 py-3 text-lg font-semibold hover:bg-gray-50 lg:h-15 lg:px-8 lg:py-5 lg:text-xl border-primary text-primary"
+                className="h-12 w-full cursor-pointer rounded-lg border-primary bg-white px-6 py-3 text-lg font-semibold text-primary hover:bg-gray-50 lg:h-15 lg:px-8 lg:py-5 lg:text-xl"
               >
                 Try Design Lab
               </Button>
@@ -314,20 +292,14 @@ export default function LandingPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-3">
-              <Image
-                src="/image/logo.png"
-                alt="PakFactory Logo"
-                width={180}
-                height={40}
-                className="h-8 w-auto"
-              />
+              <PackageOpen className="h-8 w-8 text-primary" />
             </div>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-500 hover:text-[#36B37E]">
+              <a href="#" className="text-gray-500 hover:text-[#8b4513]">
                 <span className="sr-only">Twitter</span>
                 🐦
               </a>
-              <a href="#" className="text-gray-500 hover:text-[#36B37E]">
+              <a href="#" className="text-gray-500 hover:text-[#8b4513]">
                 <span className="sr-only">LinkedIn</span>
                 💼
               </a>
@@ -339,17 +311,17 @@ export default function LandingPage() {
               <h4 className="mb-4 font-semibold text-gray-900">PRODUCTS</h4>
               <ul className="space-y-2 text-gray-600">
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Custom Boxes
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Packaging Bags
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Labels & Stickers
                   </a>
                 </li>
@@ -359,17 +331,17 @@ export default function LandingPage() {
               <h4 className="mb-4 font-semibold text-gray-900">COMPANY</h4>
               <ul className="space-y-2 text-gray-600">
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Reviews
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Careers
                   </a>
                 </li>
@@ -379,17 +351,17 @@ export default function LandingPage() {
               <h4 className="mb-4 font-semibold text-gray-900">SUPPORT</h4>
               <ul className="space-y-2 text-gray-600">
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Help Center
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Contact Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Shipping Info
                   </a>
                 </li>
@@ -399,17 +371,17 @@ export default function LandingPage() {
               <h4 className="mb-4 font-semibold text-gray-900">LEGAL</h4>
               <ul className="space-y-2 text-gray-600">
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Terms of Service
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#36B37E]">
+                  <a href="#" className="hover:text-[#8b4513]">
                     Returns
                   </a>
                 </li>
@@ -418,10 +390,9 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-6 text-sm text-gray-500 sm:flex-row lg:pt-8">
-            <p>© 2024 PakFactory. All rights reserved.</p>
+            <p>© 2026 Packify. All rights reserved.</p>
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
-              <span>🔒 Secure Checkout</span>
-              <span>📞 1-888-622-2819</span>
+              <span>📞 1-647-321-5258</span>
             </div>
           </div>
         </div>

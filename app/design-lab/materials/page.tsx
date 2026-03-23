@@ -24,7 +24,13 @@ import { useMemo, useState } from "react"
 interface Material {
   id: string
   name: string
-  category: "Paperboard" | "Corrugated" | "Rigid" | "Plastic" | "Foam" | "Specialty"
+  category:
+    | "Paperboard"
+    | "Corrugated"
+    | "Rigid"
+    | "Plastic"
+    | "Foam"
+    | "Specialty"
   subcategory: string
   weight?: string
   thickness?: string
@@ -240,7 +246,11 @@ const materialsDatabase: Material[] = [
       tensileStrength: "130 N⋅m/g",
       bendResistance: "12 mN⋅m²/g",
     },
-    applications: ["Luxury Gift Boxes", "Rigid Set-Up Boxes", "Jewelry Packaging"],
+    applications: [
+      "Luxury Gift Boxes",
+      "Rigid Set-Up Boxes",
+      "Jewelry Packaging",
+    ],
     certifications: ["FSC Certified", "ISO 9001"],
     description:
       "Dense grey board providing the structural backbone for luxury rigid boxes. Wrapped with premium paper or fabric for a high-end finish.",
@@ -364,7 +374,11 @@ const materialsDatabase: Material[] = [
       tensileStrength: "50 MPa",
       moistureResistance: "Low",
     },
-    applications: ["Compostable Containers", "Sustainable Films", "Eco Packaging"],
+    applications: [
+      "Compostable Containers",
+      "Sustainable Films",
+      "Eco Packaging",
+    ],
     certifications: ["EN13432 Compostable", "ASTM D6400", "BPI Certified"],
     description:
       "Plant-based compostable bioplastic derived from corn starch. Provides a responsible alternative to petroleum-based plastics.",
@@ -395,7 +409,11 @@ const materialsDatabase: Material[] = [
       moistureResistance: "Excellent",
       chemicalResistance: "Good",
     },
-    applications: ["Protective Inserts", "Electronics Packaging", "Fragile Items"],
+    applications: [
+      "Protective Inserts",
+      "Electronics Packaging",
+      "Fragile Items",
+    ],
     certifications: ["REACH Compliant", "RoHS Compliant"],
     description:
       "Lightweight expanded polyethylene foam offering excellent shock absorption and moisture resistance for product protection.",
@@ -457,7 +475,11 @@ const materialsDatabase: Material[] = [
       chemicalResistance: "Medium",
       moistureResistance: "Medium",
     },
-    applications: ["Heavy Protective Packaging", "Tool Cases", "Medical Devices"],
+    applications: [
+      "Heavy Protective Packaging",
+      "Tool Cases",
+      "Medical Devices",
+    ],
     certifications: ["REACH Compliant", "ISO 9001"],
     description:
       "High-resilience polyurethane foam engineered for heavy-duty protective inserts requiring superior cushioning performance.",
@@ -610,9 +632,9 @@ export default function MaterialsPage() {
                 <Menu className="h-5 w-5" />
               </button>
 
-              <div className="flex items-center gap-3 min-w-0 pr-2">
+              <div className="flex min-w-0 items-center gap-3 pr-2">
                 <span
-                  className="text-sm text-gray-500 truncate"
+                  className="truncate text-sm text-gray-500"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Material Database
@@ -620,11 +642,11 @@ export default function MaterialsPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 shrink-0">
-              <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 px-2 sm:px-3 py-1.5 text-sm">
-                <div className="h-2 w-2 rounded-full bg-green-500 shrink-0"></div>
+            <div className="flex shrink-0 items-center gap-2">
+              <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-50 px-2 py-1.5 text-sm sm:px-3">
+                <div className="h-2 w-2 shrink-0 rounded-full bg-green-500"></div>
                 <span
-                  className="hidden sm:inline text-gray-700 whitespace-nowrap"
+                  className="hidden whitespace-nowrap text-gray-700 sm:inline"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   System Status
@@ -656,11 +678,11 @@ export default function MaterialsPage() {
                     </p>
                   </div>
                   <div className="flex w-full items-center gap-2 sm:gap-3 md:w-auto">
-                    <button className="flex w-full flex-1 items-center justify-center gap-1 rounded-lg bg-[#0d9c69] px-2 py-2 text-xs whitespace-nowrap text-white transition-colors hover:bg-[#0a8659] sm:w-[160px] sm:flex-none sm:gap-2 sm:px-4 sm:text-sm">
+                    <button className="flex w-full flex-1 items-center justify-center gap-1 rounded-lg bg-[#0d9c69] px-2 py-2 text-xs whitespace-nowrap text-white transition-colors hover:bg-[#0a8659] sm:w-40 sm:flex-none sm:gap-2 sm:px-4 sm:text-sm">
                       <Download className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                       <span>Export Database</span>
                     </button>
-                    <button className="flex w-full flex-1 items-center justify-center gap-1 rounded-lg border border-[#bccabf] px-2 py-2 text-xs whitespace-nowrap transition-colors hover:bg-[#eff5ee] sm:w-[160px] sm:flex-none sm:gap-2 sm:px-4 sm:text-sm">
+                    <button className="flex w-full flex-1 items-center justify-center gap-1 rounded-lg border border-[#bccabf] px-2 py-2 text-xs whitespace-nowrap transition-colors hover:bg-[#eff5ee] sm:w-40 sm:flex-none sm:gap-2 sm:px-4 sm:text-sm">
                       <BookOpen className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                       <span>Technical Docs</span>
                     </button>
@@ -678,7 +700,7 @@ export default function MaterialsPage() {
                     placeholder="Search materials, applications, or specifications..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full rounded-lg border border-[#bccabf] bg-white py-3 pr-4 pl-12 focus:border-transparent focus:ring-2 focus:ring-pakfactory-green"
+                    className="w-full rounded-lg border border-[#bccabf] bg-white py-3 pr-4 pl-12 focus:border-transparent focus:ring-2 focus:ring-packify-green"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   />
                 </div>
@@ -700,7 +722,7 @@ export default function MaterialsPage() {
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="w-full rounded-lg border border-[#bccabf] bg-white px-4 py-2 focus:ring-2 focus:ring-pakfactory-green sm:w-auto"
+                      className="w-full rounded-lg border border-[#bccabf] bg-white px-4 py-2 focus:ring-2 focus:ring-packify-green sm:w-auto"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       {categories.map((cat) => (
@@ -713,7 +735,7 @@ export default function MaterialsPage() {
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="w-full rounded-lg border border-[#bccabf] bg-white px-4 py-2 focus:ring-2 focus:ring-pakfactory-green sm:w-auto"
+                      className="w-full rounded-lg border border-[#bccabf] bg-white px-4 py-2 focus:ring-2 focus:ring-packify-green sm:w-auto"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       <option value="name">Sort by Name</option>
@@ -735,13 +757,13 @@ export default function MaterialsPage() {
                     <div className="flex rounded-lg border border-[#bccabf] p-1">
                       <button
                         onClick={() => setViewMode("grid")}
-                        className={`rounded p-2 ${viewMode === "grid" ? "bg-pakfactory-green text-white" : "text-[#42544e]"}`}
+                        className={`rounded p-2 ${viewMode === "grid" ? "bg-packify-green text-white" : "text-[#42544e]"}`}
                       >
                         <Grid3X3 className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => setViewMode("list")}
-                        className={`rounded p-2 ${viewMode === "list" ? "bg-pakfactory-green text-white" : "text-[#42544e]"}`}
+                        className={`rounded p-2 ${viewMode === "list" ? "bg-packify-green text-white" : "text-[#42544e]"}`}
                       >
                         <List className="h-4 w-4" />
                       </button>
@@ -758,7 +780,7 @@ export default function MaterialsPage() {
                           type="checkbox"
                           checked={sustainableOnly}
                           onChange={(e) => setSustainableOnly(e.target.checked)}
-                          className="rounded border-[#bccabf] text-pakfactory-green focus:ring-pakfactory-green"
+                          className="rounded border-[#bccabf] text-packify-green focus:ring-packify-green"
                         />
                         <span
                           className="text-sm"
@@ -766,14 +788,14 @@ export default function MaterialsPage() {
                         >
                           Sustainable Only
                         </span>
-                        <Leaf className="h-4 w-4 text-pakfactory-green" />
+                        <Leaf className="h-4 w-4 text-packify-green" />
                       </label>
                       <label className="flex items-center gap-2">
                         <input
                           type="checkbox"
                           checked={inStockOnly}
                           onChange={(e) => setInStockOnly(e.target.checked)}
-                          className="rounded border-[#bccabf] text-pakfactory-green focus:ring-pakfactory-green"
+                          className="rounded border-[#bccabf] text-packify-green focus:ring-packify-green"
                         />
                         <span
                           className="text-sm"
@@ -810,7 +832,7 @@ export default function MaterialsPage() {
                               <Star className="h-4 w-4 fill-current text-[#ff9500]" />
                             )}
                             {material.sustainable && (
-                              <Leaf className="h-4 w-4 text-pakfactory-green" />
+                              <Leaf className="h-4 w-4 text-packify-green" />
                             )}
                           </div>
                           <p
@@ -832,7 +854,7 @@ export default function MaterialsPage() {
 
                       {/* Image banner */}
                       {material.image && (
-                        <div className="mb-4 -mx-6 -mt-2 h-36 overflow-hidden">
+                        <div className="-mx-6 -mt-2 mb-4 h-36 overflow-hidden">
                           <Image
                             src={material.image}
                             alt={material.name}
@@ -842,7 +864,6 @@ export default function MaterialsPage() {
                           />
                         </div>
                       )}
-
 
                       {/* Applications */}
                       <div className="mb-4">
@@ -941,7 +962,7 @@ export default function MaterialsPage() {
                               <Star className="h-4 w-4 fill-current text-[#ff9500]" />
                             )}
                             {material.sustainable && (
-                              <Leaf className="h-4 w-4 text-pakfactory-green" />
+                              <Leaf className="h-4 w-4 text-packify-green" />
                             )}
                           </div>
                           <p

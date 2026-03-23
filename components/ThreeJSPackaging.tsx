@@ -208,7 +208,7 @@ export default function ThreeJSPackaging({
     },
     finish: {
       type: "Matte Premium",
-      color: "#2FAB73", // PakFactory green
+      color: "#2FAB73", // Packify green
       roughness: 0.3,
       metalness: 0.1
     }
@@ -235,7 +235,7 @@ export default function ThreeJSPackaging({
           <p className="text-sm text-[#42544e] mb-4">WebGL Error - Using Fallback</p>
           <div className="w-32 h-32 bg-[#279366] rounded-lg mx-auto relative shadow-lg">
             <div className="absolute inset-2 bg-white rounded border border-[#279366]/30 flex items-center justify-center">
-              <div className="text-xs text-[#279366] font-bold text-center">PAKFACTORY<br/>BOX</div>
+              <div className="text-xs text-[#279366] font-bold text-center">PACKIFY<br/>BOX</div>
             </div>
           </div>
         </div>

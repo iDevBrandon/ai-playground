@@ -23,7 +23,7 @@ export const useChatStore = create<ChatStore>()(
       chatHistory: [
         {
           id: "default-1",
-          title: "PakFactory AI Interface",
+          title: "Packify AI Interface",
           createdAt: new Date()
         },
         {

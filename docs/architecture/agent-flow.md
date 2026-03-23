@@ -1,6 +1,6 @@
 # Agent Flow Specification
 
-This document defines how user messages are processed through the **Intent → Tool → Action → UI Response** pipeline within the PakFactory AI system.
+This document defines how user messages are processed through the **Intent → Tool → Action → UI Response** pipeline within the Packify AI system.
 
 ---
 
@@ -99,7 +99,7 @@ Creates or fetches a 3D visualisation of the packaging.
 {
   "intent": "RENDER_3D",
   "payload": {
-    "model_url": "https://cdn.pakfactory.com/renders/rigid-box-12x10x4.glb",
+    "model_url": "https://cdn.packify.com/renders/rigid-box-12x10x4.glb",
     "viewer_type": "3d",
     "metadata": {
       "style": "Rigid Lid & Base",

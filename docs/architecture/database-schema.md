@@ -1,6 +1,6 @@
 # Database Schema
 
-This document describes the Supabase (PostgreSQL) tables used by PakFactory AI.
+This document describes the Supabase (PostgreSQL) tables used by Packify AI.
 
 > For RPC functions and Row Level Security policies, see [`supabase-rpc.md`](../api/supabase-rpc.md).
 

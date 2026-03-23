@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Design Specification is the core output of a PakFactory AI chat session. It is a structured, typed record of all packaging requirements captured from a user's natural language description — dimensions, material, finish, quantity, and more.
+The Design Specification is the core output of a Packify AI chat session. It is a structured, typed record of all packaging requirements captured from a user's natural language description — dimensions, material, finish, quantity, and more.
 
 ---
 

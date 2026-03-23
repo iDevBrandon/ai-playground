@@ -12,7 +12,7 @@
   --card-foreground: #111c2d; /* on_surface */
   --popover: #ffffff; /* surface_container_lowest */
   --popover-foreground: #111c2d; /* on_surface */
-  --primary: #36B37E; /* primary */
+  --primary: #8b4513; /* primary */
   --primary-foreground: #ffffff; /* on_primary */
   --secondary: #515f74; /* secondary */
   --secondary-foreground: #ffffff; /* on_secondary */
@@ -23,7 +23,7 @@
   --destructive: #ba1a1a; /* error */
   --border: rgba(195, 198, 214, 0.2); /* outline_variant at 20% opacity */
   --input: #ffffff; /* surface_container_lowest */
-  --ring: #36B37E; /* primary */
+  --ring: #8b4513; /* primary */
 
   /* Extended Industrial Colors */
   --surface: #f9f9ff;
@@ -95,7 +95,7 @@
 }
 
 @theme inline {
-  --color-pakfactory-green: #36b37e;
+  --color-packify-brown: #8b4513;
 
   /* Industrial Intelligence Custom Colors */
   --color-surface: #f9f9ff;
@@ -115,7 +115,6 @@
   --color-outline-variant: #c3c6d6;
   --color-inverse-surface: #263143;
   --color-inverse-on-surface: #ecf1ff;
-  --font-sans: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -162,8 +161,5 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
   }
 }

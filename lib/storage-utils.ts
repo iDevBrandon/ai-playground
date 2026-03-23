@@ -5,7 +5,7 @@ const supabase = createClient(
   process.env.SUPABASE_SECRET_KEY!
 )
 
-export const DOCUMENTS_BUCKET = 'pakfactory';
+export const DOCUMENTS_BUCKET = 'packify';
 
 export interface UploadFileParams {
   key: string;

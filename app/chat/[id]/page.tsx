@@ -45,7 +45,7 @@ export default function ChatPage() {
     // Use a simple hash to generate consistent titles
     const hash = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
     const titles = [
-      "PakFactory AI Interface",
+      "Packify AI Interface",
       "Packaging Design Consultation", 
       "Material Specification Review",
       "Cost Analysis Discussion",

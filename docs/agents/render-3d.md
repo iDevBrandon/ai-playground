@@ -23,7 +23,7 @@ Creates or fetches a 3D visualisation of the packaging design based on the curre
 {
   "intent": "RENDER_3D",
   "payload": {
-    "model_url": "https://cdn.pakfactory.com/renders/rigid-box-12x10x4.glb",
+    "model_url": "https://cdn.packify.com/renders/rigid-box-12x10x4.glb",
     "viewer_type": "3d",
     "metadata": {
       "style": "Rigid Lid & Base",

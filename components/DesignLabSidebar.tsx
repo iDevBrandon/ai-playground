@@ -8,6 +8,7 @@ import {
   LogOut,
   MessageSquareCode,
   MoreVertical,
+  PackageOpen,
   PackageSearch,
   PencilRuler,
   Plus,
@@ -123,7 +124,7 @@ export default function DesignLabSidebar({
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-50 flex w-[280px] transform flex-col bg-[#fcf9f8] transition-transform duration-300 ease-in-out lg:relative lg:z-auto lg:w-[320px] ${
+      className={`fixed inset-y-0 left-0 z-50 flex w-70 transform flex-col bg-[#fcf9f8] transition-transform duration-300 ease-in-out lg:relative lg:z-auto lg:w-[320px] ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       }`}
       style={{
@@ -134,15 +135,11 @@ export default function DesignLabSidebar({
       <div className="hidden h-full flex-col bg-[#f3ece4] lg:flex">
         {/* Brand Logo Header */}
         <div className="flex h-14 shrink-0 items-center justify-start border-b border-black/5 px-8">
-          <img
-            src="/image/logo.png"
-            alt="PakFactory"
-            className="h-7 w-auto object-contain"
-          />
+          <PackageOpen className="h-7 w-7 text-[#0d9c69]" />
         </div>
 
         {/* Top Navigation Bar - Icons */}
-        <div className="flex h-[72px] shrink-0 items-center justify-between px-6">
+        <div className="h-18ink-0 flex items-center justify-between px-6">
           <div className="flex w-full items-center justify-center gap-3">
             <button
               onClick={() => handleTabClick("chat", "/design-lab")}
@@ -221,7 +218,7 @@ export default function DesignLabSidebar({
             <div className="flex-1 overflow-y-auto px-8 pb-10">
               <div className="relative space-y-6">
                 {/* Vertical line connecting steps */}
-                <div className="absolute top-2 bottom-4 left-[9px] w-[1px] bg-gray-300/60" />
+                <div className="absolute top-2 bottom-4 left-2.25 w-[1px] bg-gray-300/60" />
 
                 {/* Step 1: Completed */}
                 <div className="relative z-10 flex items-start gap-4">
@@ -560,11 +557,7 @@ export default function DesignLabSidebar({
       <div className="flex h-full w-full flex-col bg-[#fcf9f8] lg:hidden">
         {/* Mobile Header with Logo */}
         <div className="flex h-14 shrink-0 items-center justify-start border-b border-black/5 px-8">
-          <img
-            src="/image/logo.png"
-            alt="PakFactory"
-            className="h-7 w-auto object-contain"
-          />
+          <PackageOpen className="h-7 w-7 text-[#0d9c69]" />
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 py-8">

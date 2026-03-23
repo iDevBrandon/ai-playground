@@ -1,6 +1,10 @@
-# Pakfactory RAG chatbot
+# Packify AI
 
 I have implemented a chatbot using Nextjs and Chat SDK that utilizes a Retrieval-Augmented Generation (RAG) pipeline. The goal of this project is to build a conversational interface that helps users design packaging soluctions as an AI powered packing consultant.
+
+## Inspiration
+
+I had a packaging company interview and i do not know what they are exactly planning to do with AI. Also, i've seen so many job posts about AI and RAG pipelines so that i decided to create something similar to <https://www.packify.ai/> with the tech stack that i am comfortable with to create a generative UI AI service for packaging solutions. I have also seen some RAG implementations but they are mostly focused on document search and question answering. I wanted to create something more interactive and conversational that can help users design packaging solutions based on their needs and preferences.
 
 ## Demo flow
 
@@ -140,7 +144,7 @@ npx supabase gen types typescript --project-id "xkgnsouomskjbdzwjpab" --schema p
 - `GET /api/pinecone-stats` - Vector database statistics
 - `POST /api/process-document` - Manually trigger document processing
 
-## Models we're using:
+## Models we're using
 
 1. For embeddings: openai/text-embedding-3-large (1024
    dimensions)
