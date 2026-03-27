@@ -182,3 +182,8 @@ Generate answer
 ```mcp__stitch__get_project
   project_id: "15874390315716692698"
 ```
+
+## References for packaging design inspiration and data sources
+
+- [pacdora](https://www.pacdora.com/mockup-detail/flip-top-boxes-mailer-mockup-150010)
+- [packify](https://www.packify.ai/)

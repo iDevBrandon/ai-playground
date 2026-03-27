@@ -38,12 +38,12 @@ export default function LandingPage() {
           >
             Products
           </a>
-          <a
-            href="#"
+          <Link
+            href="/tools/mockup"
             className="font-medium text-gray-600 transition-colors hover:text-primary"
           >
-            Industries
-          </a>
+            Mockup Tools
+          </Link>
           <a
             href="#"
             className="font-medium text-gray-600 transition-colors hover:text-primary"
