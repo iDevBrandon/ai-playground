@@ -10,17 +10,26 @@ const server = new McpServer({
 server.registerTool(
   "get-stock-info",
   {
-    description: "Get the current stock information for a given symbol",
+    description: "Get current stock information",
     inputSchema: z.object({
-      symbol: z.string().describe("The stock symbol to get information for"),
+      symbol: z.string(),
     }),
   },
   async ({ symbol }) => {
+    const price = Math.random() * 490 + 10;
+    const change = Math.random() * 10 - 5;
+
     return {
       content: [
         {
           type: "text",
-          text: `The current price for ${symbol} is $150.00 .`,
+          text: JSON.stringify({
+            symbol: symbol.toUpperCase(),
+            price: Number(price.toFixed(2)),
+            change: Number(change.toFixed(2)),
+            changePercent: Number(((change / price) * 100).toFixed(2)),
+            currency: "USD",
+          }),
         },
       ],
     };
